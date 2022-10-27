@@ -1,0 +1,14 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{image}">
+        <f:then>
+            <figure class="image">
+                <f:image src="{image.0.uid}" class="is-rounded" treatIdAsReference="1" width="{width}" height="{height}" />
+            </figure>
+        </f:then>
+        <f:else>
+            <figure class="image">
+                <f:image src="{placeholder}" class="image is-rounded" width="{width}" height="{height}" />
+            </figure>
+        </f:else>
+    </f:if>
+</html>

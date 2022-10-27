@@ -12,11 +12,11 @@
                 <div class="tile is-vertical is-2">
                     <div class="tile">
                         <div class="tile is-parent is-vertical has-text-centered">
-                            <article class="tile is-child p-4">
+                            <article class="tile is-child">
                                 <p>
                                     <f:if condition="{image:post.frontendUser.image}">
                                         <f:then>
-                                            <forums:render partial="Post/Single/Avatar" arguments="{image:post.frontendUser.image.0}" />
+                                            <forums:render partial="Basics/Avatar" arguments="{image:post.frontendUser.image, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
                                         </f:then>
                                         <f:else>
                                             <img src="{settings.defaults.avatar}" />

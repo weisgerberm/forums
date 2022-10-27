@@ -105,21 +105,35 @@ plugin.tx_forums._CSS_DEFAULT_STYLE (
 plugin.tx_forums{
   settings{
     defaults{
+      # File location for users without avatar
       avatar = {$plugin.tx_forums.settings.defaults.avatar}
-      avatarWidthThread = {$plugin.tx_forums.settings.defaults.avatarWidthThread}
-      avatarHeightThread = {$plugin.tx_forums.settings.defaults.avatarHeightThread}
+      # Avatar image width in thread list view
+      avatarWidthThreadCreator = {$plugin.tx_forums.settings.defaults.avatarWidthThreadCreator}
+      # Avatar image height in thread list view
+      avatarHeightThreadCreator = {$plugin.tx_forums.settings.defaults.avatarHeightThreadCreator}
+      # Avatar image width in thread list view for the latest post
+      avatarWidthThreadLatestPost = {$plugin.tx_forums.settings.defaults.avatarWidthThreadLatestPost}
+      # Avatar image height in thread list view for the latest post
+      avatarHeightThreadLatestPost = {$plugin.tx_forums.settings.defaults.avatarHeightThreadLatestPost}
+      # Avatar image width in post list view / thread show view
       avatarWidthPost = {$plugin.tx_forums.settings.defaults.avatarWidthPost}
+      # Avatar image height in post list view / thread show view
       avatarHeightPost = {$plugin.tx_forums.settings.defaults.avatarHeightPost}
     }
     css{
+      # Used css framework [BEM, Bootstrap4, Bootstrap5, Bulma]
       mode = {$plugin.tx_forums.settings.css.mode}
     }
     pids{
+      # Page UID for Login-Redirects
       loginPage = {$plugin.tx_forums.settings.pids.loginPage}
+      # Page UID for Profile-Redirects
+
       profilePage = {$plugin.tx_forums.settings.pids.profilePage}
     }
   }
   persistence {
+    # the storage pid is per default the current page-uid, so we dont have to care about anything in the repositories
     storagePid.override.cObject = TEXT
     storagePid.override.cObject.field = uid
   }
