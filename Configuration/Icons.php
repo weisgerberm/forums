@@ -1,0 +1,16 @@
+<?php
+
+return [
+    'forums-plugin-show' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:forums/Resources/Public/Icons/user_plugin_show.svg'
+    ],
+    'forums-plugin-subforums' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:forums/Resources/Public/Icons/user_plugin_subforums.svg'
+    ],
+    'forums-plugin-profile' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:forums/Resources/Public/Icons/user_plugin_profile.svg'
+    ],
+];

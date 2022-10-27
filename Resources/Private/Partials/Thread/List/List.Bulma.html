@@ -1,0 +1,21 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:flashMessages />
+    <f:link.action action="new" class="button is-primary mb-3">
+        <span class="icon-text">
+          <span class="icon is-small">
+            <i class="fas fa-marker"></i>
+          </span>
+          <span><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:new-thread" /></span>
+        </span>
+    </f:link.action>
+    <f:if condition="{threads}">
+        <f:then>
+            <forums:render partial="Thread/List/ListTable" arguments="{_all}" />
+        </f:then>
+        <f:else>
+            <forums:render partial="Thread/List/ListTableEmpty" arguments="{_all}" />
+
+        </f:else>
+    </f:if>
+
+</html>

@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<table class="tx-forums">
+	<tr>
+		<td><f:translate key="tx_forums_domain_model_thread.headline" /></td>
+		<td>{thread.headline}</td>
+	</tr>
+	<tr>
+		<td><f:translate key="tx_forums_domain_model_thread.closed" /></td>
+		<td>{thread.closed}</td>
+	</tr>
+	<tr>
+		<td><f:translate key="tx_forums_domain_model_thread.cached_counter_posts" /></td>
+		<td>{thread.cachedCounterPosts}</td>
+	</tr>
+	<tr>
+		<td><f:translate key="tx_forums_domain_model_thread.cached_counter_views" /></td>
+		<td>{thread.cachedCounterViews}</td>
+	</tr>
+	<tr>
+		<td><f:translate key="tx_forums_domain_model_thread.sticky" /></td>
+		<td>{thread.sticky}</td>
+	</tr>
+	<tr>
+		<td><f:translate key="tx_forums_domain_model_thread.slug" /></td>
+		<td>{thread.slug}</td>
+	</tr>
+	<tr>
+		<td><f:translate key="tx_forums_domain_model_thread.files" /></td>
+		<td>
+				<a href="{thread.files.originalResource.publicUrl}">
+					{thread.files.originalResource.name}
+				</a>
+			</td>
+	</tr>
+</table>
+</html>

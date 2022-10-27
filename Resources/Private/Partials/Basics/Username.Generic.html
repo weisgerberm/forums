@@ -1,0 +1,12 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{frontendUser}">
+        <f:then>
+            <f:link.action pluginName="Show" pageUid="{settings.pids.profilePage}" controller="FrontendUser" action="show" arguments="{frontendUser:frontendUser}">
+                {frontendUser.username}
+            </f:link.action>
+        </f:then>
+        <f:else>
+            [<f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:deleted-user" />]
+        </f:else>
+    </f:if>
+</html>

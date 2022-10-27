@@ -1,0 +1,127 @@
+plugin.tx_forums_show {
+    view {
+        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_forums_show.view.templateRootPath}
+        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_forums_show.view.partialRootPath}
+        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_forums_show.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_forums_show.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+plugin.tx_forums_subforums {
+    view {
+        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_forums_subforums.view.templateRootPath}
+        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_forums_subforums.view.partialRootPath}
+        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_forums_subforums.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_forums_subforums.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+plugin.tx_forums_profile {
+    view {
+        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_forums_profile.view.templateRootPath}
+        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_forums_profile.view.partialRootPath}
+        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_forums_profile.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_forums_profile.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+
+# these classes are only used in auto-generated templates
+plugin.tx_forums._CSS_DEFAULT_STYLE (
+    textarea.f3-form-error {
+        background-color:#FF9F9F;
+        border: 1px #FF0000 solid;
+    }
+
+    input.f3-form-error {
+        background-color:#FF9F9F;
+        border: 1px #FF0000 solid;
+    }
+
+    .tx-forums table {
+        border-collapse:separate;
+        border-spacing:10px;
+    }
+
+    .tx-forums table th {
+        font-weight:bold;
+    }
+
+    .tx-forums table td {
+        vertical-align:top;
+    }
+
+    .typo3-messages .message-error {
+        color:red;
+    }
+
+    .typo3-messages .message-ok {
+        color:green;
+    }
+)
+
+## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+@import 'EXT:forums/Configuration/TypoScript/Blocks/blocks.setup.typoscript'
+@import 'EXT:forums/Configuration/TypoScript/Page/page.setup.typoscript'
+plugin.tx_forums{
+  settings{
+    defaults{
+      avatar = {$plugin.tx_forums.settings.defaults.avatar}
+      avatarWidthThread = {$plugin.tx_forums.settings.defaults.avatarWidthThread}
+      avatarHeightThread = {$plugin.tx_forums.settings.defaults.avatarHeightThread}
+      avatarWidthPost = {$plugin.tx_forums.settings.defaults.avatarWidthPost}
+      avatarHeightPost = {$plugin.tx_forums.settings.defaults.avatarHeightPost}
+    }
+    css{
+      mode = {$plugin.tx_forums.settings.css.mode}
+    }
+    pids{
+      loginPage = {$plugin.tx_forums.settings.pids.loginPage}
+      profilePage = {$plugin.tx_forums.settings.pids.profilePage}
+    }
+  }
+  persistence {
+    storagePid.override.cObject = TEXT
+    storagePid.override.cObject.field = uid
+  }
+}
+@import 'EXT:forums/Configuration/TypoScript/DoktypeInit.setup.typoscript'

@@ -1,0 +1,12 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<table class="tx-forums">
+	<tr>
+		<td><f:translate key="tx_forums_domain_model_frontenduser.last_activity" /></td>
+		<td>{frontendUser.lastActivity -> f:format.date()}</td>
+	</tr>
+	<tr>
+		<td><f:translate key="tx_forums_domain_model_frontenduser.profile_visits" /></td>
+		<td>{frontendUser.profileVisits}</td>
+	</tr>
+</table>
+</html>

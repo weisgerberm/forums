@@ -1,0 +1,11 @@
+plugin.tx_forums{
+  settings{
+    css{
+      mode = Bootstrap5
+      buttonPrimary = btn btn-primary
+      row = row
+      table = table table-striped table-hover
+      table-head =
+    }
+  }
+}

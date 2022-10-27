@@ -1,0 +1,11 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{thread.firstPost.frontendUser.image}">
+        <f:then>
+            <f:image src="{thread.firstPost.frontendUser.image.0.uid}" treatIdAsReference="1" width="{settings.defaults.avatarWidthThread}" height="{settings.defaults.avatarHeightThread}" />
+        </f:then>
+        <f:else>
+            <f:image src="{settings.defaults.avatar}" width="{settings.defaults.avatarWidthThread}" height="{settings.defaults.avatarHeightThread}" />
+        </f:else>
+
+    </f:if>
+</html>

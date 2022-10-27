@@ -1,0 +1,113 @@
+#
+# Extension Builder settings for extension forums
+# generated 2022-10-14T11:35:48Z
+#
+# See http://www.yaml.org/spec/1.2/spec.html
+#
+
+---
+#############  Extension settings  ###########
+
+overwriteSettings:
+  Classes:
+    Controller: keep
+    Domain:
+      Model: merge
+      Repository: merge
+
+  Configuration:
+    TCA:
+      Overrides:
+        fe_users.php: keep
+        pages.php: keep
+        sys_templates.php: merge
+        tt_content.php: merge
+        tx_forums_domain_model_poll.php: merge
+        tx_forums_domain_model_polloption.php: merge
+        tx_forums_domain_model_pollvote.php: merge
+        tx_forums_domain_model_post.php: merge
+        tx_forums_domain_model_postcontent.php: merge
+        tx_forums_domain_model_postlike.php: merge
+        tx_forums_domain_model_postreport.php: merge
+        tx_forums_domain_model_privatemessage.php: merge
+        tx_forums_domain_model_signature.php: merge
+        tx_forums_domain_model_tag.php: merge
+        tx_forums_domain_model_thread.php: merge
+        tx_forums_domain_model_threadsubscription.php: merge
+    TypoScript: merge
+  Tests: keep
+  Resources:
+    Private:
+      Language: merge
+      Layouts: keep
+      Partials: keep
+      Templates: keep
+      Backend:
+        #Layouts: keep
+        #Partials: keep
+        #Templates: keep
+    Public:
+      Icons:
+        Extension.svg: keep
+        user_plugin_show.svg: keep
+        user_plugin_profile.svg: keep
+        user_plugin_subforums.svg: keep
+        pages.gif: keep
+        fe_users.gif: keep
+        tx_forums_domain_model_thread.gif: keep
+        tx_forums_domain_model_threadsubscription.gif: keep
+        tx_forums_domain_model_tag.gif: keep
+        tx_forums_domain_model_poll.gif: keep
+        tx_forums_domain_model_polloption.gif: keep
+        tx_forums_domain_model_pollvote.gif: keep
+        tx_forums_domain_model_post.gif: keep
+        tx_forums_domain_model_postcontent.gif: keep
+        tx_forums_domain_model_postlike.gif: keep
+        tx_forums_domain_model_postreport.gif: keep
+        tx_forums_domain_model_privatemessage.gif: keep
+        tx_forums_domain_model_signature.gif: keep
+
+  user_extension.svg: keep
+  ext_localconf.php: merge
+  ext_tables.php: merge
+  ext_tables.sql: merge
+
+## add declare strict types in php files
+declareStrictTypes: true
+
+## use static date attribute in xliff files
+#staticDateInXliffFiles: '2022-10-14T11:35:48Z'
+
+## skip docComment (license header)
+#skipDocComment: false
+
+## list of error codes for warnings that should be ignored
+ignoreWarnings:
+  606
+
+#############  settings for classBuilder  #######################
+#
+# here you may define default parent classes for your classes
+# these settings only apply for new generated classes
+# you may also just change the parent class in the generated class file.
+# It will be kept on next code generation, if the overwrite settings
+# are configured to merge it
+#
+#################################################################
+
+classBuilder:
+
+  Controller:
+    parentClass: \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+
+  Model:
+    AbstractEntity:
+      parentClass: \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+
+    AbstractValueObject:
+      parentClass: \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
+
+  Repository:
+    parentClass: \Weisgerber\Forums\Domain\Repository\AbstractRepository
+
+  setDefaultValuesForClassProperties: true

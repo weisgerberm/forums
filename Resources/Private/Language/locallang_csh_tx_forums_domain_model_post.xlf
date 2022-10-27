@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_tx_forums_domain_model_post.xlf" date="2022-10-26T22:49:49Z" product-name="forums">
+		<header/>
+		<body>
+			<trans-unit id="spam.description" resname="spam.description">
+				<source>spam</source>
+			</trans-unit>
+			<trans-unit id="awaiting_admin_approval.description" resname="awaiting_admin_approval.description">
+				<source>awaitingAdminApproval</source>
+			</trans-unit>
+			<trans-unit id="admin_comment.description" resname="admin_comment.description">
+				<source>adminComment</source>
+			</trans-unit>
+			<trans-unit id="post_content.description" resname="post_content.description">
+				<source>multiple PostContent Objects for history and edit mode</source>
+			</trans-unit>
+			<trans-unit id="likes.description" resname="likes.description">
+				<source>likes</source>
+			</trans-unit>
+			<trans-unit id="poll.description" resname="poll.description">
+				<source>poll</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

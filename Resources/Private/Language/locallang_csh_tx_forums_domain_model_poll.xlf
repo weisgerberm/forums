@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_tx_forums_domain_model_poll.xlf" date="2022-10-26T22:49:49Z" product-name="forums">
+		<header/>
+		<body>
+			<trans-unit id="title.description" resname="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="poll_votes.description" resname="poll_votes.description">
+				<source>pollVotes</source>
+			</trans-unit>
+			<trans-unit id="poll_options.description" resname="poll_options.description">
+				<source>pollOptions</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

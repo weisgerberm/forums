@@ -1,0 +1,2 @@
+# cat=basic/enable/050; type=user[Weisgerber\Forums\Configuration\Textarea->render]; label=MyLabel
+postBlacklist =

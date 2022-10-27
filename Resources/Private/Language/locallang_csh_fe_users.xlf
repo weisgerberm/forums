@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_fe_users.xlf" date="2022-10-26T22:49:49Z" product-name="forums">
+		<header/>
+		<body>
+			<trans-unit id="last_activity.description" resname="last_activity.description">
+				<source>lastActivity</source>
+			</trans-unit>
+			<trans-unit id="profile_visits.description" resname="profile_visits.description">
+				<source>how many users visited your profile</source>
+			</trans-unit>
+			<trans-unit id="social_facebook.description" resname="social_facebook.description">
+				<source>socialFacebook</source>
+			</trans-unit>
+			<trans-unit id="social_instagram.description" resname="social_instagram.description">
+				<source>socialInstagram</source>
+			</trans-unit>
+			<trans-unit id="social_pinterest.description" resname="social_pinterest.description">
+				<source>socialPinterest</source>
+			</trans-unit>
+			<trans-unit id="social_twitter.description" resname="social_twitter.description">
+				<source>socialTwitter</source>
+			</trans-unit>
+			<trans-unit id="social_youtube.description" resname="social_youtube.description">
+				<source>socialYoutube</source>
+			</trans-unit>
+			<trans-unit id="prefered_timezone.description" resname="prefered_timezone.description">
+				<source>preferedTimezone</source>
+			</trans-unit>
+			<trans-unit id="allow_email_news.description" resname="allow_email_news.description">
+				<source>allowEmailNews</source>
+			</trans-unit>
+			<trans-unit id="allow_show_online_status.description" resname="allow_show_online_status.description">
+				<source>allowShowOnlineStatus</source>
+			</trans-unit>
+			<trans-unit id="social_steam.description" resname="social_steam.description">
+				<source>socialSteam</source>
+			</trans-unit>
+			<trans-unit id="social_xbox.description" resname="social_xbox.description">
+				<source>socialXbox</source>
+			</trans-unit>
+			<trans-unit id="social_psn.description" resname="social_psn.description">
+				<source>socialPsn</source>
+			</trans-unit>
+			<trans-unit id="social_nintendo.description" resname="social_nintendo.description">
+				<source>socialNintendo</source>
+			</trans-unit>
+			<trans-unit id="social_xing.description" resname="social_xing.description">
+				<source>socialXing</source>
+			</trans-unit>
+			<trans-unit id="threads_per_page.description" resname="threads_per_page.description">
+				<source>threadsPerPage</source>
+			</trans-unit>
+			<trans-unit id="posts_per_page.description" resname="posts_per_page.description">
+				<source>postsPerPage</source>
+			</trans-unit>
+			<trans-unit id="subscribe_to_thread_after_reply.description" resname="subscribe_to_thread_after_reply.description">
+				<source>subscribeToThreadAfterReply</source>
+			</trans-unit>
+			<trans-unit id="allow_display_email.description" resname="allow_display_email.description">
+				<source>allowDisplayEmail</source>
+			</trans-unit>
+			<trans-unit id="cached_counter_posts.description" resname="cached_counter_posts.description">
+				<source>cachedCounterPosts</source>
+			</trans-unit>
+			<trans-unit id="posts.description" resname="posts.description">
+				<source>posts</source>
+			</trans-unit>
+			<trans-unit id="thread_subscriptions.description" resname="thread_subscriptions.description">
+				<source>threadSubscriptions</source>
+			</trans-unit>
+			<trans-unit id="signatures.description" resname="signatures.description">
+				<source>signatures</source>
+			</trans-unit>
+			<trans-unit id="post_likes.description" resname="post_likes.description">
+				<source>postLikes</source>
+			</trans-unit>
+			<trans-unit id="poll_votes.description" resname="poll_votes.description">
+				<source>pollVotes</source>
+			</trans-unit>
+			<trans-unit id="friends.description" resname="friends.description">
+				<source>friends</source>
+			</trans-unit>
+			<trans-unit id="private_messages.description" resname="private_messages.description">
+				<source>privateMessages</source>
+			</trans-unit>
+			<trans-unit id="blacklisted_users.description" resname="blacklisted_users.description">
+				<source>blacklistedUsers</source>
+			</trans-unit>
+			<trans-unit id="avatar.description" resname="avatar.description">
+				<source>avatar</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

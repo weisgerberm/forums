@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang" date="2022-10-2623:10:35Z" product-name="forums" target-language="de">
+    <header>
+      <!--This translation file was generated automatically by the "datamints_locallang_builder" extension. Please note that changes to this file can be lost the next time someone triggers an export in the TYPO3 Backend-module-->
+    </header>
+    <body>
+      <trans-unit id="tx_forums_domain_model_thread.sticky" resname="tx_forums_domain_model_thread.sticky" approved="no">
+        <source>Stick to top</source>
+        <target>Oben anheften</target>
+      </trans-unit>
+      <trans-unit id="new-thread" resname="new-thread" approved="no">
+        <source>New thread</source>
+        <target>Neues Thema</target>
+      </trans-unit>
+      <trans-unit id="create-new-thread" resname="create-new-thread" approved="no">
+        <source>Create new thread</source>
+        <target>Neues Thema erstellen</target>
+      </trans-unit>
+      <trans-unit id="thread-title" resname="thread-title" approved="no">
+        <source>Thread-Title</source>
+        <target>Thema-Titel</target>
+      </trans-unit>
+      <trans-unit id="show-more-options" resname="show-more-options" approved="no">
+        <source>Show more options</source>
+        <target>Weitere Optionen anzeigen</target>
+      </trans-unit>
+      <trans-unit id="plugin.profile.headline" resname="plugin.profile.headline" approved="no">
+        <source>Profile management</source>
+        <target>Profilverwaltung</target>
+      </trans-unit>
+      <trans-unit id="dashboard" resname="dashboard" approved="no">
+        <source>Dashboard</source>
+        <target>Übersicht</target>
+      </trans-unit>
+      <trans-unit id="general" resname="general" approved="no">
+        <source>General</source>
+        <target>Allgemein</target>
+      </trans-unit>
+      <trans-unit id="settings" resname="settings" approved="no">
+        <source>Settings</source>
+        <target>Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="administration" resname="administration" approved="no">
+        <source>Administration</source>
+        <target>Administration</target>
+      </trans-unit>
+      <trans-unit id="security" resname="security" approved="no">
+        <source>Password and security</source>
+        <target>Passwort und Sicherheit</target>
+      </trans-unit>
+      <trans-unit id="email" resname="email" approved="no">
+        <source>Email-Preferences</source>
+        <target>E-Mail-Präferenzen</target>
+      </trans-unit>
+      <trans-unit id="permission-denied" resname="permission-denied" approved="no">
+        <source>Permission denied</source>
+        <target>Zugriff verweigert</target>
+      </trans-unit>
+      <trans-unit id="please-login-text" resname="please-login-text" approved="no">
+        <source>Please log in to access this page</source>
+        <target>Bitte melden Sie sich an, um auf diese Seite zuzugreifen</target>
+      </trans-unit>
+      <trans-unit id="profile" resname="profile" approved="no">
+        <source>Profile</source>
+        <target>Profil</target>
+      </trans-unit>
+      <trans-unit id="save" resname="save" approved="no">
+        <source>Save</source>
+        <target>Speichern</target>
+      </trans-unit>
+      <trans-unit id="username" resname="username" approved="no">
+        <source>Username</source>
+        <target>Benutzername</target>
+      </trans-unit>
+      <trans-unit id="password" resname="password" approved="no">
+        <source>Password</source>
+        <target>Passwort</target>
+      </trans-unit>
+      <trans-unit id="additional-informations" resname="additional-informations" approved="no">
+        <source>Additional informations</source>
+        <target>Zusätzliche Informationen</target>
+      </trans-unit>
+      <trans-unit id="name" resname="name" approved="no">
+        <source>Name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="public" resname="public" approved="no">
+        <source>Public</source>
+        <target>Öffentlich</target>
+      </trans-unit>
+      <trans-unit id="delete" resname="delete" approved="no">
+        <source>Delete</source>
+        <target>Löschen</target>
+      </trans-unit>
+      <trans-unit id="edit" resname="edit" approved="no">
+        <source>Edit</source>
+        <target>Bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="report" resname="report" approved="no">
+        <source>Report post</source>
+        <target>Beitrag melden</target>
+      </trans-unit>
+      <trans-unit id="quote" resname="quote" approved="no">
+        <source>Quote</source>
+        <target>Zitieren</target>
+      </trans-unit>
+      <trans-unit id="new-post-title" resname="new-post-title" approved="no">
+        <source>Headline</source>
+        <target>Überschrift</target>
+      </trans-unit>
+      <trans-unit id="reply" resname="reply" approved="no">
+        <source>Reply</source>
+        <target>Antworten</target>
+      </trans-unit>
+      <trans-unit id="create-new-post" resname="create-new-post" approved="no">
+        <source>Create reply</source>
+        <target>Antwort erstellen</target>
+      </trans-unit>
+      <trans-unit id="deleted-user" resname="deleted-user" approved="no">
+        <source>Deleted user</source>
+        <target>Gelöschter Benutzer</target>
+      </trans-unit>
+      <trans-unit id="no-entries-found" resname="no-entries-found" approved="no">
+        <source>No entries found. Be the first to post something!</source>
+        <target>Keine Einträge gefunden. Seien Sie der Erste, der etwas schreibt!</target>
+      </trans-unit>
+      <trans-unit id="no-subforums-found" resname="no-subforums-found" approved="no">
+        <source>No subforums were found</source>
+        <target>Es wurden keine Unterforen gefunden</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

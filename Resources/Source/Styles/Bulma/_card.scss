@@ -1,0 +1,14 @@
+.card-header{
+    &.is-no-shadow{
+        box-shadow: none;
+    }
+    &:hover{
+        cursor:default;
+    }
+    .dropdown-item{
+      &:hover{
+          color:red!important;
+
+      }
+    }
+}

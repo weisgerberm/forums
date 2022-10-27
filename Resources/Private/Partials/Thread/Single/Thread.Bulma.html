@@ -1,0 +1,24 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <h1 class="title">{thread.headline}</h1>
+    <div class="subtitle is-6 has-text-grey">
+        <span class="icon-text">
+            <f:if condition="{thread.firstPost.frontenduser}">
+                <span class="icon is-small">
+                    <i class="fas fa-user-edit"></i>
+                </span>
+                <span>
+                    <forums:render style="Generic" partial="Basics/Username" arguments="{frontendUser:thread.firstPost.frontenduser}" />
+                </span>
+            </f:if>
+            <span class="icon is-small">
+                <i class="far fa-clock"></i>
+            </span>
+            <span>
+                <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{thread.firstPost.currentPostContent.crdate}"></f:format.date>
+            </span>
+
+        </span>
+    </div>
+    <forums:render partial="Post/List/List" arguments="{_all}" />
+</html>

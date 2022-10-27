@@ -1,0 +1,6 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:for each="{posts}" as="post">
+    <forums:render partial="Post/Single/Post" arguments="{_all}" />
+</f:for>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_tabs" date="2022-10-1700:00:14Z" product-name="forums" target-language="de">
+    <header>
+      <!--This translation file was generated automatically by the "datamints_locallang_builder" extension. Please note that changes to this file can be lost the next time someone triggers an export in the TYPO3 Backend-module-->
+    </header>
+    <body>
+      <trans-unit id="posts" resname="posts" approved="no">
+        <source>Posts</source>
+        <target>Beiträge</target>
+      </trans-unit>
+      <trans-unit id="readonly" resname="readonly" approved="no">
+        <source>Read-only</source>
+        <target>Schreibgeschützt</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

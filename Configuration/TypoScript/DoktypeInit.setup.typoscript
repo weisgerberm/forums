@@ -1,0 +1,13 @@
+[traverse(page, "doktype") in [95,96]]
+  lib.forums = USER
+  lib.forums{
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    vendorName = Weisgerber
+    extensionName = Forums
+    pluginName = Show
+    settings < plugin.tx_forums.settings
+    persistence < plugin.tx_forums.persistence
+
+  }
+
+[global]

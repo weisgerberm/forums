@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_tx_forums_domain_model_thread.xlf" date="2022-10-26T22:49:49Z" product-name="forums">
+		<header/>
+		<body>
+			<trans-unit id="headline.description" resname="headline.description">
+				<source>thread title for list and detail view</source>
+			</trans-unit>
+			<trans-unit id="closed.description" resname="closed.description">
+				<source>closed</source>
+			</trans-unit>
+			<trans-unit id="cached_counter_posts.description" resname="cached_counter_posts.description">
+				<source>cachedCounterPosts</source>
+			</trans-unit>
+			<trans-unit id="cached_counter_views.description" resname="cached_counter_views.description">
+				<source>cachedCounterViews</source>
+			</trans-unit>
+			<trans-unit id="sticky.description" resname="sticky.description">
+				<source>sticky on top of the subforum</source>
+			</trans-unit>
+			<trans-unit id="slug.description" resname="slug.description">
+				<source>url slug</source>
+			</trans-unit>
+			<trans-unit id="files.description" resname="files.description">
+				<source>files</source>
+			</trans-unit>
+			<trans-unit id="posts.description" resname="posts.description">
+				<source>posts</source>
+			</trans-unit>
+			<trans-unit id="tags.description" resname="tags.description">
+				<source>tags</source>
+			</trans-unit>
+			<trans-unit id="active_users.description" resname="active_users.description">
+				<source>activeUsers</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

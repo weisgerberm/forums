@@ -1,0 +1,11 @@
+plugin.tx_forums{
+  settings{
+    css{
+      mode = Bulma
+      buttonPrimary = button is-primary
+      row = row
+      table = table is-fullwidth is-striped
+      table-head =
+    }
+  }
+}

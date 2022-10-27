@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_db" date="2022-10-2622:55:00Z" product-name="forums" target-language="de">
+    <header>
+      <!--This translation file was generated automatically by the "datamints_locallang_builder" extension. Please note that changes to this file can be lost the next time someone triggers an export in the TYPO3 Backend-module-->
+    </header>
+    <body>
+      <trans-unit id="tx_forums_show.name" resname="tx_forums_show.name" approved="no">
+        <source>Forums - Show Threads</source>
+        <target>Foren - Threads anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tx_forums_show.description" resname="tx_forums_show.description" approved="no">
+        <source>Lists all threads contained on this page/subforum</source>
+        <target>Listet alle auf dieser Seite/im Unterforum enthaltenen Themen auf</target>
+      </trans-unit>
+      <trans-unit id="tx_forums_profile.name" resname="tx_forums_profile.name" approved="no">
+        <source>Forums - Profile</source>
+        <target>Forums - Profil</target>
+      </trans-unit>
+      <trans-unit id="tx_forums_profile.description" resname="tx_forums_profile.description" approved="no">
+        <source>Profile and Settings for FrontendUsers</source>
+        <target>Profil und Einstellungen für FrontendUser</target>
+      </trans-unit>
+      <trans-unit id="moderators" resname="moderators" approved="no">
+        <source>Moderators</source>
+        <target>Moderatoren</target>
+      </trans-unit>
+      <trans-unit id="tx_forums_subforums.name" resname="tx_forums_subforums.name" approved="no">
+        <source>Forums - List subforums</source>
+        <target>Forums - Liste der Unterforen</target>
+      </trans-unit>
+      <trans-unit id="tx_forums_subforums.description" resname="tx_forums_subforums.description" approved="no">
+        <source>Lists all subforums of the current page</source>
+        <target>Listet alle Unterforen der aktuellen Seite auf</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

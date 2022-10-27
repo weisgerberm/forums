@@ -1,0 +1,17 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:flashMessages />
+<f:if condition="{categoryPages}">
+    <f:then>
+        <f:for each="{categoryPages}" as="categoryPage">
+            <forums:render partial="Page/List/ListTable" arguments="{_all}" />
+        </f:for>
+
+    </f:then>
+    <f:else>
+        <forums:render partial="Page/List/ListTableEmpty" arguments="{_all}" />
+
+    </f:else>
+</f:if>
+
+</html>
+

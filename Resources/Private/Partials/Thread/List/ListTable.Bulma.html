@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+    <table class="table is-striped is-no-border-spacing is-fullwidth">
+        <thead class="{settings.css.table-head}">
+        <tr>
+            <th scope="col" colspan="4"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:tx_forums_domain_model_thread" /></th>
+        </tr>
+        </thead>
+        <tbody>
+        <f:for each="{threads}" as="thread">
+             <tr>
+                <td>
+                    <forums:render partial="Thread/List/Avatar" arguments="{_all}"/>
+                </td>
+                <td>
+                    <forums:render partial="Thread/List/Headline" arguments="{_all}"/>
+                    <forums:render partial="Thread/List/Creator" arguments="{_all}"/>
+
+
+
+                </td>
+                <td>
+                    <div class="icon-text">
+                        <span class="icon">
+                            <i class="far fa-comment"></i>
+                        </span>
+                        <span>{thread.cachedCounterPosts}</span>
+
+                    </div>
+                    <div class="icon-text">
+                        <span class="icon">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                        <span>{thread.cachedCounterViews}</span>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="{settings.css.row}">
+                        <div class="col-12">
+                            <forums:render partial="Thread/List/LastPoster" arguments="{_all}"/>
+
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+        </f:for>
+
+        </tbody>
+    </table>
+</html>

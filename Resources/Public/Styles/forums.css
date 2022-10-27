@@ -1,0 +1,14 @@
+.ck-editor__editable_inline {
+  min-height: 400px;
+}
+
+.tx-forums .card-header.is-no-shadow {
+  box-shadow: none;
+}
+.tx-forums .card-header:hover {
+  cursor: default;
+}
+.tx-forums .card-header .dropdown-item:hover {
+  color: red !important;
+}
+/*# sourceMappingURL=forums.css.map*/

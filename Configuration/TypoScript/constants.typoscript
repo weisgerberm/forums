@@ -1,0 +1,63 @@
+plugin.tx_forums_show {
+    view {
+        # cat=plugin.tx_forums_show/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:forums/Resources/Private/Templates/
+        # cat=plugin.tx_forums_show/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:forums/Resources/Private/Partials/
+        # cat=plugin.tx_forums_show/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:forums/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_forums_show//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
+plugin.tx_forums_subforums {
+    view {
+        # cat=plugin.tx_forums_subforums/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:forums/Resources/Private/Templates/
+        # cat=plugin.tx_forums_subforums/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:forums/Resources/Private/Partials/
+        # cat=plugin.tx_forums_subforums/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:forums/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_forums_subforums//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
+plugin.tx_forums_profile {
+    view {
+        # cat=plugin.tx_forums_profile/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:forums/Resources/Private/Templates/
+        # cat=plugin.tx_forums_profile/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:forums/Resources/Private/Partials/
+        # cat=plugin.tx_forums_profile/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:forums/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_forums_profile//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
+
+## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+@import 'EXT:forums/Configuration/TypoScript/Page/page.constants.typoscript'
+plugin.tx_forums{
+  settings{
+    defaults{
+      avatar = /typo3/sysext/core/Resources/Public/Icons/T3Icons/svgs/avatar/avatar-default.svg
+      avatarWidthThread = 80c
+      avatarHeightThread = 80c
+      avatarWidthPost = 100c
+      avatarHeightPost = 100c
+    }
+    css{
+      mode = BEM
+    }
+    pids{
+      loginPage =
+      profilePage =
+    }
+  }
+}

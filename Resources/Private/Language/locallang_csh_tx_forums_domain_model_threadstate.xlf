@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_tx_forums_domain_model_threadstate.xlf" date="2022-10-26T22:49:49Z" product-name="forums">
+		<header/>
+		<body>
+			<trans-unit id="last_visit.description" resname="last_visit.description">
+				<source>the last time, the frontenduser visited this thread. Important to display, whether there are now posts or not</source>
+			</trans-unit>
+			<trans-unit id="frontend_user.description" resname="frontend_user.description">
+				<source>frontendUser</source>
+			</trans-unit>
+			<trans-unit id="thread.description" resname="thread.description">
+				<source>thread</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

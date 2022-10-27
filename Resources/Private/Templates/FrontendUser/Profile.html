@@ -1,0 +1,17 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="content">
+    <h1 class="title">
+        <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:plugin.profile.headline" />
+    </h1>
+    <f:if condition="{frontendUser}">
+        <f:then>
+            <forums:render partial="FrontendUser/Profile/Overview" arguments="{_all}" />
+        </f:then>
+        <f:else>
+            <forums:render partial="FrontendUser/Profile/PermissionDenied" />
+        </f:else>
+    </f:if>
+</f:section>
+</html>

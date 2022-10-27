@@ -1,0 +1,24 @@
+page {
+  includeJSFooterlibs{
+    ckeditor = {$page.resources.ckeditor}
+  }
+  includeJSFooter{
+    forumsCkeditor = {$page.resources.forumsCkeditor}
+  }
+  includeCSS{
+    compiledStyles = {$page.resources.compiledStyles}
+  }
+  10.default {
+      dataProcessing {
+          1665748136 = Weisgerber\Forums\DataProcessing\AddSettingsProcessor
+          1665748136 {
+              extensionName = Forums
+              pluginName = Subforum
+              as = subforum
+              asExtConfig = configuration
+          }
+      }
+  }
+}
+
+
