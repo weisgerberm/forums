@@ -42,7 +42,7 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     }
 
     /**
-     * @param int $pageUid
+     * @param int $pageUid restrict to a page; 0 for no restriction
      * @return mixed
      */
     public function findLatest(int $pageUid = 0)
@@ -52,9 +52,31 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query = $this->createQuery();
         if ($pageUid > 0) {
             $query->getQuerySettings()->setStoragePageIds([$pageUid]);
+        }else{
+            $query->getQuerySettings()->setRespectStoragePage(false);
         }
         $query->setOrderings(['uid' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
         $query->setLimit(1);
         return $query->execute()->getFirst();
+    }
+
+    /**
+     * @param int $pageUid restrict to a page; 0 for no restriction
+     * @param int $limit
+     * @return mixed
+     */
+    public function findLatestAmount(int $pageUid = 0, int $limit = 5)
+    {
+
+        /** @var Typo3QuerySettings $querySettings */
+        $query = $this->createQuery();
+        if ($pageUid > 0) {
+            $query->getQuerySettings()->setStoragePageIds([$pageUid]);
+        }else{
+            $query->getQuerySettings()->setRespectStoragePage(false);
+        }
+        $query->setOrderings(['uid' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
+        $query->setLimit($limit);
+        return $query->execute();
     }
 }
