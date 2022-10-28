@@ -1,0 +1,21 @@
+<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="field is-horizontal">
+        <div class="field-body">
+            <div class="field">
+                <p class="control">
+                    <f:form.textfield disabled="{f:if condition='forbidden',then:'disabled'}" class="input is-primary" property="postContent.0.headline" id="headline" placeholder="{f:translate(key: 'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:new-post-title')}" />
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="field is-horizontal">
+        <div class="field-body">
+            <div class="field">
+                <p class="control">
+                    <f:form.textarea disabled="{f:if condition='forbidden',then:'disabled'}" id="thread-content" rows="10" property="postContent.0.content" class="textarea is-primary forums-rte"></f:form.textarea>
+                    <div class="forums-rte-wordcount"></div>
+                </p>
+            </div>
+        </div>
+    </div>
+</html>
