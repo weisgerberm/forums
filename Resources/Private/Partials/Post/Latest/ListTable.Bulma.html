@@ -13,7 +13,9 @@
                             {post.frontendUser.username} · Vor 10 Sekunden
                     </p>
                     <p>
-                        Zum Thema {post.thread.headline}
+                        <f:link.action action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread}" >
+                            Zum Thema {post.thread.headline}
+                        </f:link.action>
                     </p>
                 </td>
 

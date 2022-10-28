@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang" date="2022-10-2623:10:35Z" product-name="forums" target-language="de">
+  <file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang" date="2022-10-2814:09:17Z" product-name="forums" target-language="de">
     <header>
       <!--This translation file was generated automatically by the "datamints_locallang_builder" extension. Please note that changes to this file can be lost the next time someone triggers an export in the TYPO3 Backend-module-->
     </header>
@@ -128,6 +128,18 @@
       <trans-unit id="no-subforums-found" resname="no-subforums-found" approved="no">
         <source>No subforums were found</source>
         <target>Es wurden keine Unterforen gefunden</target>
+      </trans-unit>
+      <trans-unit id="no-subforum-found" resname="no-subforum-found" approved="no">
+        <source>There was no subforum found. Please take a look into the documentation to configure everything properly</source>
+        <target>Es wurde kein Unterforum gefunden. Bitte werfen Sie einen Blick in die Dokumentation, um alles richtig zu konfigurieren</target>
+      </trans-unit>
+      <trans-unit id="latest-activities" resname="latest-activities" approved="no">
+        <source>Latest activities</source>
+        <target>Letzte Aktivität</target>
+      </trans-unit>
+      <trans-unit id="no-posts-yet" resname="no-posts-yet" approved="no">
+        <source>Unfortunately there are no entries yet</source>
+        <target>Leider sind noch keine Einträge vorhanden</target>
       </trans-unit>
     </body>
   </file>

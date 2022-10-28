@@ -9,7 +9,9 @@
         <div class="card-footer-item">
             <div class="content">
                 <p>
-                    {post.thread.headline}
+                    <f:link.action action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread}" >
+                        {post.thread.headline}
+                    </f:link.action>
                     <br>
                     <small>
                         <forums:render style="Generic" partial="Basics/Username" arguments="{frontendUser:post.frontendUser}" />
@@ -19,7 +21,6 @@
         </div>
     </footer>
 </div>
-
 
 </html>
 
