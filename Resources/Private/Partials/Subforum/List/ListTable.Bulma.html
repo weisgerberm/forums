@@ -1,12 +1,12 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
     <tr>
         <td>
-            <div class="columns is-vcentered">
-                <div class="column is-narrow">
+            <div class="columns is-vcentered  is-desktop">
+                <div class="column is-narrow-desktop">
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><title>open-folder</title><g stroke-linecap="square" stroke-linejoin="miter" stroke-width="3" transform="translate(0.5 0.5)" fill="none" stroke="#2c1617" stroke-miterlimit="10"><polyline points="48 20 48 12 24 12 18.999 5 2 5 2 59 49 59 61 25 14 25 2 59" stroke-linecap="butt"></polyline></g></svg>
 
                 </div>
-                <div class="column">
+                <div class="column is-6-desktop">
                     <div>
                         <f:link.page pageUid="{page.uid}">
                             <strong>{page.title}</strong>
@@ -18,7 +18,7 @@
 
                 </div>
                 <div class="column">
-                    <div class="icon-text">
+                    <div class="icon-text is-justify-content-flex-end-mobile is-justify-content-center-desktop">
                         <span class="icon">
                             <i class="far fa-comment"></i>
                         </span>
@@ -26,7 +26,7 @@
 
                     </div>
                 </div>
-                <div class="column">
+                <div class="column is-one-third">
                     <f:if condition="{page.cachedLatestPost}">
                         <f:then>
                             <forums:render partial="Subforum/List/LatestPost" arguments="{post:page.cachedLatestPost}" />
