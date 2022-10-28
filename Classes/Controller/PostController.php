@@ -29,7 +29,7 @@ class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function latestAction(): \Psr\Http\Message\ResponseInterface
     {
         $this->view->assignMultiple([
-            'poasts' => $this->postRepository->findLatestAmount()
+            'posts' => $this->postRepository->findLatestAmount()
         ]);
         return $this->htmlResponse();
     }
