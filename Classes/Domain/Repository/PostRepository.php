@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Domain\Repository;
 
-
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 
 /**
@@ -29,37 +28,33 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * @param int $pageUid
-     *
      * @return int
      */
-    public function countPosts (int $pageUid = 0):int
+    public function countPosts(int $pageUid = 0)
     {
+
         /** @var Typo3QuerySettings $querySettings */
         $query = $this->createQuery();
-        if($pageUid>0) {
+        if ($pageUid > 0) {
             $query->getQuerySettings()->setStoragePageIds([$pageUid]);
         }
-
-
         return $query->count();
     }
 
     /**
      * @param int $pageUid
-     *
      * @return mixed
      */
-    public function findLatest (int $pageUid = 0): mixed
+    public function findLatest(int $pageUid = 0)
     {
+
         /** @var Typo3QuerySettings $querySettings */
         $query = $this->createQuery();
-        if($pageUid>0) {
+        if ($pageUid > 0) {
             $query->getQuerySettings()->setStoragePageIds([$pageUid]);
         }
         $query->setOrderings(['uid' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
         $query->setLimit(1);
-
-
         return $query->execute()->getFirst();
     }
 }

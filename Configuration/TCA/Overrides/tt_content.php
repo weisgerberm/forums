@@ -18,4 +18,10 @@ defined('TYPO3') || die();
     'Profile',
     'Profile'
 );
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'Forums',
+    'Latestposts',
+    'Latest posts'
+);
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder

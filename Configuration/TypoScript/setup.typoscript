@@ -64,6 +64,28 @@ plugin.tx_forums_profile {
         #callDefaultActionIfActionCantBeResolved = 1
     }
 }
+plugin.tx_forums_latestposts {
+    view {
+        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_forums_latestposts.view.templateRootPath}
+        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_forums_latestposts.view.partialRootPath}
+        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_forums_latestposts.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_forums_latestposts.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
 
 # these classes are only used in auto-generated templates
 plugin.tx_forums._CSS_DEFAULT_STYLE (

@@ -28,6 +28,13 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $frontenduser = null;
 
     /**
+     * related thread
+     *
+     * @var \Weisgerber\Forums\Domain\Model\Thread
+     */
+    protected $thread = null;
+
+    /**
      * spam
      *
      * @var bool
@@ -70,13 +77,6 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \Weisgerber\Forums\Domain\Model\Poll
      */
     protected $poll = null;
-
-    /**
-     * related thread
-     *
-     * @var \Weisgerber\Forums\Domain\Model\Thread
-     */
-    protected $thread = null;
 
     /**
      * Returns the spam
@@ -325,15 +325,15 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return \Weisgerber\Forums\Domain\Model\Thread|null
      */
-    public function getThread (): ?Thread
+    public function getThread()
     {
         return $this->thread;
     }
 
     /**
-     * @param \Weisgerber\Forums\Domain\Model\Thread|null $thread
+     * @param ?Thread $thread
      */
-    public function setThread (?Thread $thread): void
+    public function setThread(?Thread $thread)
     {
         $this->thread = $thread;
     }

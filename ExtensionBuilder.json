@@ -178,7 +178,9 @@
                     "_default3_new_create": true,
                     "_default4_edit_update": true,
                     "_default5_delete": true,
-                    "customActions": []
+                    "customActions": [
+                        "latest"
+                    ]
                 },
                 "name": "Post",
                 "objectsettings": {
@@ -1529,6 +1531,15 @@
                 "description": "Profile & Settings for FrontendUsers",
                 "key": "profile",
                 "name": "Profile"
+            },
+            {
+                "actions": {
+                    "controllerActionCombinations": "Post => latest",
+                    "noncacheableActions": "Post => latest"
+                },
+                "description": "Shows latest posts; Suggested for the sidebar-context",
+                "key": "latestposts",
+                "name": "Latest posts"
             }
         ],
         "vendorName": "Weisgerber"
@@ -1849,7 +1860,7 @@
     ],
     "storagePath": "\/home\/u676675988\/domains\/darf-ich-mit.de\/public_html\/typo3conf\/ext\/",
     "log": {
-        "last_modified": "2022-10-26 10:49",
+        "last_modified": "2022-10-28 12:31",
         "extension_builder_version": "11.0.8",
         "be_user": " (1)"
     }

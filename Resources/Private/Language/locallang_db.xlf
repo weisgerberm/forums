@@ -1,301 +1,296 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_db" date="2022-10-2622:55:00Z" product-name="forums">
-    <header>
-      <!--This translation file was generated automatically by the "datamints_locallang_builder" extension. Please note that changes to this file can be lost the next time someone triggers an export in the TYPO3 Backend-module-->
-    </header>
-    <body>
-      <trans-unit id="tx_forums_domain_model_thread" resname="tx_forums_domain_model_thread" approved="no">
-        <source>Thread</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.headline" resname="tx_forums_domain_model_thread.headline" approved="no">
-        <source>Headline</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.closed" resname="tx_forums_domain_model_thread.closed" approved="no">
-        <source>Closed</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.cached_counter_posts" resname="tx_forums_domain_model_thread.cached_counter_posts" approved="no">
-        <source>Cached Counter Posts</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.cached_counter_views" resname="tx_forums_domain_model_thread.cached_counter_views" approved="no">
-        <source>Cached Counter Views</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.sticky" resname="tx_forums_domain_model_thread.sticky" approved="no">
-        <source>Sticky</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.slug" resname="tx_forums_domain_model_thread.slug" approved="no">
-        <source>Slug</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.files" resname="tx_forums_domain_model_thread.files" approved="no">
-        <source>Files</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.posts" resname="tx_forums_domain_model_thread.posts" approved="no">
-        <source>Posts</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.tags" resname="tx_forums_domain_model_thread.tags" approved="no">
-        <source>Tags</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_thread.active_users" resname="tx_forums_domain_model_thread.active_users" approved="no">
-        <source>Active Users</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_post" resname="tx_forums_domain_model_post" approved="no">
-        <source>Post</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_post.spam" resname="tx_forums_domain_model_post.spam" approved="no">
-        <source>Spam</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_post.awaiting_admin_approval" resname="tx_forums_domain_model_post.awaiting_admin_approval" approved="no">
-        <source>Awaiting Admin Approval</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_post.admin_comment" resname="tx_forums_domain_model_post.admin_comment" approved="no">
-        <source>Admin Comment</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_post.post_content" resname="tx_forums_domain_model_post.post_content" approved="no">
-        <source>Post Content</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_post.likes" resname="tx_forums_domain_model_post.likes" approved="no">
-        <source>Likes</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_post.poll" resname="tx_forums_domain_model_post.poll" approved="no">
-        <source>Poll</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser" resname="tx_forums_domain_model_frontenduser" approved="no">
-        <source>EXT:forums</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.last_activity" resname="tx_forums_domain_model_frontenduser.last_activity" approved="no">
-        <source>Last Activity</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.profile_visits" resname="tx_forums_domain_model_frontenduser.profile_visits" approved="no">
-        <source>Profile Visits</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_facebook" resname="tx_forums_domain_model_frontenduser.social_facebook" approved="no">
-        <source>Social Facebook</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_instagram" resname="tx_forums_domain_model_frontenduser.social_instagram" approved="no">
-        <source>Social Instagram</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_pinterest" resname="tx_forums_domain_model_frontenduser.social_pinterest" approved="no">
-        <source>Social Pinterest</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_twitter" resname="tx_forums_domain_model_frontenduser.social_twitter" approved="no">
-        <source>Social Twitter</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_youtube" resname="tx_forums_domain_model_frontenduser.social_youtube" approved="no">
-        <source>Social Youtube</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.prefered_timezone" resname="tx_forums_domain_model_frontenduser.prefered_timezone" approved="no">
-        <source>Prefered Timezone</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.allow_email_news" resname="tx_forums_domain_model_frontenduser.allow_email_news" approved="no">
-        <source>Allow Email News</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.allow_show_online_status" resname="tx_forums_domain_model_frontenduser.allow_show_online_status" approved="no">
-        <source>Allow Show Online Status</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_steam" resname="tx_forums_domain_model_frontenduser.social_steam" approved="no">
-        <source>Social Steam</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_xbox" resname="tx_forums_domain_model_frontenduser.social_xbox" approved="no">
-        <source>Social Xbox</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_psn" resname="tx_forums_domain_model_frontenduser.social_psn" approved="no">
-        <source>Social Psn</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_nintendo" resname="tx_forums_domain_model_frontenduser.social_nintendo" approved="no">
-        <source>Social Nintendo</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.social_xing" resname="tx_forums_domain_model_frontenduser.social_xing" approved="no">
-        <source>Social Xing</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.threads_per_page" resname="tx_forums_domain_model_frontenduser.threads_per_page" approved="no">
-        <source>Threads Per Page</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.posts_per_page" resname="tx_forums_domain_model_frontenduser.posts_per_page" approved="no">
-        <source>Posts Per Page</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.subscribe_to_thread_after_reply" resname="tx_forums_domain_model_frontenduser.subscribe_to_thread_after_reply" approved="no">
-        <source>Subscribe To Thread After Reply</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.allow_display_email" resname="tx_forums_domain_model_frontenduser.allow_display_email" approved="no">
-        <source>Allow Display Email</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.cached_counter_posts" resname="tx_forums_domain_model_frontenduser.cached_counter_posts" approved="no">
-        <source>Cached Counter Posts</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.posts" resname="tx_forums_domain_model_frontenduser.posts" approved="no">
-        <source>Posts</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.thread_subscriptions" resname="tx_forums_domain_model_frontenduser.thread_subscriptions" approved="no">
-        <source>Thread Subscriptions</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.signatures" resname="tx_forums_domain_model_frontenduser.signatures" approved="no">
-        <source>Signatures</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.post_likes" resname="tx_forums_domain_model_frontenduser.post_likes" approved="no">
-        <source>Post Likes</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.poll_votes" resname="tx_forums_domain_model_frontenduser.poll_votes" approved="no">
-        <source>Poll Votes</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.friends" resname="tx_forums_domain_model_frontenduser.friends" approved="no">
-        <source>Friends</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.private_messages" resname="tx_forums_domain_model_frontenduser.private_messages" approved="no">
-        <source>Private Messages</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.blacklisted_users" resname="tx_forums_domain_model_frontenduser.blacklisted_users" approved="no">
-        <source>Blacklisted Users</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_frontenduser.avatar" resname="tx_forums_domain_model_frontenduser.avatar" approved="no">
-        <source>Avatar</source>
-      </trans-unit>
-      <trans-unit id="fe_users.tx_extbase_type.Tx_Forums_FrontendUser" resname="fe_users.tx_extbase_type.Tx_Forums_FrontendUser" approved="no">
-        <source>Forums FrontendUser</source>
-      </trans-unit>
-      <trans-unit id="tx_forums.tx_extbase_type" resname="tx_forums.tx_extbase_type" approved="no">
-        <source>Record Type</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_page" resname="tx_forums_domain_model_page" approved="no">
-        <source>Page</source>
-      </trans-unit>
-      <trans-unit id="pages.tx_extbase_type.Tx_Forums_Page" resname="pages.tx_extbase_type.Tx_Forums_Page" approved="no">
-        <source>Forums Page</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_threadsubscription" resname="tx_forums_domain_model_threadsubscription" approved="no">
-        <source>Thread Subscription</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_threadsubscription.thread_reference" resname="tx_forums_domain_model_threadsubscription.thread_reference" approved="no">
-        <source>Thread Reference</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_signature" resname="tx_forums_domain_model_signature" approved="no">
-        <source>Signature</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_signature.activated" resname="tx_forums_domain_model_signature.activated" approved="no">
-        <source>Activated</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_signature.content" resname="tx_forums_domain_model_signature.content" approved="no">
-        <source>Content</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_postcontent" resname="tx_forums_domain_model_postcontent" approved="no">
-        <source>Post Content</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_postcontent.headline" resname="tx_forums_domain_model_postcontent.headline" approved="no">
-        <source>Headline</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_postcontent.content" resname="tx_forums_domain_model_postcontent.content" approved="no">
-        <source>Content</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_postreport" resname="tx_forums_domain_model_postreport" approved="no">
-        <source>Post Report</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_postreport.description" resname="tx_forums_domain_model_postreport.description" approved="no">
-        <source>Description</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_postreport.post_reference" resname="tx_forums_domain_model_postreport.post_reference" approved="no">
-        <source>Post Reference</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_postreport.frontend_user" resname="tx_forums_domain_model_postreport.frontend_user" approved="no">
-        <source>Frontend User</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_postlike" resname="tx_forums_domain_model_postlike" approved="no">
-        <source>Post Like</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_postlike.frontend_user" resname="tx_forums_domain_model_postlike.frontend_user" approved="no">
-        <source>Frontend User</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_tag" resname="tx_forums_domain_model_tag" approved="no">
-        <source>Tag</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_tag.title" resname="tx_forums_domain_model_tag.title" approved="no">
-        <source>Title</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_poll" resname="tx_forums_domain_model_poll" approved="no">
-        <source>Poll</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_poll.title" resname="tx_forums_domain_model_poll.title" approved="no">
-        <source>Title</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_poll.poll_votes" resname="tx_forums_domain_model_poll.poll_votes" approved="no">
-        <source>Poll Votes</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_poll.poll_options" resname="tx_forums_domain_model_poll.poll_options" approved="no">
-        <source>Poll Options</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_pollvote" resname="tx_forums_domain_model_pollvote" approved="no">
-        <source>Poll Vote</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_pollvote.selected_choice" resname="tx_forums_domain_model_pollvote.selected_choice" approved="no">
-        <source>Selected Choice</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_polloption" resname="tx_forums_domain_model_polloption" approved="no">
-        <source>Poll Option</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_polloption.title" resname="tx_forums_domain_model_polloption.title" approved="no">
-        <source>Title</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_privatemessage" resname="tx_forums_domain_model_privatemessage" approved="no">
-        <source>Private Message</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_privatemessage.subject" resname="tx_forums_domain_model_privatemessage.subject" approved="no">
-        <source>Subject</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_privatemessage.content" resname="tx_forums_domain_model_privatemessage.content" approved="no">
-        <source>Content</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_privatemessage.sender" resname="tx_forums_domain_model_privatemessage.sender" approved="no">
-        <source>Sender</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_privatemessage.receiver" resname="tx_forums_domain_model_privatemessage.receiver" approved="no">
-        <source>Receiver</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_threadstate" resname="tx_forums_domain_model_threadstate" approved="no">
-        <source>Thread State</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_threadstate.last_visit" resname="tx_forums_domain_model_threadstate.last_visit" approved="no">
-        <source>Last Visit</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_threadstate.frontend_user" resname="tx_forums_domain_model_threadstate.frontend_user" approved="no">
-        <source>Frontend User</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_threadstate.thread" resname="tx_forums_domain_model_threadstate.thread" approved="no">
-        <source>Thread</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_avatar" resname="tx_forums_domain_model_avatar" approved="no">
-        <source>Avatar</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_avatar.image" resname="tx_forums_domain_model_avatar.image" approved="no">
-        <source>Image</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_domain_model_avatar.custom" resname="tx_forums_domain_model_avatar.custom" approved="no">
-        <source>Custom</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_show.name" resname="tx_forums_show.name" approved="no">
-        <source>Forums - Show Threads</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_show.description" resname="tx_forums_show.description" approved="no">
-        <source>Lists all threads contained on this page/subforum</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_subforums.name" resname="tx_forums_subforums.name" approved="no">
-        <source>Show subforums from this page</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_subforums.description" resname="tx_forums_subforums.description" approved="no">
-        <source>Shows subforums from this page. Does not show threads</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_profile.name" resname="tx_forums_profile.name" approved="no">
-        <source>Forums - Profile</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_profile.description" resname="tx_forums_profile.description" approved="no">
-        <source>Profile and Settings for FrontendUsers</source>
-      </trans-unit>
-      <trans-unit id="moderators" resname="moderators" approved="no">
-        <source>Moderators</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_subforums.name" resname="tx_forums_subforums.name" approved="no">
-        <source>Forums - List subforums</source>
-      </trans-unit>
-      <trans-unit id="tx_forums_subforums.description" resname="tx_forums_subforums.description" approved="no">
-        <source>Lists all subforums of the current page</source>
-      </trans-unit>
-    </body>
-  </file>
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_db.xlf" date="2022-10-28T12:31:08Z" product-name="forums">
+		<header/>
+		<body>
+			<trans-unit id="tx_forums_domain_model_thread" resname="tx_forums_domain_model_thread">
+				<source>Thread</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.headline" resname="tx_forums_domain_model_thread.headline">
+				<source>Headline</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.closed" resname="tx_forums_domain_model_thread.closed">
+				<source>Closed</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.cached_counter_posts" resname="tx_forums_domain_model_thread.cached_counter_posts">
+				<source>Cached Counter Posts</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.cached_counter_views" resname="tx_forums_domain_model_thread.cached_counter_views">
+				<source>Cached Counter Views</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.sticky" resname="tx_forums_domain_model_thread.sticky">
+				<source>Sticky</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.slug" resname="tx_forums_domain_model_thread.slug">
+				<source>Slug</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.files" resname="tx_forums_domain_model_thread.files">
+				<source>Files</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.posts" resname="tx_forums_domain_model_thread.posts">
+				<source>Posts</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.tags" resname="tx_forums_domain_model_thread.tags">
+				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_thread.active_users" resname="tx_forums_domain_model_thread.active_users">
+				<source>Active Users</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_post" resname="tx_forums_domain_model_post">
+				<source>Post</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_post.spam" resname="tx_forums_domain_model_post.spam">
+				<source>Spam</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_post.awaiting_admin_approval" resname="tx_forums_domain_model_post.awaiting_admin_approval">
+				<source>Awaiting Admin Approval</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_post.admin_comment" resname="tx_forums_domain_model_post.admin_comment">
+				<source>Admin Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_post.post_content" resname="tx_forums_domain_model_post.post_content">
+				<source>Post Content</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_post.likes" resname="tx_forums_domain_model_post.likes">
+				<source>Likes</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_post.poll" resname="tx_forums_domain_model_post.poll">
+				<source>Poll</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser" resname="tx_forums_domain_model_frontenduser">
+				<source>Frontend User</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.last_activity" resname="tx_forums_domain_model_frontenduser.last_activity">
+				<source>Last Activity</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.profile_visits" resname="tx_forums_domain_model_frontenduser.profile_visits">
+				<source>Profile Visits</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_facebook" resname="tx_forums_domain_model_frontenduser.social_facebook">
+				<source>Social Facebook</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_instagram" resname="tx_forums_domain_model_frontenduser.social_instagram">
+				<source>Social Instagram</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_pinterest" resname="tx_forums_domain_model_frontenduser.social_pinterest">
+				<source>Social Pinterest</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_twitter" resname="tx_forums_domain_model_frontenduser.social_twitter">
+				<source>Social Twitter</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_youtube" resname="tx_forums_domain_model_frontenduser.social_youtube">
+				<source>Social Youtube</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.prefered_timezone" resname="tx_forums_domain_model_frontenduser.prefered_timezone">
+				<source>Prefered Timezone</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.allow_email_news" resname="tx_forums_domain_model_frontenduser.allow_email_news">
+				<source>Allow Email News</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.allow_show_online_status" resname="tx_forums_domain_model_frontenduser.allow_show_online_status">
+				<source>Allow Show Online Status</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_steam" resname="tx_forums_domain_model_frontenduser.social_steam">
+				<source>Social Steam</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_xbox" resname="tx_forums_domain_model_frontenduser.social_xbox">
+				<source>Social Xbox</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_psn" resname="tx_forums_domain_model_frontenduser.social_psn">
+				<source>Social Psn</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_nintendo" resname="tx_forums_domain_model_frontenduser.social_nintendo">
+				<source>Social Nintendo</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.social_xing" resname="tx_forums_domain_model_frontenduser.social_xing">
+				<source>Social Xing</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.threads_per_page" resname="tx_forums_domain_model_frontenduser.threads_per_page">
+				<source>Threads Per Page</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.posts_per_page" resname="tx_forums_domain_model_frontenduser.posts_per_page">
+				<source>Posts Per Page</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.subscribe_to_thread_after_reply" resname="tx_forums_domain_model_frontenduser.subscribe_to_thread_after_reply">
+				<source>Subscribe To Thread After Reply</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.allow_display_email" resname="tx_forums_domain_model_frontenduser.allow_display_email">
+				<source>Allow Display Email</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.cached_counter_posts" resname="tx_forums_domain_model_frontenduser.cached_counter_posts">
+				<source>Cached Counter Posts</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.posts" resname="tx_forums_domain_model_frontenduser.posts">
+				<source>Posts</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.thread_subscriptions" resname="tx_forums_domain_model_frontenduser.thread_subscriptions">
+				<source>Thread Subscriptions</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.signatures" resname="tx_forums_domain_model_frontenduser.signatures">
+				<source>Signatures</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.post_likes" resname="tx_forums_domain_model_frontenduser.post_likes">
+				<source>Post Likes</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.poll_votes" resname="tx_forums_domain_model_frontenduser.poll_votes">
+				<source>Poll Votes</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.friends" resname="tx_forums_domain_model_frontenduser.friends">
+				<source>Friends</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.private_messages" resname="tx_forums_domain_model_frontenduser.private_messages">
+				<source>Private Messages</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.blacklisted_users" resname="tx_forums_domain_model_frontenduser.blacklisted_users">
+				<source>Blacklisted Users</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_frontenduser.avatar" resname="tx_forums_domain_model_frontenduser.avatar">
+				<source>Avatar</source>
+			</trans-unit>
+			<trans-unit id="fe_users.tx_extbase_type.Tx_Forums_FrontendUser" resname="fe_users.tx_extbase_type.Tx_Forums_FrontendUser">
+				<source>Forums FrontendUser</source>
+			</trans-unit>
+			<trans-unit id="tx_forums.tx_extbase_type" resname="tx_forums.tx_extbase_type">
+				<source>Record Type</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_page" resname="tx_forums_domain_model_page">
+				<source>Page</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_extbase_type.Tx_Forums_Page" resname="pages.tx_extbase_type.Tx_Forums_Page">
+				<source>Forums Page</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_threadsubscription" resname="tx_forums_domain_model_threadsubscription">
+				<source>Thread Subscription</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_threadsubscription.thread_reference" resname="tx_forums_domain_model_threadsubscription.thread_reference">
+				<source>Thread Reference</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_signature" resname="tx_forums_domain_model_signature">
+				<source>Signature</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_signature.activated" resname="tx_forums_domain_model_signature.activated">
+				<source>Activated</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_signature.content" resname="tx_forums_domain_model_signature.content">
+				<source>Content</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_postcontent" resname="tx_forums_domain_model_postcontent">
+				<source>Post Content</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_postcontent.headline" resname="tx_forums_domain_model_postcontent.headline">
+				<source>Headline</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_postcontent.content" resname="tx_forums_domain_model_postcontent.content">
+				<source>Content</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_postreport" resname="tx_forums_domain_model_postreport">
+				<source>Post Report</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_postreport.description" resname="tx_forums_domain_model_postreport.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_postreport.post_reference" resname="tx_forums_domain_model_postreport.post_reference">
+				<source>Post Reference</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_postreport.frontend_user" resname="tx_forums_domain_model_postreport.frontend_user">
+				<source>Frontend User</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_postlike" resname="tx_forums_domain_model_postlike">
+				<source>Post Like</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_postlike.frontend_user" resname="tx_forums_domain_model_postlike.frontend_user">
+				<source>Frontend User</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_tag" resname="tx_forums_domain_model_tag">
+				<source>Tag</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_tag.title" resname="tx_forums_domain_model_tag.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_poll" resname="tx_forums_domain_model_poll">
+				<source>Poll</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_poll.title" resname="tx_forums_domain_model_poll.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_poll.poll_votes" resname="tx_forums_domain_model_poll.poll_votes">
+				<source>Poll Votes</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_poll.poll_options" resname="tx_forums_domain_model_poll.poll_options">
+				<source>Poll Options</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_pollvote" resname="tx_forums_domain_model_pollvote">
+				<source>Poll Vote</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_pollvote.selected_choice" resname="tx_forums_domain_model_pollvote.selected_choice">
+				<source>Selected Choice</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_polloption" resname="tx_forums_domain_model_polloption">
+				<source>Poll Option</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_polloption.title" resname="tx_forums_domain_model_polloption.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_privatemessage" resname="tx_forums_domain_model_privatemessage">
+				<source>Private Message</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_privatemessage.subject" resname="tx_forums_domain_model_privatemessage.subject">
+				<source>Subject</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_privatemessage.content" resname="tx_forums_domain_model_privatemessage.content">
+				<source>Content</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_privatemessage.sender" resname="tx_forums_domain_model_privatemessage.sender">
+				<source>Sender</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_privatemessage.receiver" resname="tx_forums_domain_model_privatemessage.receiver">
+				<source>Receiver</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_threadstate" resname="tx_forums_domain_model_threadstate">
+				<source>Thread State</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_threadstate.last_visit" resname="tx_forums_domain_model_threadstate.last_visit">
+				<source>Last Visit</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_threadstate.frontend_user" resname="tx_forums_domain_model_threadstate.frontend_user">
+				<source>Frontend User</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_threadstate.thread" resname="tx_forums_domain_model_threadstate.thread">
+				<source>Thread</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_avatar" resname="tx_forums_domain_model_avatar">
+				<source>Avatar</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_avatar.image" resname="tx_forums_domain_model_avatar.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_domain_model_avatar.custom" resname="tx_forums_domain_model_avatar.custom">
+				<source>Custom</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_show.name" resname="tx_forums_show.name">
+				<source>Show threads from this page</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_show.description" resname="tx_forums_show.description">
+				<source>Uses threads and posts from this page. Does not show subforums</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_subforums.name" resname="tx_forums_subforums.name">
+				<source>Show subforums from this page</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_subforums.description" resname="tx_forums_subforums.description">
+				<source>Shows subforums from this page. Does not show threads</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_profile.name" resname="tx_forums_profile.name">
+				<source>Profile</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_profile.description" resname="tx_forums_profile.description">
+				<source>Profile &amp; Settings for FrontendUsers</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_latestposts.name" resname="tx_forums_latestposts.name">
+				<source>Latest posts</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_latestposts.description" resname="tx_forums_latestposts.description">
+				<source>Shows latest posts; Suggested for the sidebar-context</source>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
