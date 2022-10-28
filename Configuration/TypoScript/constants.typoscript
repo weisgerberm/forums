@@ -54,6 +54,20 @@ plugin.tx_forums_latestposts {
         storagePid =
     }
 }
+plugin.tx_forums_latestthreads {
+    view {
+        # cat=plugin.tx_forums_latestthreads/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:forums/Resources/Private/Templates/
+        # cat=plugin.tx_forums_latestthreads/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:forums/Resources/Private/Partials/
+        # cat=plugin.tx_forums_latestthreads/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:forums/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_forums_latestthreads//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
 
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 @import 'EXT:forums/Configuration/TypoScript/Page/page.constants.typoscript'

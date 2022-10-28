@@ -17,4 +17,8 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:forums/Resources/Public/Icons/user_plugin_latestposts.svg'
     ],
+    'forums-plugin-latestthreads' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:forums/Resources/Public/Icons/user_plugin_latestthreads.svg'
+    ],
 ];

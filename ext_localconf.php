@@ -54,6 +54,18 @@ defined('TYPO3') || die();
         ]
     );
 
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Forums',
+        'Latestthreads',
+        [
+            \Weisgerber\Forums\Controller\ThreadController::class => 'latest'
+        ],
+        // non-cacheable actions
+        [
+            \Weisgerber\Forums\Controller\ThreadController::class => 'latest'
+        ]
+    );
+
     // wizards
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
         'mod {
@@ -93,6 +105,15 @@ defined('TYPO3') || die();
                         tt_content_defValues {
                             CType = list
                             list_type = forums_latestposts
+                        }
+                    }
+                    latestthreads {
+                        iconIdentifier = forums-plugin-latestthreads
+                        title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestthreads.name
+                        description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestthreads.description
+                        tt_content_defValues {
+                            CType = list
+                            list_type = forums_latestthreads
                         }
                     }
                 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_db.xlf" date="2022-10-28T12:31:08Z" product-name="forums">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_db.xlf" date="2022-10-28T12:35:00Z" product-name="forums">
 		<header/>
 		<body>
 			<trans-unit id="tx_forums_domain_model_thread" resname="tx_forums_domain_model_thread">
@@ -290,6 +290,12 @@
 			</trans-unit>
 			<trans-unit id="tx_forums_latestposts.description" resname="tx_forums_latestposts.description">
 				<source>Shows latest posts; Suggested for the sidebar-context</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_latestthreads.name" resname="tx_forums_latestthreads.name">
+				<source>Latest threads</source>
+			</trans-unit>
+			<trans-unit id="tx_forums_latestthreads.description" resname="tx_forums_latestthreads.description">
+				<source>Shows latest threads; Suggested for the sidebar-context</source>
 			</trans-unit>
 		</body>
 	</file>

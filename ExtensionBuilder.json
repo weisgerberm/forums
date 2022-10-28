@@ -18,7 +18,8 @@
                     "_default5_delete": true,
                     "customActions": [
                         "lock",
-                        "rss"
+                        "rss",
+                        "latest"
                     ]
                 },
                 "name": "Thread",
@@ -1540,6 +1541,15 @@
                 "description": "Shows latest posts; Suggested for the sidebar-context",
                 "key": "latestposts",
                 "name": "Latest posts"
+            },
+            {
+                "actions": {
+                    "controllerActionCombinations": "Thread => latest",
+                    "noncacheableActions": "Thread => latest"
+                },
+                "description": "Shows latest threads; Suggested for the sidebar-context",
+                "key": "latestthreads",
+                "name": "Latest threads"
             }
         ],
         "vendorName": "Weisgerber"
@@ -1860,7 +1870,7 @@
     ],
     "storagePath": "\/home\/u676675988\/domains\/darf-ich-mit.de\/public_html\/typo3conf\/ext\/",
     "log": {
-        "last_modified": "2022-10-28 12:31",
+        "last_modified": "2022-10-28 12:35",
         "extension_builder_version": "11.0.8",
         "be_user": " (1)"
     }
