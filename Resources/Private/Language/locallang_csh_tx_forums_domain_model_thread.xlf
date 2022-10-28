@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_tx_forums_domain_model_thread.xlf" date="2022-10-26T22:49:49Z" product-name="forums">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_tx_forums_domain_model_thread.xlf" date="2022-10-28T12:35:00Z" product-name="forums">
 		<header/>
 		<body>
 			<trans-unit id="headline.description" resname="headline.description">
-				<source>thread title for list and detail view</source>
+				<source>threads headline / subject</source>
 			</trans-unit>
 			<trans-unit id="closed.description" resname="closed.description">
-				<source>closed</source>
+				<source>flag whether the thread is closed for further posts</source>
 			</trans-unit>
 			<trans-unit id="cached_counter_posts.description" resname="cached_counter_posts.description">
-				<source>cachedCounterPosts</source>
+				<source>cached value for better performance</source>
 			</trans-unit>
 			<trans-unit id="cached_counter_views.description" resname="cached_counter_views.description">
-				<source>cachedCounterViews</source>
+				<source>cached value for better performance</source>
 			</trans-unit>
 			<trans-unit id="sticky.description" resname="sticky.description">
 				<source>sticky on top of the subforum</source>

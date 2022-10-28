@@ -25,33 +25,32 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var string
      */
-    protected string $title;
+    protected $title = null;
 
     /**
      * @var string
      */
-    protected string $subtitle;
+    protected $subtitle = null;
 
     /**
      * @var int
      */
-    protected int $cachedPostCounter;
+    protected $cachedPostCounter = null;
 
     /**
      * @var Post|null
      */
-    protected ?Post $cachedLatestPost;
-
+    protected $cachedLatestPost = null;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
      */
-    protected $children;
+    protected $children = null;
 
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
@@ -59,7 +58,7 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param string $title
      */
-    public function setTitle(string $title): void
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -75,7 +74,7 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $children
      */
-    public function setChildren(\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $children): void
+    public function setChildren(\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $children)
     {
         $this->children = $children;
     }
@@ -94,7 +93,7 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getSubtitle (): string
+    public function getSubtitle()
     {
         return $this->subtitle;
     }
@@ -102,7 +101,7 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param string $subtitle
      */
-    public function setSubtitle (string $subtitle): void
+    public function setSubtitle(string $subtitle)
     {
         $this->subtitle = $subtitle;
     }
@@ -110,7 +109,7 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return int
      */
-    public function getCachedPostCounter (): int
+    public function getCachedPostCounter()
     {
         return $this->cachedPostCounter;
     }
@@ -118,7 +117,7 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param int $cachedPostCounter
      */
-    public function setCachedPostCounter (int $cachedPostCounter): void
+    public function setCachedPostCounter(int $cachedPostCounter)
     {
         $this->cachedPostCounter = $cachedPostCounter;
     }
@@ -126,15 +125,15 @@ class Page extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return \Weisgerber\Forums\Domain\Model\Post|null
      */
-    public function getCachedLatestPost (): ?Post
+    public function getCachedLatestPost()
     {
         return $this->cachedLatestPost;
     }
 
     /**
-     * @param \Weisgerber\Forums\Domain\Model\Post|null $cachedLatestPost
+     * @param ?Post $cachedLatestPost
      */
-    public function setCachedLatestPost (?Post $cachedLatestPost): void
+    public function setCachedLatestPost(?Post $cachedLatestPost)
     {
         $this->cachedLatestPost = $cachedLatestPost;
     }

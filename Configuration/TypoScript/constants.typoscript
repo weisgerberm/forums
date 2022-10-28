@@ -40,23 +40,63 @@ plugin.tx_forums_profile {
         storagePid =
     }
 }
+plugin.tx_forums_latestposts {
+    view {
+        # cat=plugin.tx_forums_latestposts/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:forums/Resources/Private/Templates/
+        # cat=plugin.tx_forums_latestposts/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:forums/Resources/Private/Partials/
+        # cat=plugin.tx_forums_latestposts/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:forums/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_forums_latestposts//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
+plugin.tx_forums_latestthreads {
+    view {
+        # cat=plugin.tx_forums_latestthreads/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:forums/Resources/Private/Templates/
+        # cat=plugin.tx_forums_latestthreads/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:forums/Resources/Private/Partials/
+        # cat=plugin.tx_forums_latestthreads/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:forums/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_forums_latestthreads//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
 
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 @import 'EXT:forums/Configuration/TypoScript/Page/page.constants.typoscript'
 plugin.tx_forums{
   settings{
     defaults{
-      avatar = /typo3/sysext/core/Resources/Public/Icons/T3Icons/svgs/avatar/avatar-default.svg
-      avatarWidthThread = 80c
-      avatarHeightThread = 80c
+      # File location for users without avatar
+      avatar = /typo3conf/ext/forums/Resources/Public/Images/96x96.png
+      # Avatar image width in thread list view for the thread creator
+      avatarWidthThreadCreator = 80c
+      # Avatar image height in thread list view for the thread creator
+      avatarHeightThreadCreator = 80c
+      # Avatar image width in thread list view for the latest post
+      avatarWidthThreadLatestPost = 50c
+      # Avatar image height in thread list view for the latest post
+      avatarHeightThreadLatestPost = 50c
+      # Avatar image width in post list view / thread show view
       avatarWidthPost = 100c
+      # Avatar image height in post list view / thread show view
       avatarHeightPost = 100c
     }
     css{
+      # Used css framework [BEM, Bootstrap4, Bootstrap5, Bulma]
       mode = BEM
     }
     pids{
+      # Page UID for Login-Redirects
       loginPage =
+      # Page UID for Profile-Redirects
       profilePage =
     }
   }

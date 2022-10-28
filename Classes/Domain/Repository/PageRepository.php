@@ -23,6 +23,11 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 class PageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
     /**
+     * @var array
+     */
+    protected $defaultOrderings = ['sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING];
+
+    /**
      * searches for pages by pid uid, but respects the given storage pid
      * @param int|null $uid
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_fe_users.xlf" date="2022-10-26T22:49:49Z" product-name="forums">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_fe_users.xlf" date="2022-10-28T12:35:00Z" product-name="forums">
 		<header/>
 		<body>
 			<trans-unit id="last_activity.description" resname="last_activity.description">
 				<source>lastActivity</source>
 			</trans-unit>
 			<trans-unit id="profile_visits.description" resname="profile_visits.description">
-				<source>how many users visited your profile</source>
+				<source>how many users visited this profile</source>
 			</trans-unit>
 			<trans-unit id="social_facebook.description" resname="social_facebook.description">
 				<source>socialFacebook</source>

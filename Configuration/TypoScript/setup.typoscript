@@ -64,6 +64,50 @@ plugin.tx_forums_profile {
         #callDefaultActionIfActionCantBeResolved = 1
     }
 }
+plugin.tx_forums_latestposts {
+    view {
+        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_forums_latestposts.view.templateRootPath}
+        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_forums_latestposts.view.partialRootPath}
+        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_forums_latestposts.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_forums_latestposts.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+plugin.tx_forums_latestthreads {
+    view {
+        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_forums_latestthreads.view.templateRootPath}
+        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_forums_latestthreads.view.partialRootPath}
+        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_forums_latestthreads.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_forums_latestthreads.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
 
 # these classes are only used in auto-generated templates
 plugin.tx_forums._CSS_DEFAULT_STYLE (
@@ -105,21 +149,35 @@ plugin.tx_forums._CSS_DEFAULT_STYLE (
 plugin.tx_forums{
   settings{
     defaults{
+      # File location for users without avatar
       avatar = {$plugin.tx_forums.settings.defaults.avatar}
-      avatarWidthThread = {$plugin.tx_forums.settings.defaults.avatarWidthThread}
-      avatarHeightThread = {$plugin.tx_forums.settings.defaults.avatarHeightThread}
+      # Avatar image width in thread list view
+      avatarWidthThreadCreator = {$plugin.tx_forums.settings.defaults.avatarWidthThreadCreator}
+      # Avatar image height in thread list view
+      avatarHeightThreadCreator = {$plugin.tx_forums.settings.defaults.avatarHeightThreadCreator}
+      # Avatar image width in thread list view for the latest post
+      avatarWidthThreadLatestPost = {$plugin.tx_forums.settings.defaults.avatarWidthThreadLatestPost}
+      # Avatar image height in thread list view for the latest post
+      avatarHeightThreadLatestPost = {$plugin.tx_forums.settings.defaults.avatarHeightThreadLatestPost}
+      # Avatar image width in post list view / thread show view
       avatarWidthPost = {$plugin.tx_forums.settings.defaults.avatarWidthPost}
+      # Avatar image height in post list view / thread show view
       avatarHeightPost = {$plugin.tx_forums.settings.defaults.avatarHeightPost}
     }
     css{
+      # Used css framework [BEM, Bootstrap4, Bootstrap5, Bulma]
       mode = {$plugin.tx_forums.settings.css.mode}
     }
     pids{
+      # Page UID for Login-Redirects
       loginPage = {$plugin.tx_forums.settings.pids.loginPage}
+      # Page UID for Profile-Redirects
+
       profilePage = {$plugin.tx_forums.settings.pids.profilePage}
     }
   }
   persistence {
+    # the storage pid is per default the current page-uid, so we dont have to care about anything in the repositories
     storagePid.override.cObject = TEXT
     storagePid.override.cObject.field = uid
   }

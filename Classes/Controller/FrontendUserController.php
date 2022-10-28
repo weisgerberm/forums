@@ -25,13 +25,6 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     use FrontendUserServiceTrait;
 
     /**
-     * frontendUserRepository
-     *
-     * @var \Weisgerber\Forums\Domain\Repository\FrontendUserRepository
-     */
-    protected $frontendUserRepository = null;
-
-    /**
      * action list
      *
      * @return \Psr\Http\Message\ResponseInterface
@@ -115,13 +108,5 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         ['selectedSubmenu' => $selectedSubmenu]
         );
         return $this->htmlResponse();
-    }
-
-    /**
-     * @param \Weisgerber\Forums\Domain\Repository\FrontendUserRepository $frontendUserRepository
-     */
-    public function injectFrontendUserRepository(\Weisgerber\Forums\Domain\Repository\FrontendUserRepository $frontendUserRepository)
-    {
-        $this->frontendUserRepository = $frontendUserRepository;
     }
 }

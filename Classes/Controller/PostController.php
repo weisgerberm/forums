@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Controller;
 
 
+use Weisgerber\Forums\Repository\Traits\PostRepositoryTrait;
+
 /**
  * This file is part of the "Forums" Extension for TYPO3 CMS.
  *
@@ -19,20 +21,17 @@ namespace Weisgerber\Forums\Controller;
  */
 class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+    use PostRepositoryTrait;
 
     /**
-     * postRepository
-     *
-     * @var \Weisgerber\Forums\Domain\Repository\PostRepository
+     * @return \Psr\Http\Message\ResponseInterface
      */
-    protected $postRepository = null;
-
-    /**
-     * @param \Weisgerber\Forums\Domain\Repository\PostRepository $postRepository
-     */
-    public function injectPostRepository(\Weisgerber\Forums\Domain\Repository\PostRepository $postRepository)
+    public function latestAction(): \Psr\Http\Message\ResponseInterface
     {
-        $this->postRepository = $postRepository;
+        $this->view->assignMultiple([
+            'posts' => $this->postRepository->findLatestAmount()
+        ]);
+        return $this->htmlResponse();
     }
 
     /**
