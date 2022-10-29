@@ -7,7 +7,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Weisgerber\Forums\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Session\UserSessionManager;
-use Weisgerber\Forums\Repository\Traits\FrontendUserRepositoryTrait;
+use Weisgerber\Forums\Traits\FrontendUserRepositoryTrait;
 
 class FrontendUserService
 {

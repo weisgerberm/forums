@@ -1,6 +1,6 @@
 <?php
 
-namespace Weisgerber\Forums\Service\Traits;
+namespace Weisgerber\Forums\Traits;
 
 use Weisgerber\Forums\Service\PageService;
 

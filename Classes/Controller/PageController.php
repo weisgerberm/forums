@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Controller;
 
-
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use Weisgerber\Forums\Repository\Traits\PageRepositoryTrait;
-use Weisgerber\Forums\Service\Traits\PageServiceTrait;
+use Weisgerber\Forums\Traits\PageServiceTrait;
 
 /**
  * This file is part of the "Forums" Extension for TYPO3 CMS.

@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Controller;
 
-use Weisgerber\Forums\Repository\Traits\FrontendUserRepositoryTrait;
-use Weisgerber\Forums\Service\Traits\FrontendUserServiceTrait;
+use Weisgerber\Forums\Traits\{FrontendUserRepositoryTrait,FrontendUserServiceTrait};
 
 /**
  * This file is part of the "Forums" Extension for TYPO3 CMS.
