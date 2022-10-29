@@ -3,8 +3,7 @@
 namespace Weisgerber\Forums\Service;
 
 use Weisgerber\Forums\Domain\Model\Page;
-use Weisgerber\Forums\Repository\Traits\PageRepositoryTrait;
-use Weisgerber\Forums\Repository\Traits\PostRepositoryTrait;
+use Weisgerber\Forums\Traits\{PageRepositoryTrait,PostRepositoryTrait};
 
 class PageService
 {

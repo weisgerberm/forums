@@ -4,20 +4,10 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Controller;
 
-use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
-use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Weisgerber\Forums\Domain\Model\Thread;
-use Weisgerber\Forums\Exception\FileException;
-use Weisgerber\Forums\Repository\Traits\FrontendUserRepositoryTrait;
-use Weisgerber\Forums\Repository\Traits\ThreadRepositoryTrait;
-use Weisgerber\Forums\Service\Traits\FrontendUserServiceTrait;
-use Weisgerber\Forums\Service\Traits\SlugServiceTrait;
-use Weisgerber\Forums\Service\Traits\ThreadServiceTrait;
-use Weisgerber\Forums\Service\Traits\UriServiceTrait;
 use Weisgerber\Forums\Service\UriService;
+use Weisgerber\Forums\Traits\{SlugServiceTrait,ThreadRepositoryTrait,FrontendUserServiceTrait,ThreadServiceTrait,UriServiceTrait};
 
 /**
  * This file is part of the "forums" Extension for TYPO3 CMS.

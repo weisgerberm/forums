@@ -1,6 +1,6 @@
 <?php
 
-namespace Weisgerber\Forums\Repository\Traits;
+namespace Weisgerber\Forums\Traits;
 
 trait FrontendUserRepositoryTrait
 {

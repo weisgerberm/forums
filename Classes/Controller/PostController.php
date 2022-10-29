@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Controller;
 
 
-use Weisgerber\Forums\Repository\Traits\PostRepositoryTrait;
+use Weisgerber\Forums\Traits\PostRepositoryTrait;
 
 /**
  * This file is part of the "Forums" Extension for TYPO3 CMS.

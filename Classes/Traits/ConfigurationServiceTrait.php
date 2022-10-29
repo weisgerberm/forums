@@ -1,6 +1,6 @@
 <?php
 
-namespace Weisgerber\Forums\Services\Configuration\Traits;
+namespace Weisgerber\Forums\Traits;
 
 trait ConfigurationServiceTrait
 {
