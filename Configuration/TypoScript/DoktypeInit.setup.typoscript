@@ -1,3 +1,4 @@
+# Adds automatically the plugin for those two doktypes
 [traverse(page, "doktype") in [95,96]]
   lib.forums = USER
   lib.forums{
