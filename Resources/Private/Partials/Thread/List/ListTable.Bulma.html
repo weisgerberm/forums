@@ -11,7 +11,7 @@
                 <td>
                     <div class="columns is-vcentered">
                         <div class="column is-narrow">
-                            <forums:render partial="Basics/Avatar" arguments="{image:thread.firstPost.frontendUser.image, width:settings.defaults.avatarWidthThreadCreator, height:settings.defaults.avatarHeightThreadCreator, placeholder:settings.defaults.avatar}"/>
+                            <forums:render partial="Basics/Avatar" arguments="{image:thread.firstPost.frontendUser.avatar.image, width:settings.defaults.avatarWidthThreadCreator, height:settings.defaults.avatarHeightThreadCreator, placeholder:settings.defaults.avatar}"/>
                         </div>
                         <div class="column is-half">
                             <forums:render partial="Thread/List/Headline" arguments="{_all}"/>

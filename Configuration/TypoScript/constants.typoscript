@@ -88,6 +88,8 @@ plugin.tx_forums{
       avatarWidthPost = 100c
       # Avatar image height in post list view / thread show view
       avatarHeightPost = 100c
+      # Default thread items displayed per page
+      threadItemsPerPage = 10
     }
     css{
       # Used css framework [BEM, Bootstrap4, Bootstrap5, Bulma]

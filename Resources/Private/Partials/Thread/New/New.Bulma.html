@@ -9,9 +9,9 @@
     <forums:render partial="Thread/New/FormFields" />
     <forums:render partial="Thread/New/Advanced" arguments="{_all}"/>
 
-    <div class="row">
-        <div class="col-12">
-            <f:form.submit class="button is-primary" value="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:create-new-thread')}" />
+    <div class="field is-grouped mt-6">
+        <div class="control">
+            <f:form.submit class="button is-primary has-text-weight-bold" value="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:create-new-thread')}" />
         </div>
     </div>
 </f:form>

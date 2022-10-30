@@ -163,6 +163,8 @@ plugin.tx_forums{
       avatarWidthPost = {$plugin.tx_forums.settings.defaults.avatarWidthPost}
       # Avatar image height in post list view / thread show view
       avatarHeightPost = {$plugin.tx_forums.settings.defaults.avatarHeightPost}
+      # Default thread items displayed per page
+      threadItemsPerPage = {$plugin.tx_forums.settings.defaults.threadItemsPerPage}
     }
     css{
       # Used css framework [BEM, Bootstrap4, Bootstrap5, Bulma]

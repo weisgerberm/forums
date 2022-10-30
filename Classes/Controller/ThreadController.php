@@ -32,13 +32,23 @@ class ThreadController extends AbstractController
     /**
      * action list
      *
+     * @param int $page
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function listAction(): \Psr\Http\Message\ResponseInterface
+    public function listAction(int $page = 1): \Psr\Http\Message\ResponseInterface
     {
         $threads = $this->threadRepository->findAll();
 
-        $this->view->assign('threads', $threads);
+        /** @var \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator $paginator */
+        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$page,3);
+        /** @var \TYPO3\CMS\Core\Pagination\SimplePagination $pagination */
+        $pagination = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Pagination\SimplePagination::class,$paginator);
+        $this->view->assignMultiple(
+            [
+                'threads' => $paginator->getPaginatedItems(),
+                'pagination' => $pagination
+            ]
+        );
         return $this->htmlResponse();
     }
 

@@ -3,7 +3,7 @@
     <div class="field-body">
         <div class="field">
             <p class="control">
-                <f:form.textfield class="input is-primary" property="headline" id="headline" placeholder="{f:translate(key: 'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:thread-title')}" />
+                <f:form.textfield class="input" property="headline" id="headline" placeholder="{f:translate(key: 'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:thread-title')}" />
             </p>
         </div>
     </div>
@@ -14,7 +14,7 @@
         <div class="field">
             <p class="control">
                 <f:form.textarea id="thread-content" rows="10" property="posts.0.postContent.0.content" class="textarea is-primary forums-rte"></f:form.textarea>
-                <div class="forums-rte-wordcount"></div>
+                <div class="forums-rte-wordcount is-size-7 has-text-right"></div>
             </p>
         </div>
     </div>

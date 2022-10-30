@@ -4,7 +4,7 @@
             <forums:render style="Generic" partial="Basics/Username" arguments="{frontendUser:thread.lastPost.frontenduser}" />
         </div>
         <div class="column is-narrow">
-            <forums:render partial="Basics/Avatar" arguments="{image:thread.lastPost.frontenduser.image, width:settings.defaults.avatarWidthThreadLatestPost, height:settings.defaults.avatarHeightLatestPoster, placeholder:settings.defaults.avatar}"/>
+            <forums:render partial="Basics/Avatar" arguments="{image:thread.lastPost.frontenduser.avatar.image, width:settings.defaults.avatarWidthThreadLatestPost, height:settings.defaults.avatarHeightThreadLatestPost, placeholder:settings.defaults.avatar}"/>
         </div>
     </div>
 </html>

@@ -24,7 +24,7 @@ class ThreadRepository extends AbstractRepository
     /**
      * @var array
      */
-    protected $defaultOrderings = ['sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING];
+    protected $defaultOrderings = ['tstamp' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING];
 
     // Ändern der QuerySettings im Repository eines Models
     public function initializeObject()
