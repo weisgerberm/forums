@@ -54,6 +54,19 @@ $tmp_forums_columns = [
             'default' => 0
         ]
     ],
+    'avatar' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser.avatar',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'foreign_table' => 'tx_forums_domain_model_avatar',
+            'default' => 0,
+            'minitems' => 0,
+            'maxitems' => 1,
+        ],
+
+    ],
     'social_facebook' => [
         'exclude' => true,
         'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser.social_facebook',
@@ -428,7 +441,7 @@ $tmp_forums_columns['frontenduser7'] = [
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users', $tmp_forums_columns);
 
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-$GLOBALS['TCA']['fe_users']['types'][0]['showitem'] .= ',--div--;LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser,last_activity, profile_visits, social_facebook, social_instagram, social_pinterest, social_twitter, social_youtube, prefered_timezone, allow_email_news, allow_show_online_status, social_steam, social_xbox, social_psn, social_nintendo, social_xing, threads_per_page, posts_per_page, subscribe_to_thread_after_reply, allow_display_email, cached_counter_posts, posts, thread_subscriptions, signatures, post_likes, poll_votes, friends, private_messages, blacklisted_users';
+$GLOBALS['TCA']['fe_users']['types'][0]['showitem'] .= ',--div--;LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser,avatar,last_activity, profile_visits, social_facebook, social_instagram, social_pinterest, social_twitter, social_youtube, prefered_timezone, allow_email_news, allow_show_online_status, social_steam, social_xbox, social_psn, social_nintendo, social_xing, threads_per_page, posts_per_page, subscribe_to_thread_after_reply, allow_display_email, cached_counter_posts, posts, thread_subscriptions, signatures, post_likes, poll_votes, friends, private_messages, blacklisted_users';
 
 $GLOBALS['TCA']['fe_users']['columns']['last_activity']['config']['readOnly'] = 1;
 $GLOBALS['TCA']['fe_users']['columns']['profile_visits']['config']['readOnly'] = 1;
