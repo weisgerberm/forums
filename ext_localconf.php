@@ -34,11 +34,11 @@ defined('TYPO3') || die();
         'Forums',
         'Profile',
         [
-            \Weisgerber\Forums\Controller\FrontendUserController::class => 'profile, show, latest'
+            \Weisgerber\Forums\Controller\FrontendUserController::class => 'profile, show, latest, saveAvatar'
         ],
         // non-cacheable actions
         [
-            \Weisgerber\Forums\Controller\FrontendUserController::class => 'profile, show, latest'
+            \Weisgerber\Forums\Controller\FrontendUserController::class => 'profile, show, latest, saveAvatar'
         ]
     );
 

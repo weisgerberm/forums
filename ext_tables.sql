@@ -52,7 +52,8 @@ CREATE TABLE fe_users (
 	friends int(11) unsigned NOT NULL DEFAULT '0',
 	private_messages int(11) unsigned NOT NULL DEFAULT '0',
 	blacklisted_users int(11) unsigned NOT NULL DEFAULT '0',
-	avatar int(11) unsigned DEFAULT '0'
+	avatar int(11) unsigned DEFAULT '0',
+	tx_extbase_type varchar(255) DEFAULT '' NOT NULL
 );
 
 CREATE TABLE tx_forums_domain_model_threadsubscription (

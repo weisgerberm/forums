@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_tx_forums_domain_model_polloption.xlf" date="2022-10-28T12:35:00Z" product-name="forums">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang_csh_tx_forums_domain_model_polloption.xlf" date="2022-10-30T15:22:33Z" product-name="forums">
 		<header/>
 		<body>
 			<trans-unit id="title.description" resname="title.description">

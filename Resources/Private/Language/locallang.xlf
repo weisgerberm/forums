@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang.xlf" date="2022-10-28T12:35:00Z" product-name="forums">
+	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang.xlf" date="2022-10-30T15:22:33Z" product-name="forums">
 		<header/>
 		<body>
 			<trans-unit id="tx_forums_domain_model_thread" resname="tx_forums_domain_model_thread">
@@ -19,7 +19,7 @@
 				<source>Cached Counter Views</source>
 			</trans-unit>
 			<trans-unit id="tx_forums_domain_model_thread.sticky" resname="tx_forums_domain_model_thread.sticky">
-				<source>Sticky</source>
+				<source>Stick to top</source>
 			</trans-unit>
 			<trans-unit id="tx_forums_domain_model_thread.slug" resname="tx_forums_domain_model_thread.slug">
 				<source>Slug</source>
@@ -148,7 +148,7 @@
 				<source>Avatar</source>
 			</trans-unit>
 			<trans-unit id="tx_forums_domain_model_page" resname="tx_forums_domain_model_page">
-				<source>Page</source>
+				<source>Forum</source>
 			</trans-unit>
 			<trans-unit id="tx_forums_domain_model_threadsubscription" resname="tx_forums_domain_model_threadsubscription">
 				<source>Thread Subscription</source>
@@ -257,6 +257,108 @@
 			</trans-unit>
 			<trans-unit id="tx_forums_domain_model_avatar.custom" resname="tx_forums_domain_model_avatar.custom">
 				<source>Custom</source>
+			</trans-unit>
+			<trans-unit id="new-thread" resname="new-thread">
+				<source>New thread</source>
+			</trans-unit>
+			<trans-unit id="create-new-thread" resname="create-new-thread">
+				<source>Create new thread</source>
+			</trans-unit>
+			<trans-unit id="thread-title" resname="thread-title">
+				<source>Thread-Title</source>
+			</trans-unit>
+			<trans-unit id="show-more-options" resname="show-more-options">
+				<source>Show more options</source>
+			</trans-unit>
+			<trans-unit id="plugin.profile.headline" resname="plugin.profile.headline">
+				<source>Profile management</source>
+			</trans-unit>
+			<trans-unit id="dashboard" resname="dashboard">
+				<source>Dashboard</source>
+			</trans-unit>
+			<trans-unit id="general" resname="general">
+				<source>General</source>
+			</trans-unit>
+			<trans-unit id="settings" resname="settings">
+				<source>Settings</source>
+			</trans-unit>
+			<trans-unit id="administration" resname="administration">
+				<source>Administration</source>
+			</trans-unit>
+			<trans-unit id="security" resname="security">
+				<source>Password and security</source>
+			</trans-unit>
+			<trans-unit id="email" resname="email">
+				<source>Email-Preferences</source>
+			</trans-unit>
+			<trans-unit id="permission-denied" resname="permission-denied">
+				<source>Permission denied</source>
+			</trans-unit>
+			<trans-unit id="please-login-text" resname="please-login-text">
+				<source>Please log in to access this page</source>
+			</trans-unit>
+			<trans-unit id="profile" resname="profile">
+				<source>Profile</source>
+			</trans-unit>
+			<trans-unit id="save" resname="save">
+				<source>Save</source>
+			</trans-unit>
+			<trans-unit id="username" resname="username">
+				<source>Username</source>
+			</trans-unit>
+			<trans-unit id="password" resname="password">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="additional-informations" resname="additional-informations">
+				<source>Additional informations</source>
+			</trans-unit>
+			<trans-unit id="name" resname="name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="public" resname="public">
+				<source>Public</source>
+			</trans-unit>
+			<trans-unit id="delete" resname="delete">
+				<source>Delete</source>
+			</trans-unit>
+			<trans-unit id="edit" resname="edit">
+				<source>Edit</source>
+			</trans-unit>
+			<trans-unit id="report" resname="report">
+				<source>Report post</source>
+			</trans-unit>
+			<trans-unit id="quote" resname="quote">
+				<source>Quote</source>
+			</trans-unit>
+			<trans-unit id="new-post-title" resname="new-post-title">
+				<source>Headline</source>
+			</trans-unit>
+			<trans-unit id="reply" resname="reply">
+				<source>Reply</source>
+			</trans-unit>
+			<trans-unit id="create-new-post" resname="create-new-post">
+				<source>Create reply</source>
+			</trans-unit>
+			<trans-unit id="deleted-user" resname="deleted-user">
+				<source>Deleted user</source>
+			</trans-unit>
+			<trans-unit id="no-entries-found" resname="no-entries-found">
+				<source>No entries found. Be the first to post something!</source>
+			</trans-unit>
+			<trans-unit id="no-subforums-found" resname="no-subforums-found">
+				<source>No subforums were found</source>
+			</trans-unit>
+			<trans-unit id="no-subforum-found" resname="no-subforum-found">
+				<source>There was no subforum found. Please take a look into the documentation to configure everything properly</source>
+			</trans-unit>
+			<trans-unit id="latest-activities" resname="latest-activities">
+				<source>Latest activities</source>
+			</trans-unit>
+			<trans-unit id="no-posts-yet" resname="no-posts-yet">
+				<source>Unfortunately there are no entries yet</source>
+			</trans-unit>
+			<trans-unit id="avatar" resname="avatar">
+				<source>Avatar</source>
 			</trans-unit>
 		</body>
 	</file>

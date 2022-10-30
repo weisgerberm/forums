@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang" date="2022-10-2814:09:17Z" product-name="forums" target-language="de">
+  <file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang" date="2022-10-3011:05:15Z" product-name="forums" target-language="de">
     <header>
       <!--This translation file was generated automatically by the "datamints_locallang_builder" extension. Please note that changes to this file can be lost the next time someone triggers an export in the TYPO3 Backend-module-->
     </header>
@@ -140,6 +140,10 @@
       <trans-unit id="no-posts-yet" resname="no-posts-yet" approved="no">
         <source>Unfortunately there are no entries yet</source>
         <target>Leider sind noch keine Einträge vorhanden</target>
+      </trans-unit>
+      <trans-unit id="avatar" resname="avatar" approved="no">
+        <source>Avatar</source>
+        <target>Avatar</target>
       </trans-unit>
     </body>
   </file>

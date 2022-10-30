@@ -1526,8 +1526,8 @@
             },
             {
                 "actions": {
-                    "controllerActionCombinations": "FrontendUser => profile,show,latest",
-                    "noncacheableActions": "FrontendUser => profile,show,latest"
+                    "controllerActionCombinations": "FrontendUser => profile,show,latest,saveAvatar",
+                    "noncacheableActions": "FrontendUser => profile,show,latest,saveAvatar"
                 },
                 "description": "Profile & Settings for FrontendUsers",
                 "key": "profile",
@@ -1868,10 +1868,10 @@
             }
         }
     ],
-    "storagePath": "\/home\/u676675988\/domains\/darf-ich-mit.de\/public_html\/typo3conf\/ext\/",
+    "storagePath": "\/home\/u676675988\/domains\/darf-ich-mit.de\/typo3\/extensions\/",
     "log": {
-        "last_modified": "2022-10-28 12:35",
-        "extension_builder_version": "11.0.8",
+        "last_modified": "2022-10-30 03:22",
+        "extension_builder_version": "v11.0.8",
         "be_user": " (1)"
     }
 }
