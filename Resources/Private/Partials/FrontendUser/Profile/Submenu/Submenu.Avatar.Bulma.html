@@ -1,3 +1,25 @@
 <html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-avatar
+    <div class="card">
+        <f:debug>{_all}</f:debug>
+        <header class="card-header">
+            <p class="card-header-title">
+                Avatar-Verwaltung
+            </p>
+        </header>
+        <div class="card-content">
+            <div class="columns">
+                <f:for each="{avatars}" as="avatar">
+                    <div class="column is-3">
+                        <f:link.action class="box" action="saveAvatar" arguments="{avatar:avatar}">
+                            <figure class="image">
+                                <f:image src="{avatar.image.uid}" class="is-rounded" treatIdAsReference="1" width="80c" height="80c" />
+                            </figure>
+                        </f:link.action>
+
+                    </div>
+                </f:for>
+
+            </div>
+        </div>
+    </div>
 </html>

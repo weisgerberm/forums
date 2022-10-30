@@ -85,6 +85,7 @@ overwriteSettings:
         user_plugin_subforums.svg: keep
         pages.gif: keep
         fe_users.gif: keep
+        tx_forums_domain_model_avatar.gif: keep
         tx_forums_domain_model_thread.gif: keep
         tx_forums_domain_model_threadsubscription.gif: keep
         tx_forums_domain_model_tag.gif: keep

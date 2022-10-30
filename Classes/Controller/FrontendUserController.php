@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Controller;
 
-use Weisgerber\Forums\Traits\{FrontendUserRepositoryTrait,FrontendUserServiceTrait};
+use Weisgerber\Forums\Traits\{AvatarRepositoryTrait, FrontendUserRepositoryTrait, FrontendUserServiceTrait};
 
 /**
  * This file is part of the "Forums" Extension for TYPO3 CMS.
@@ -22,6 +22,10 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 {
     use FrontendUserRepositoryTrait;
     use FrontendUserServiceTrait;
+    use AvatarRepositoryTrait;
+
+    const PROFILE_SECTION_DASHBOARD = 'Dashboard';
+    const PROFILE_SECTION_AVATAR = 'Avatar';
 
     /**
      * action list
@@ -106,6 +110,11 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $this->view->assignMultiple(
         ['selectedSubmenu' => $selectedSubmenu]
         );
+        if($selectedSubmenu === self::PROFILE_SECTION_AVATAR){
+            $this->view->assignMultiple([
+               'avatars' => $this->avatarRepository->findAll()
+            ]);
+        }
         return $this->htmlResponse();
     }
 }
