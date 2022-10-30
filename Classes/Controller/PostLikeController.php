@@ -17,7 +17,7 @@ namespace Weisgerber\Forums\Controller;
 /**
  * PostLikeController
  */
-class PostLikeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class PostLikeController extends AbstractController
 {
 
     /**

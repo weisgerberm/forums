@@ -18,7 +18,7 @@ use Weisgerber\Forums\Traits\PageServiceTrait;
 /**
  * PageController
  */
-class PageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class PageController extends AbstractController
 {
     use PageServiceTrait;
 

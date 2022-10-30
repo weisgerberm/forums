@@ -21,7 +21,7 @@ use Weisgerber\Forums\Traits\{SlugServiceTrait,ThreadRepositoryTrait,FrontendUse
 /**
  * ThreadController
  */
-class ThreadController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class ThreadController extends AbstractController
 {
     use SlugServiceTrait;
     use ThreadRepositoryTrait;

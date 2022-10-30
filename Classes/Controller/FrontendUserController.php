@@ -20,7 +20,7 @@ use Weisgerber\Forums\Domain\Model\Avatar;
 /**
  * FrontendUserController
  */
-class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class FrontendUserController extends AbstractController
 {
     use FrontendUserRepositoryTrait;
     use FrontendUserServiceTrait;
@@ -49,7 +49,6 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     public function showAction(\Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser): \Psr\Http\Message\ResponseInterface
     {
-        $this->view->assign('frontendUser', $frontendUser);
         return $this->htmlResponse();
     }
 
@@ -72,7 +71,6 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     public function editAction(\Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser): \Psr\Http\Message\ResponseInterface
     {
-        $this->view->assign('frontendUser', $frontendUser);
         return $this->htmlResponse();
     }
 
@@ -111,8 +109,7 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 
         $this->view->assignMultiple(
             [
-                'selectedSubmenu' => $selectedSubmenu,
-                'frontendUser' => $this->frontendUserService->getLoggedInUser()
+                'selectedSubmenu' => $selectedSubmenu
             ]
         );
         if($selectedSubmenu === self::PROFILE_SECTION_AVATAR){
@@ -132,9 +129,10 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      */
-    public function saveAvatarAction(Avatar $avatar):ResponseInterface{
+    public function saveAvatarAction(Avatar $avatar){
         $frontendUser = $this->frontendUserService->getLoggedInUser();
         $frontendUser->setAvatar($avatar);
+        $this->frontendUserRepository->update($frontendUser);
         $this->redirect('profile', null, null, ['selectedSubmenu' => 'Avatar']);
     }
 

@@ -130,7 +130,7 @@ ignoreWarnings:
 classBuilder:
 
   Controller:
-    parentClass: \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+    parentClass: AbstractController
 
   Model:
     AbstractEntity:

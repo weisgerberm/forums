@@ -8,12 +8,12 @@ use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use Weisgerber\Forums\Service\FrontendUserService;
 use Weisgerber\Forums\Traits\FrontendUserServiceTrait;
 
 class UserViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
-    use FrontendUserServiceTrait;
 
     /**
      * Getting fe_user in VH-Context to avoid caching-issues
@@ -27,14 +27,12 @@ class UserViewHelper extends AbstractViewHelper
     )
     {
 
-        $userRepository = GeneralUtility::makeInstance(FrontendUserRepository::class);
-        $context = GeneralUtility::makeInstance(Context::class);
-        $userId = $context->getPropertyFromAspect('frontend.user', 'id');
-
+        /** @var \Weisgerber\Forums\Service\FrontendUserService $frontendUserService */
+        $frontendUserService = GeneralUtility::makeInstance(FrontendUserService::class);
 
         $renderingContext->getVariableProvider()->add(
             'frontendUser',
-            $userRepository->findByUid($userId)
+            $frontendUserService->getLoggedInUser()
         );
         return '';
     }

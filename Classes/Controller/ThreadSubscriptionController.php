@@ -17,7 +17,7 @@ namespace Weisgerber\Forums\Controller;
 /**
  * ThreadSubscriptionController
  */
-class ThreadSubscriptionController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class ThreadSubscriptionController extends AbstractController
 {
 
     /**

@@ -17,7 +17,7 @@ namespace Weisgerber\Forums\Controller;
 /**
  * PrivateMessageController
  */
-class PrivateMessageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class PrivateMessageController extends AbstractController
 {
 
     /**

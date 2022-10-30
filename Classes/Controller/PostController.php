@@ -19,7 +19,7 @@ use Weisgerber\Forums\Traits\PostRepositoryTrait;
 /**
  * PostController
  */
-class PostController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class PostController extends AbstractController
 {
     use PostRepositoryTrait;
 

@@ -17,7 +17,7 @@ namespace Weisgerber\Forums\Controller;
 /**
  * PollVoteController
  */
-class PollVoteController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class PollVoteController extends AbstractController
 {
 
     /**
