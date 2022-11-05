@@ -6,12 +6,12 @@
             </p>
         </header>
         <div class="card-content">
-            <div class="columns">
+            <div class="columns is-multiline">
                 <f:for each="{avatars}" as="avatar">
                     <div class="column is-3">
                         <f:link.action class="box {f:if(condition: '{avatar} == {frontendUser.avatar}', then: 'is-active')}" action="saveAvatar" arguments="{avatar:avatar}">
                             <figure class="image">
-                                <f:image src="{avatar.image.uid}" title="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:select-as-active-avatar')}" class="is-rounded" treatIdAsReference="1" width="80c" height="80c" />
+                                <f:image src="{avatar.image.uid}" title="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:select-as-active-avatar')}" class="" treatIdAsReference="1" width="150c" height="150c" />
                             </figure>
                         </f:link.action>
 
