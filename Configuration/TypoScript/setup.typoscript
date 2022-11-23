@@ -147,6 +147,7 @@ plugin.tx_forums._CSS_DEFAULT_STYLE (
 @import 'EXT:forums/Configuration/TypoScript/Blocks/blocks.setup.typoscript'
 @import 'EXT:forums/Configuration/TypoScript/Page/page.setup.typoscript'
 plugin.tx_forums{
+  _CSS_DEFAULT_STYLE >
   settings{
     defaults{
       # File location for users without avatar
