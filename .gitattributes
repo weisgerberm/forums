@@ -1,0 +1,15 @@
+/Documentation export-ignore
+/Tests export-ignore
+/.* export-ignore
+/ExtensionBuilder.json export-ignore
+# Set the default behavior for all files.
+* text=auto
+
+# Convert to CRLF line endings on checkout.
+*.php text eol=lf
+*.js text eol=lf
+*.less text eol=lf
+
+# Binary files.
+*.png binary
+*.jpg binary
