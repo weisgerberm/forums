@@ -1,9 +1,9 @@
 page {
   includeJSFooterlibs{
-    ckeditor = {$page.resources.ckeditor}
+#    ckeditor = {$page.resources.ckeditor}
   }
   includeJSFooter{
-    forumsCkeditor = {$page.resources.forumsCkeditor}
+#    forumsCkeditor = {$page.resources.forumsCkeditor}
   }
   includeCSS{
     compiledStyles = {$page.resources.compiledStyles}
