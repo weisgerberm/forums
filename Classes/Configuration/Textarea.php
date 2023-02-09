@@ -26,10 +26,9 @@ class TextArea
      * render textarea for extConf
      *
      * @param array $parameter
-     * @param TypoScriptConstantsViewHelper $parentObject
      * @return string
      */
-    public function render(array $parameter, TypoScriptConstantsViewHelper $parentObject): string
+    public function render(array $parameter): string
     {
         $this->tagBuilder->setTagName('textarea');
         $this->tagBuilder->forceClosingTag(TRUE);
