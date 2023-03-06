@@ -138,13 +138,13 @@ return [
                     'foreign_match_fields' => [
                         'fieldname' => 'image',
                         'tablenames' => 'tx_forums_domain_model_avatar',
-                        'table_local' => 'sys_file',
+
                     ],
                     'maxitems' => 1
                 ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
-            
+
         ],
         'custom' => [
             'exclude' => true,
@@ -161,6 +161,6 @@ return [
                 'default' => 0,
             ]
         ],
-    
+
     ],
 ];
