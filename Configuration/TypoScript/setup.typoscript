@@ -109,40 +109,6 @@ plugin.tx_forums_latestthreads {
     }
 }
 
-# these classes are only used in auto-generated templates
-plugin.tx_forums._CSS_DEFAULT_STYLE (
-    textarea.f3-form-error {
-        background-color:#FF9F9F;
-        border: 1px #FF0000 solid;
-    }
-
-    input.f3-form-error {
-        background-color:#FF9F9F;
-        border: 1px #FF0000 solid;
-    }
-
-    .tx-forums table {
-        border-collapse:separate;
-        border-spacing:10px;
-    }
-
-    .tx-forums table th {
-        font-weight:bold;
-    }
-
-    .tx-forums table td {
-        vertical-align:top;
-    }
-
-    .typo3-messages .message-error {
-        color:red;
-    }
-
-    .typo3-messages .message-ok {
-        color:green;
-    }
-)
-
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 @import 'EXT:forums/Configuration/TypoScript/Blocks/blocks.setup.typoscript'
 @import 'EXT:forums/Configuration/TypoScript/Page/page.setup.typoscript'
