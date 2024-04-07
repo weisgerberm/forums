@@ -1,35 +1,6 @@
 <?php
 defined('TYPO3') || die();
 
-if (!isset($GLOBALS['TCA']['fe_users']['ctrl']['type'])) {
-    // no type field defined, so we define it here. This will only happen the first time the extension is installed!!
-    $GLOBALS['TCA']['fe_users']['ctrl']['type'] = 'tx_extbase_type';
-    $tempColumnstx_forums_fe_users = [];
-    $tempColumnstx_forums_fe_users[$GLOBALS['TCA']['fe_users']['ctrl']['type']] = [
-        'exclude' => true,
-        'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums.tx_extbase_type',
-        'config' => [
-            'type' => 'select',
-            'renderType' => 'selectSingle',
-            'items' => [
-                ['', ''],
-                ['FrontendUser', 'Tx_Forums_FrontendUser']
-            ],
-            'default' => 'Tx_Forums_FrontendUser',
-            'size' => 1,
-            'maxitems' => 1,
-        ]
-    ];
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users', $tempColumnstx_forums_fe_users);
-}
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-    'fe_users',
-    $GLOBALS['TCA']['fe_users']['ctrl']['type'],
-    '',
-    'after:' . $GLOBALS['TCA']['fe_users']['ctrl']['label']
-);
-
 $tmp_forums_columns = [
 
     'last_activity' => [
@@ -65,7 +36,6 @@ $tmp_forums_columns = [
             'minitems' => 0,
             'maxitems' => 1,
         ],
-
     ],
     'social_facebook' => [
         'exclude' => true,
@@ -410,6 +380,11 @@ $tmp_forums_columns = [
             ],
         ],
 
+    ],
+    'self_description' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser.private_messages',
+        'config' => \Weisgerber\DarfIchMit\Utility\TcaUtility::getText()
     ],
     'blacklisted_users' => [
         'exclude' => true,

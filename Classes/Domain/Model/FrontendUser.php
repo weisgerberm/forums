@@ -227,12 +227,7 @@ class FrontendUser extends AbstractEntity
      */
     protected $blacklistedUsers = null;
 
-    /**
-     * avatar
-     *
-     * @var \Weisgerber\Forums\Domain\Model\Avatar
-     */
-    protected $avatar = null;
+
 
     /**
      * __construct
@@ -1068,27 +1063,6 @@ class FrontendUser extends AbstractEntity
     public function setCachedCounterPosts(int $cachedCounterPosts)
     {
         $this->cachedCounterPosts = $cachedCounterPosts;
-    }
-
-    /**
-     * Returns the avatar
-     *
-     * @return \Weisgerber\Forums\Domain\Model\Avatar
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
-
-    /**
-     * Sets the avatar
-     *
-     * @param \Weisgerber\Forums\Domain\Model\Avatar $avatar
-     * @return void
-     */
-    public function setAvatar(\Weisgerber\Forums\Domain\Model\Avatar $avatar)
-    {
-        $this->avatar = $avatar;
     }
 
     /**
