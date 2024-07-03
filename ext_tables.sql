@@ -26,38 +26,15 @@ CREATE TABLE tx_forums_domain_model_post
 
 CREATE TABLE fe_users
 (
-	self_description                text,
 	frontenduser7                   int(11) unsigned DEFAULT '0' NOT NULL,
-	last_activity                   datetime              DEFAULT NULL,
-	profile_visits                  int(11) NOT NULL DEFAULT '0',
-	social_facebook                 varchar(255) NOT NULL DEFAULT '',
-	social_instagram                varchar(255) NOT NULL DEFAULT '',
-	social_pinterest                varchar(255) NOT NULL DEFAULT '',
-	social_twitter                  varchar(255) NOT NULL DEFAULT '',
-	social_youtube                  varchar(255) NOT NULL DEFAULT '',
-	prefered_timezone               varchar(255) NOT NULL DEFAULT '',
-	allow_email_news                smallint(1) unsigned NOT NULL DEFAULT '0',
-	allow_show_online_status        smallint(1) unsigned NOT NULL DEFAULT '0',
-	social_steam                    varchar(255) NOT NULL DEFAULT '',
-	social_xbox                     varchar(255) NOT NULL DEFAULT '',
-	social_psn                      varchar(255) NOT NULL DEFAULT '',
-	social_nintendo                 varchar(255) NOT NULL DEFAULT '',
-	social_xing                     varchar(255) NOT NULL DEFAULT '',
 	threads_per_page                int(11) DEFAULT '0' NOT NULL,
 	posts_per_page                  int(11) DEFAULT '0' NOT NULL,
 	subscribe_to_thread_after_reply smallint(1) unsigned NOT NULL DEFAULT '0',
-	allow_display_email             smallint(1) unsigned NOT NULL DEFAULT '0',
-	cached_counter_posts            int(11) NOT NULL DEFAULT '0',
 	posts                           int(11) unsigned NOT NULL DEFAULT '0',
 	thread_subscriptions            int(11) unsigned NOT NULL DEFAULT '0',
 	signatures                      int(11) unsigned NOT NULL DEFAULT '0',
 	post_likes                      int(11) unsigned NOT NULL DEFAULT '0',
-	poll_votes                      int(11) unsigned NOT NULL DEFAULT '0',
-	friends                         int(11) unsigned NOT NULL DEFAULT '0',
-	private_messages                int(11) unsigned NOT NULL DEFAULT '0',
-	blacklisted_users               int(11) unsigned NOT NULL DEFAULT '0',
-	avatar                          int(11) unsigned DEFAULT '0',
-	tx_extbase_type                 varchar(255)          DEFAULT '' NOT NULL
+	poll_votes                      int(11) unsigned NOT NULL DEFAULT '0'
 );
 
 CREATE TABLE tx_forums_domain_model_threadsubscription
