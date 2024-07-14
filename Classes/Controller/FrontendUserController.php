@@ -98,42 +98,6 @@ class FrontendUserController extends AbstractController
         $this->redirect('list');
     }
 
-    /**
-     * Shows profile settings for the current logged in user
-     *
-     * @param string $selectedSubmenu
-     * @return \Psr\Http\Message\ResponseInterface
-     */
-    public function profileAction(string $selectedSubmenu = 'Dashboard'): \Psr\Http\Message\ResponseInterface
-    {
 
-        $this->view->assignMultiple(
-            [
-                'selectedSubmenu' => $selectedSubmenu
-            ]
-        );
-        if($selectedSubmenu === self::PROFILE_SECTION_AVATAR){
-            $this->view->assignMultiple([
-               'avatars' => $this->avatarRepository->findAll()
-            ]);
-        }
-        return $this->htmlResponse();
-    }
-
-    /**
-     * Sets the given avatar object as a reference to the logged in user
-     *
-     * @param \Weisgerber\DarfIchMit\Domain\Model\Avatar $avatar
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
-     */
-    public function saveAvatarAction(Avatar $avatar){
-        $frontendUser = $this->frontendUserService->getLoggedInUser();
-        $frontendUser->setAvatar($avatar);
-        $this->frontendUserRepository->update($frontendUser);
-        $this->redirect('profile', null, null, ['selectedSubmenu' => 'Avatar']);
-    }
 
 }

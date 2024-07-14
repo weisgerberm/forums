@@ -93,7 +93,7 @@ plugin.tx_forums{
     }
     css{
       # Used css framework [BEM, Bootstrap4, Bootstrap5, Bulma]
-      mode = BEM
+      mode = Bootstrap5
     }
     pids{
       # Page UID for Login-Redirects
