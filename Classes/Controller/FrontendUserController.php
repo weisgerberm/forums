@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Controller;
 
-use Weisgerber\Forums\Traits\{AvatarRepositoryTrait, FrontendUserRepositoryTrait, FrontendUserServiceTrait};
-use Psr\Http\Message\ResponseInterface;
-use Weisgerber\Forums\Domain\Model\Avatar;
+use Weisgerber\DarfIchMit\Domain\Model\Avatar;
+use Weisgerber\DarfIchMit\Traits\AvatarRepositoryTrait;
+use Weisgerber\Forums\Traits\{FrontendUserRepositoryTrait, FrontendUserServiceTrait};
 
 /**
  * This file is part of the "Forums" Extension for TYPO3 CMS.
@@ -123,7 +123,7 @@ class FrontendUserController extends AbstractController
     /**
      * Sets the given avatar object as a reference to the logged in user
      *
-     * @param \Weisgerber\Forums\Domain\Model\Avatar $avatar
+     * @param \Weisgerber\DarfIchMit\Domain\Model\Avatar $avatar
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Weisgerber\DarfIchMit\Seo;
+namespace Weisgerber\Forums\Seo;
 
 use TYPO3\CMS\Core\PageTitle\AbstractPageTitleProvider;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

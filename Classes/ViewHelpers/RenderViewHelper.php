@@ -13,28 +13,11 @@ namespace Weisgerber\Forums\ViewHelpers;
 
 use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use Weisgerber\Forums\Service\Configuration\ConfigurationService;
 
-class RenderViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\RenderViewHelper
+class RenderViewHelper extends AbstractViewHelper
 {
-    /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-     */
-    protected $objectManager;
-
-    /**
-     * @var \Datamints\DatamintsElearning\Services\Configuration\ConfigurationService
-     */
-    protected $configurationService;
-
-    /**
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
-     * @param ConfigurationService $configurationService
-     */
-    public function __construct(ObjectManagerInterface $objectManager, ConfigurationService $configurationService) {
-        $this->objectManager = $objectManager;
-        $this->configurationService = $configurationService;
-    }
 
     public function initializeArguments()
     {
