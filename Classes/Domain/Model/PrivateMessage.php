@@ -38,14 +38,14 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * sender
      *
-     * @var \Weisgerber\Forums\Domain\Model\FrontendUser
+     * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
      */
     protected $sender = null;
 
     /**
      * receiver
      *
-     * @var \Weisgerber\Forums\Domain\Model\FrontendUser
+     * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
      */
     protected $receiver = null;
 
@@ -94,7 +94,7 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the sender
      *
-     * @return \Weisgerber\Forums\Domain\Model\FrontendUser
+     * @return \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
      */
     public function getSender()
     {
@@ -104,10 +104,10 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the sender
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $sender
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $sender
      * @return void
      */
-    public function setSender(\Weisgerber\Forums\Domain\Model\FrontendUser $sender)
+    public function setSender(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $sender)
     {
         $this->sender = $sender;
     }
@@ -115,7 +115,7 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the receiver
      *
-     * @return \Weisgerber\Forums\Domain\Model\FrontendUser
+     * @return \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
      */
     public function getReceiver()
     {
@@ -125,10 +125,10 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the receiver
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $receiver
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $receiver
      * @return void
      */
-    public function setReceiver(\Weisgerber\Forums\Domain\Model\FrontendUser $receiver)
+    public function setReceiver(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $receiver)
     {
         $this->receiver = $receiver;
     }

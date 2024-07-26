@@ -1,0 +1,11 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{posts}">
+        <f:then>
+            <f:render partial="Post/Latest/ListTable" arguments="{posts:posts}" />
+        </f:then>
+        <f:else>
+            <f:render partial="Post/Latest/ListTableEmpty" arguments="{posts:posts}" />
+
+        </f:else>
+    </f:if>
+</html>

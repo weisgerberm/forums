@@ -3,9 +3,10 @@
 namespace Weisgerber\Forums\Service;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
 use Weisgerber\Forums\Domain\Model\Post;
 use Weisgerber\Forums\Domain\Model\Thread;
-use Weisgerber\Forums\Traits\{ThreadRepositoryTrait,FrontendUserServiceTrait};
+use Weisgerber\Forums\Traits\{ThreadRepositoryTrait};
 
 class ThreadService
 {

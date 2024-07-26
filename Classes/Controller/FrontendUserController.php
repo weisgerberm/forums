@@ -6,7 +6,8 @@ namespace Weisgerber\Forums\Controller;
 
 use Weisgerber\DarfIchMit\Domain\Model\Avatar;
 use Weisgerber\DarfIchMit\Traits\AvatarRepositoryTrait;
-use Weisgerber\Forums\Traits\{FrontendUserRepositoryTrait, FrontendUserServiceTrait};
+use Weisgerber\DarfIchMit\Traits\FrontendUserRepositoryTrait;
+use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
 
 /**
  * This file is part of the "Forums" Extension for TYPO3 CMS.
@@ -44,10 +45,10 @@ class FrontendUserController extends AbstractController
     /**
      * action show
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function showAction(\Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser): \Psr\Http\Message\ResponseInterface
+    public function showAction(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser): \Psr\Http\Message\ResponseInterface
     {
         return $this->htmlResponse();
     }
@@ -65,11 +66,11 @@ class FrontendUserController extends AbstractController
     /**
      * action edit
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("frontendUser")
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function editAction(\Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser): \Psr\Http\Message\ResponseInterface
+    public function editAction(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser): \Psr\Http\Message\ResponseInterface
     {
         return $this->htmlResponse();
     }
@@ -77,9 +78,9 @@ class FrontendUserController extends AbstractController
     /**
      * action update
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser
      */
-    public function updateAction(\Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser)
+    public function updateAction(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser)
     {
         $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->frontendUserRepository->update($frontendUser);
@@ -89,9 +90,9 @@ class FrontendUserController extends AbstractController
     /**
      * action delete
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser
      */
-    public function deleteAction(\Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser)
+    public function deleteAction(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser)
     {
         $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->frontendUserRepository->remove($frontendUser);

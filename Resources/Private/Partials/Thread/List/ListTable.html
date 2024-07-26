@@ -1,39 +1,39 @@
-<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
-    <table class="table is-striped is-no-border-spacing is-fullwidth">
-        <thead class="{settings.css.table-head}">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+    <table class="table table-striped">
+        <thead>
         <tr>
-            <th scope="col"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:tx_forums_domain_model_thread" /></th>
+            <th><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:tx_forums_domain_model_thread" /></th>
         </tr>
         </thead>
         <tbody>
         <f:for each="{threads}" as="thread">
              <tr>
                 <td>
-                    <div class="columns is-vcentered">
-                        <div class="column is-narrow">
-                            <f:render partial="Basics/Avatar" arguments="{image:thread.firstPost.frontendUser.avatar.image, width:settings.defaults.avatarWidthThreadCreator, height:settings.defaults.avatarHeightThreadCreator, placeholder:settings.defaults.avatar}"/>
+                    <div class="row">
+                        <div class="col-auto">
+                            <f:render partial="Basics/Avatar" arguments="{image:thread.firstPost.frontenduser.avatar.image, width:settings.defaults.avatarWidthThreadCreator, height:settings.defaults.avatarHeightThreadCreator, placeholder:settings.defaults.avatar}"/>
                         </div>
-                        <div class="column is-half">
+                        <div class="col-6">
                             <f:render partial="Thread/List/Headline" arguments="{_all}"/>
                             <f:render partial="Thread/List/Creator" arguments="{_all}"/>
                         </div>
-                        <div class="column">
+                        <div class="col">
                             <div class="icon-text">
                                 <span class="icon">
-                                    <i class="far fa-comment"></i>
+                                    <f:render partial="Prefabs/Icon" arguments="{icon:'msg',additionalClasses:'text-xs me-2'}"/>
                                 </span>
-                                        <span>{thread.cachedCounterPosts}</span>
+                                <span>{thread.cachedCounterPosts}</span>
 
                                     </div>
-                                    <div class="icon-text">
+                            <div class="icon-text">
                                 <span class="icon">
-                                    <i class="fas fa-eye"></i>
+                                    <f:render partial="Prefabs/Icon" arguments="{icon:'eye',additionalClasses:'text-xs me-2'}"/>
                                 </span>
                                 <span>{thread.cachedCounterViews}</span>
 
                             </div>
                         </div>
-                        <div class="column">
+                        <div class="col">
                             <div class="{settings.css.row}">
                                 <div class="col-12">
                                     <f:render partial="Thread/List/LastPoster" arguments="{_all}"/>

@@ -1,0 +1,27 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:latest-activities" /></th>
+    </tr>
+    </thead>
+    <tbody>
+        <f:for each="{posts}" as="post">
+            <tr>
+                <td>
+                    <p>
+                        {post.frontendUser.username} · Vor 10 Sekunden
+                    </p>
+                    <p>
+                        Thema: <f:link.action class="text-sm" action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread}" >
+                            {post.thread.headline}
+                        </f:link.action>
+                    </p>
+                </td>
+
+            </tr>
+        </f:for>
+
+    </tbody>
+</table>
+</html>

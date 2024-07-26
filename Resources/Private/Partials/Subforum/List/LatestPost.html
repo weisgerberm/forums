@@ -1,0 +1,25 @@
+<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="card">
+    <footer class="card-footer">
+        <div class="card-footer-item" title="{post.frontendUser.username}">
+            <f:render partial="Basics/Avatar" arguments="{image:post.frontendUser.image, width:32, height:32, placeholder:settings.defaults.avatar}"/>
+
+        </div>
+        <div class="card-footer-item">
+            <div class="content">
+                <p>
+                    <f:link.action action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread}" >
+                        {post.thread.headline}
+                    </f:link.action>
+                    <br>
+                    <small>
+                        <f:render partial="Basics/Username" arguments="{frontenduser:post.frontendUser, additionalClasses:'link-dark'}" />
+                    </small> · <small>31m</small>
+                </p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</html>
+

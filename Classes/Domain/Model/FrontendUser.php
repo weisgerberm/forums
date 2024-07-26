@@ -207,7 +207,7 @@ class FrontendUser extends AbstractEntity
     /**
      * friends
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\FrontendUser>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\DarfIchMit\Domain\Model\FrontendUser>
      */
     protected $friends = null;
 
@@ -222,7 +222,7 @@ class FrontendUser extends AbstractEntity
     /**
      * blacklistedUsers
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\FrontendUser>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\DarfIchMit\Domain\Model\FrontendUser>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $blacklistedUsers = null;
@@ -521,10 +521,10 @@ class FrontendUser extends AbstractEntity
     /**
      * Adds a FrontendUser
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $friend
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $friend
      * @return void
      */
-    public function addFriend(\Weisgerber\Forums\Domain\Model\FrontendUser $friend)
+    public function addFriend(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $friend)
     {
         $this->friends->attach($friend);
     }
@@ -532,10 +532,10 @@ class FrontendUser extends AbstractEntity
     /**
      * Removes a FrontendUser
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $friendToRemove The FrontendUser to be removed
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $friendToRemove The FrontendUser to be removed
      * @return void
      */
-    public function removeFriend(\Weisgerber\Forums\Domain\Model\FrontendUser $friendToRemove)
+    public function removeFriend(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $friendToRemove)
     {
         $this->friends->detach($friendToRemove);
     }
@@ -543,7 +543,7 @@ class FrontendUser extends AbstractEntity
     /**
      * Returns the friends
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\FrontendUser>
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\DarfIchMit\Domain\Model\FrontendUser>
      */
     public function getFriends()
     {
@@ -553,7 +553,7 @@ class FrontendUser extends AbstractEntity
     /**
      * Sets the friends
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\FrontendUser> $friends
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\DarfIchMit\Domain\Model\FrontendUser> $friends
      * @return void
      */
     public function setFriends(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $friends)
@@ -900,10 +900,10 @@ class FrontendUser extends AbstractEntity
     /**
      * Adds a FrontendUser
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $blacklistedUser
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $blacklistedUser
      * @return void
      */
-    public function addBlacklistedUser(\Weisgerber\Forums\Domain\Model\FrontendUser $blacklistedUser)
+    public function addBlacklistedUser(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $blacklistedUser)
     {
         $this->blacklistedUsers->attach($blacklistedUser);
     }
@@ -911,10 +911,10 @@ class FrontendUser extends AbstractEntity
     /**
      * Removes a FrontendUser
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $blacklistedUserToRemove The FrontendUser to be removed
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $blacklistedUserToRemove The FrontendUser to be removed
      * @return void
      */
-    public function removeBlacklistedUser(\Weisgerber\Forums\Domain\Model\FrontendUser $blacklistedUserToRemove)
+    public function removeBlacklistedUser(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $blacklistedUserToRemove)
     {
         $this->blacklistedUsers->detach($blacklistedUserToRemove);
     }
@@ -922,7 +922,7 @@ class FrontendUser extends AbstractEntity
     /**
      * Returns the blacklistedUsers
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\FrontendUser>
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\DarfIchMit\Domain\Model\FrontendUser>
      */
     public function getBlacklistedUsers()
     {
@@ -932,7 +932,7 @@ class FrontendUser extends AbstractEntity
     /**
      * Sets the blacklistedUsers
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\FrontendUser> $blacklistedUsers
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\DarfIchMit\Domain\Model\FrontendUser> $blacklistedUsers
      * @return void
      */
     public function setBlacklistedUsers(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $blacklistedUsers)

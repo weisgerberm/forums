@@ -1,121 +1,22 @@
-plugin.tx_forums_show {
-    view {
-        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
-        templateRootPaths.1 = {$plugin.tx_forums_show.view.templateRootPath}
-        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
-        partialRootPaths.1 = {$plugin.tx_forums_show.view.partialRootPath}
-        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
-        layoutRootPaths.1 = {$plugin.tx_forums_show.view.layoutRootPath}
-    }
-    persistence {
-        storagePid = {$plugin.tx_forums_show.persistence.storagePid}
-        #recursive = 1
-    }
-    features {
-        #skipDefaultArguments = 1
-        # if set to 1, the enable fields are ignored in BE context
-        ignoreAllEnableFieldsInBe = 0
-    }
-    mvc {
-        #callDefaultActionIfActionCantBeResolved = 1
-    }
-}
-plugin.tx_forums_subforums {
-    view {
-        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
-        templateRootPaths.1 = {$plugin.tx_forums_subforums.view.templateRootPath}
-        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
-        partialRootPaths.1 = {$plugin.tx_forums_subforums.view.partialRootPath}
-        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
-        layoutRootPaths.1 = {$plugin.tx_forums_subforums.view.layoutRootPath}
-    }
-    persistence {
-        storagePid = {$plugin.tx_forums_subforums.persistence.storagePid}
-        #recursive = 1
-    }
-    features {
-        #skipDefaultArguments = 1
-        # if set to 1, the enable fields are ignored in BE context
-        ignoreAllEnableFieldsInBe = 0
-    }
-    mvc {
-        #callDefaultActionIfActionCantBeResolved = 1
-    }
-}
-plugin.tx_forums_profile {
-    view {
-        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
-        templateRootPaths.1 = {$plugin.tx_forums_profile.view.templateRootPath}
-        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
-        partialRootPaths.1 = {$plugin.tx_forums_profile.view.partialRootPath}
-        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
-        layoutRootPaths.1 = {$plugin.tx_forums_profile.view.layoutRootPath}
-    }
-    persistence {
-        storagePid = {$plugin.tx_forums_profile.persistence.storagePid}
-        #recursive = 1
-    }
-    features {
-        #skipDefaultArguments = 1
-        # if set to 1, the enable fields are ignored in BE context
-        ignoreAllEnableFieldsInBe = 0
-    }
-    mvc {
-        #callDefaultActionIfActionCantBeResolved = 1
-    }
-}
-plugin.tx_forums_latestposts {
-    view {
-        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
-        templateRootPaths.1 = {$plugin.tx_forums_latestposts.view.templateRootPath}
-        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
-        partialRootPaths.1 = {$plugin.tx_forums_latestposts.view.partialRootPath}
-        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
-        layoutRootPaths.1 = {$plugin.tx_forums_latestposts.view.layoutRootPath}
-    }
-    persistence {
-        storagePid = {$plugin.tx_forums_latestposts.persistence.storagePid}
-        #recursive = 1
-    }
-    features {
-        #skipDefaultArguments = 1
-        # if set to 1, the enable fields are ignored in BE context
-        ignoreAllEnableFieldsInBe = 0
-    }
-    mvc {
-        #callDefaultActionIfActionCantBeResolved = 1
-    }
-}
-plugin.tx_forums_latestthreads {
-    view {
-        templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
-        templateRootPaths.1 = {$plugin.tx_forums_latestthreads.view.templateRootPath}
-        partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
-        partialRootPaths.1 = {$plugin.tx_forums_latestthreads.view.partialRootPath}
-        layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
-        layoutRootPaths.1 = {$plugin.tx_forums_latestthreads.view.layoutRootPath}
-    }
-    persistence {
-        storagePid = {$plugin.tx_forums_latestthreads.persistence.storagePid}
-        #recursive = 1
-    }
-    features {
-        #skipDefaultArguments = 1
-        # if set to 1, the enable fields are ignored in BE context
-        ignoreAllEnableFieldsInBe = 0
-    }
-    mvc {
-        #callDefaultActionIfActionCantBeResolved = 1
-    }
-}
+plugin.tx_forums {
+  view {
+    templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
+    templateRootPaths.1 = {$plugin.tx_forums.view.templateRootPath}
+    partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
+    partialRootPaths.1 = {$plugin.tx_forums.view.partialRootPath}
+    layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
+    layoutRootPaths.1 = {$plugin.tx_forums.view.layoutRootPath}
+  }
 
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-@import 'EXT:forums/Configuration/TypoScript/Blocks/blocks.setup.typoscript'
-@import 'EXT:forums/Configuration/TypoScript/Page/page.setup.typoscript'
-plugin.tx_forums{
-  _CSS_DEFAULT_STYLE >
-  settings{
-    defaults{
+  persistence {
+    storagePid = {$plugin.tx_forums_show.persistence.storagePid}
+    # the storage pid is per default the current page-uid, so we dont have to care about anything in the repositories
+    storagePid.override.cObject = TEXT
+    storagePid.override.cObject.field = uid
+  }
+
+  settings {
+    defaults {
       # File location for users without avatar
       avatar = {$plugin.tx_forums.settings.defaults.avatar}
       # Avatar image width in thread list view
@@ -133,11 +34,13 @@ plugin.tx_forums{
       # Default thread items displayed per page
       threadItemsPerPage = {$plugin.tx_forums.settings.defaults.threadItemsPerPage}
     }
-    css{
+
+    css {
       # Used css framework [BEM, Bootstrap4, Bootstrap5, Bulma]
       mode = {$plugin.tx_forums.settings.css.mode}
     }
-    pids{
+
+    pids {
       # Page UID for Login-Redirects
       loginPage = {$plugin.tx_forums.settings.pids.loginPage}
       # Page UID for Profile-Redirects
@@ -145,10 +48,17 @@ plugin.tx_forums{
       profilePage = {$plugin.tx_forums.settings.pids.profilePage}
     }
   }
-  persistence {
-    # the storage pid is per default the current page-uid, so we dont have to care about anything in the repositories
-    storagePid.override.cObject = TEXT
-    storagePid.override.cObject.field = uid
+
+  features {
+    #skipDefaultArguments = 1
+    # if set to 1, the enable fields are ignored in BE context
+    ignoreAllEnableFieldsInBe = 0
+  }
+
+  mvc {
+    #callDefaultActionIfActionCantBeResolved = 1
   }
 }
+@import 'EXT:forums/Configuration/TypoScript/Blocks/blocks.setup.typoscript'
+@import 'EXT:forums/Configuration/TypoScript/Page/page.setup.typoscript'
 @import 'EXT:forums/Configuration/TypoScript/DoktypeInit.setup.typoscript'

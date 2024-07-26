@@ -19,20 +19,20 @@ namespace Weisgerber\Forums\Domain\Model;
  */
 class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
+    public const string TABLE_NAME = 'tx_forums_domain_model_thread';
     /**
      * threads headline / subject
      *
      * @var string
      */
-    protected $headline = '';
+    protected string $headline = '';
 
     /**
      * flag whether the thread is closed for further posts
      *
      * @var bool
      */
-    protected $closed = false;
+    protected bool $closed = false;
 
     /**
      * cached value for better performance
@@ -88,7 +88,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * activeUsers
      *
-     * @var \Weisgerber\Forums\Domain\Model\FrontendUser
+     * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
      */
     protected $activeUsers = null;
 
@@ -346,7 +346,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the activeUsers
      *
-     * @return \Weisgerber\Forums\Domain\Model\FrontendUser|null
+     * @return \Weisgerber\DarfIchMit\Domain\Model\FrontendUser|null
      */
     public function getActiveUsers()
     {
@@ -356,10 +356,10 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the activeUsers
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $activeUsers
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $activeUsers
      * @return void
      */
-    public function setActiveUsers(\Weisgerber\Forums\Domain\Model\FrontendUser $activeUsers)
+    public function setActiveUsers(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $activeUsers)
     {
         $this->activeUsers = $activeUsers;
     }

@@ -1,4 +1,7 @@
 <?php
+
+use Weisgerber\Forums\Controller\{FrontendUserController, PageController, PostController, ThreadController};
+
 defined('TYPO3') || die();
 
 (static function() {
@@ -6,15 +9,15 @@ defined('TYPO3') || die();
         'Forums',
         'Show',
         [
-            \Weisgerber\Forums\Controller\ThreadController::class => 'list, show, new, create, edit, update, delete',
-            \Weisgerber\Forums\Controller\FrontendUserController::class => 'show, latest',
-            \Weisgerber\Forums\Controller\PostController::class => 'new, create, edit, update, delete'
+            ThreadController::class => 'list, show, new, create, edit, update, delete',
+            FrontendUserController::class => 'show, latest',
+            PostController::class => 'new, create, edit, update, delete'
         ],
         // non-cacheable actions
         [
-            \Weisgerber\Forums\Controller\ThreadController::class => 'list, show, new, create, edit, update, delete',
-            \Weisgerber\Forums\Controller\FrontendUserController::class => 'show, latest',
-            \Weisgerber\Forums\Controller\PostController::class => 'new, create, edit, update, delete'
+            ThreadController::class => 'list, show, new, create, edit, update, delete',
+            FrontendUserController::class => 'show, latest',
+            PostController::class => 'new, create, edit, update, delete'
         ]
     );
 
@@ -22,23 +25,11 @@ defined('TYPO3') || die();
         'Forums',
         'Subforums',
         [
-            \Weisgerber\Forums\Controller\PageController::class => 'subforums'
+            PageController::class => 'subforums'
         ],
         // non-cacheable actions
         [
-            \Weisgerber\Forums\Controller\PageController::class => 'subforums'
-        ]
-    );
-
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Forums',
-        'Profile',
-        [
-            \Weisgerber\Forums\Controller\FrontendUserController::class => 'profile, show, latest, saveAvatar'
-        ],
-        // non-cacheable actions
-        [
-            \Weisgerber\Forums\Controller\FrontendUserController::class => 'profile, show, latest, saveAvatar'
+            PageController::class => 'subforums'
         ]
     );
 
@@ -46,11 +37,11 @@ defined('TYPO3') || die();
         'Forums',
         'Latestposts',
         [
-            \Weisgerber\Forums\Controller\PostController::class => 'latest'
+            PostController::class => 'latest'
         ],
         // non-cacheable actions
         [
-            \Weisgerber\Forums\Controller\PostController::class => 'latest'
+            PostController::class => 'latest'
         ]
     );
 
@@ -58,101 +49,38 @@ defined('TYPO3') || die();
         'Forums',
         'Latestthreads',
         [
-            \Weisgerber\Forums\Controller\ThreadController::class => 'latest'
+            ThreadController::class => 'latest'
         ],
         // non-cacheable actions
         [
-            \Weisgerber\Forums\Controller\ThreadController::class => 'latest'
+            ThreadController::class => 'latest'
         ]
     );
 
-    // wizards
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        'mod {
-            wizards.newContentElement.wizardItems.plugins {
-                elements {
-                    show {
-                        iconIdentifier = forums-plugin-show
-                        title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_show.name
-                        description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_show.description
-                        tt_content_defValues {
-                            CType = list
-                            list_type = forums_show
-                        }
-                    }
-                    subforums {
-                        iconIdentifier = forums-plugin-subforums
-                        title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_subforums.name
-                        description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_subforums.description
-                        tt_content_defValues {
-                            CType = list
-                            list_type = forums_subforums
-                        }
-                    }
-                    profile {
-                        iconIdentifier = forums-plugin-profile
-                        title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_profile.name
-                        description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_profile.description
-                        tt_content_defValues {
-                            CType = list
-                            list_type = forums_profile
-                        }
-                    }
-                    latestposts {
-                        iconIdentifier = forums-plugin-latestposts
-                        title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestposts.name
-                        description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestposts.description
-                        tt_content_defValues {
-                            CType = list
-                            list_type = forums_latestposts
-                        }
-                    }
-                    latestthreads {
-                        iconIdentifier = forums-plugin-latestthreads
-                        title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestthreads.name
-                        description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestthreads.description
-                        tt_content_defValues {
-                            CType = list
-                            list_type = forums_latestthreads
-                        }
-                    }
-                }
-                show = *
-            }
-       }'
-    );
-})();
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-
-call_user_func(
-    function () {
-
-        // Provide icon for page tree, list view, ... :
-        \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class)
-            ->registerIcon(
-                'apps-pagetree-subforum',
-                TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-                [
-                    'source' => 'EXT:forums/Resources/Public/Icons/doktype-95.svg',
-                ]
-            );
-        \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class)
-            ->registerIcon(
-                'apps-pagetree-subforum-category',
-                TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-                [
-                    'source' => 'EXT:forums/Resources/Public/Icons/doktype-96.svg',
-                ]
-            );
-
-
-        // Allow backend users to drag and drop the new page type:
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig(
-            'options.pageTree.doktypesToShowInNewPageDragArea := addToList(' . \Weisgerber\Forums\Domain\Model\Page::PAGE_TYPE_SUBFORUM . ',' . \Weisgerber\Forums\Domain\Model\Page::PAGE_TYPE_SUBFORUM_CATEGORY . ')'
+    // Provide icon for page tree, list view, ... :
+    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class)
+        ->registerIcon(
+            'apps-pagetree-subforum',
+            TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            [
+                'source' => 'EXT:forums/Resources/Public/Icons/doktype-95.svg',
+            ]
+        );
+    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class)
+        ->registerIcon(
+            'apps-pagetree-subforum-category',
+            TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            [
+                'source' => 'EXT:forums/Resources/Public/Icons/doktype-96.svg',
+            ]
         );
 
-        // Make ViewHelpers globally available
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['forums'][] = 'Weisgerber\Forums\ViewHelpers';
-    }
 
-);
+    // Allow backend users to drag and drop the new page type:
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addUserTSConfig(
+        'options.pageTree.doktypesToShowInNewPageDragArea := addToList(' . \Weisgerber\Forums\Domain\Model\Page::PAGE_TYPE_SUBFORUM . ',' . \Weisgerber\Forums\Domain\Model\Page::PAGE_TYPE_SUBFORUM_CATEGORY . ')'
+    );
+
+    // Make ViewHelpers globally available
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['forums'][] = 'Weisgerber\Forums\ViewHelpers';
+})();

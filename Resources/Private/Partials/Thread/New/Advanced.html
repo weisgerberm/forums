@@ -1,0 +1,17 @@
+<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="accordion accordion-flush" id="accordionShowMoreOptions">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingShowMoreOptions">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseShowMoreOptions" aria-expanded="false" aria-controls="collapseShowMoreOptions">
+
+            </button>
+        </h2>
+        <div id="collapseShowMoreOptions" class="accordion-collapse collapse" aria-labelledby="headingShowMoreOptions" data-bs-parent="#accordionShowMoreOptions">
+            <div class="accordion-body">
+                <f:render partial="Thread/New/AdvancedFormFields" arguments="{_all}"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+</html>

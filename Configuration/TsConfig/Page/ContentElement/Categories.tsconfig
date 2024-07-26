@@ -1,0 +1,42 @@
+mod.wizards.newContentElement.wizardItems.forums {
+  header = forums
+  elements {
+    show {
+      iconIdentifier = forums-plugin-show
+      title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_show.name
+      description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_show.description
+      tt_content_defValues {
+        CType = list
+        list_type = forums_show
+      }
+    }
+    subforums {
+      iconIdentifier = forums-plugin-subforums
+      title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_subforums.name
+      description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_subforums.description
+      tt_content_defValues {
+        CType = list
+        list_type = forums_subforums
+      }
+    }
+    latestposts {
+      iconIdentifier = forums-plugin-latestposts
+      title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestposts.name
+      description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestposts.description
+      tt_content_defValues {
+        CType = list
+        list_type = forums_latestposts
+      }
+    }
+    latestthreads {
+      iconIdentifier = forums-plugin-latestthreads
+      title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestthreads.name
+      description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_latestthreads.description
+      tt_content_defValues {
+        CType = list
+        list_type = forums_latestthreads
+      }
+    }
+  }
+  show = *
+}

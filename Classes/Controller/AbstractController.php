@@ -1,7 +1,8 @@
 <?php
 namespace Weisgerber\Forums\Controller;
 
-use Weisgerber\Forums\Traits\FrontendUserServiceTrait;
+
+use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
 
 class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {

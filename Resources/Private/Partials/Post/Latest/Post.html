@@ -1,0 +1,52 @@
+<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <div class="card">
+        <div class="card-content">
+            <div class="tile is-ancestor">
+                <div class="tile is-vertical is-2">
+                    <div class="tile">
+                        <div class="tile is-parent is-vertical has-text-centered">
+                            <article class="tile is-child">
+                                <p>
+                                    <f:if condition="{image:post.frontendUser.image}">
+                                        <f:then>
+                                            <f:render partial="Basics/Avatar" arguments="{image:post.frontendUser.image, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+                                        </f:then>
+                                        <f:else>
+                                            <img src="{settings.defaults.avatar}" />
+                                        </f:else>
+                                    </f:if>
+                                </p>
+                                <p class="subtitle is-5 my-2">
+                                    <f:render partial="Basics/Username" arguments="{frontendUser:post.frontendUser}" />
+                                </p>
+                                <div class="block">
+                                    <span class="tag is-primary is-light">Administrator</span>
+                                </div>
+                            </article>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child notification is-light">
+                        <div class="content">
+                            <f:if condition="{post.currentPostContent.headline}">
+                                <p class="title">{post.currentPostContent.headline}</p>
+                            </f:if>
+
+                            <p class="heading">
+                                <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.currentPostContent.crdate}"></f:format.date>
+                            </p>
+                            <p class="subtitle">{post.currentPostContent.content -> f:format.html()}</p>
+                            <div class="content">
+                                <!-- Content -->
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

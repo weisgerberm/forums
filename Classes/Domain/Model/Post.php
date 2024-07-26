@@ -23,7 +23,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * frontendUser
      *
-     * @var \Weisgerber\Forums\Domain\Model\FrontendUser|null
+     * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser|null
      */
     protected $frontenduser = null;
 

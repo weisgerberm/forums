@@ -1,0 +1,40 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+    <tr>
+        <td>
+            <div class="row">
+                <div class="col-auto">
+                    <f:render partial="Prefabs/Icon" arguments="{icon:'folder-5-open', additionalClasses:'icon-32'}" />
+                </div>
+                <div class="col-6">
+                    <div>
+                        <f:link.page pageUid="{page.uid}">
+                            <strong>{page.title}</strong>
+                        </f:link.page>
+                    </div>
+                    <div>
+                        {page.subtitle}
+                    </div>
+
+                </div>
+                <div class="col-auto">
+                    <div class="align-items-baseline d-flex" data-tippy-content="Anzahl der Beiträge in diesem Bereich">
+                        <f:render partial="Prefabs/Icon" arguments="{icon:'msg', additionalClasses:'icon-16 me-1'}" />
+                        <span>{page.cachedPostCounter}</span>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <f:if condition="{page.cachedLatestPost}">
+                        <f:then>
+                            <f:render partial="Subforum/List/LatestPost" arguments="{post:page.cachedLatestPost}" />
+
+                        </f:then>
+                        <f:else>
+
+                        </f:else>
+                    </f:if>
+                </div>
+            </div>
+        </td>
+    </tr>
+</html>

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Controller;
 
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Weisgerber\Forums\Traits\PageServiceTrait;
 
 /**

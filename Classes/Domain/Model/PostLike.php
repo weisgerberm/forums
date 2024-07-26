@@ -23,14 +23,14 @@ class PostLike extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * frontendUser
      *
-     * @var \Weisgerber\Forums\Domain\Model\FrontendUser
+     * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
      */
     protected $frontendUser = null;
 
     /**
      * Returns the frontendUser
      *
-     * @return \Weisgerber\Forums\Domain\Model\FrontendUser
+     * @return \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
      */
     public function getFrontendUser()
     {
@@ -40,10 +40,10 @@ class PostLike extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the frontendUser
      *
-     * @param \Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser
      * @return void
      */
-    public function setFrontendUser(\Weisgerber\Forums\Domain\Model\FrontendUser $frontendUser)
+    public function setFrontendUser(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser)
     {
         $this->frontendUser = $frontendUser;
     }

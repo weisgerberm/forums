@@ -1,7 +1,7 @@
-<html xmlns:forums="http://typo3.org/ns/Weisgerber/Forums/ViewHelpers"  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
     <div class="columns is-justify-content-flex-end">
         <div class="column is-narrow">
-            <f:render partial="Basics/Username" arguments="{frontendUser:thread.lastPost.frontenduser}" />
+            <f:render partial="Basics/Username" arguments="{frontenduser:thread.lastPost.frontenduser}" />
         </div>
         <div class="column is-narrow">
             <f:render partial="Basics/Avatar" arguments="{image:thread.lastPost.frontenduser.avatar.image, width:settings.defaults.avatarWidthThreadLatestPost, height:settings.defaults.avatarHeightThreadLatestPost, placeholder:settings.defaults.avatar}"/>

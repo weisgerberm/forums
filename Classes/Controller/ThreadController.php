@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
 use Weisgerber\Forums\Domain\Model\Thread;
 use Weisgerber\Forums\Service\UriService;
-use Weisgerber\Forums\Traits\{SlugServiceTrait,ThreadRepositoryTrait,FrontendUserServiceTrait,ThreadServiceTrait,UriServiceTrait};
+use Weisgerber\Forums\Traits\{SlugServiceTrait,ThreadRepositoryTrait,ThreadServiceTrait,UriServiceTrait};
 
 /**
  * This file is part of the "forums" Extension for TYPO3 CMS.
@@ -34,13 +37,11 @@ class ThreadController extends AbstractController
      * action list
      *
      * @param int $page
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
-    public function listAction(int $page = 1): \Psr\Http\Message\ResponseInterface
+    public function listAction(int $page = 1): ResponseInterface
     {
         $threads = $this->threadRepository->findAll();
-
-        DebuggerUtility::var_dump("thi");
 
         /** @var \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator $paginator */
         $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$page,3);
@@ -58,10 +59,11 @@ class ThreadController extends AbstractController
     /**
      * action show
      *
-     * @param \Weisgerber\Forums\Domain\Model\Thread $thread
-     * @return \Psr\Http\Message\ResponseInterface
+     * @param Thread $thread
+     * @return ResponseInterface
      */
-    public function showAction(\Weisgerber\Forums\Domain\Model\Thread $thread): \Psr\Http\Message\ResponseInterface
+    #[IgnoreValidation(['argumentName' => 'thread'])]
+    public function showAction(Thread $thread): ResponseInterface
     {
         $this->view->assign('thread', $thread);
         return $this->htmlResponse();
@@ -70,9 +72,9 @@ class ThreadController extends AbstractController
     /**
      * action new
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
-    public function newAction(): \Psr\Http\Message\ResponseInterface
+    public function newAction(): ResponseInterface
     {
         $frontendUser = $this->frontendUserService->getLoggedInUser();
         if(is_null($frontendUser)){
@@ -108,11 +110,11 @@ class ThreadController extends AbstractController
     /**
      * action edit
      *
-     * @param \Weisgerber\Forums\Domain\Model\Thread $thread
+     * @param Thread $thread
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("thread")
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
-    public function editAction(\Weisgerber\Forums\Domain\Model\Thread $thread): \Psr\Http\Message\ResponseInterface
+    public function editAction(Thread $thread): ResponseInterface
     {
         $this->view->assign('thread', $thread);
         return $this->htmlResponse();
@@ -121,9 +123,9 @@ class ThreadController extends AbstractController
     /**
      * action update
      *
-     * @param \Weisgerber\Forums\Domain\Model\Thread $thread
+     * @param Thread $thread
      */
-    public function updateAction(\Weisgerber\Forums\Domain\Model\Thread $thread)
+    public function updateAction(Thread $thread)
     {
         $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->threadRepository->update($thread);
@@ -133,9 +135,9 @@ class ThreadController extends AbstractController
     /**
      * action delete
      *
-     * @param \Weisgerber\Forums\Domain\Model\Thread $thread
+     * @param Thread $thread
      */
-    public function deleteAction(\Weisgerber\Forums\Domain\Model\Thread $thread)
+    public function deleteAction(Thread $thread)
     {
         $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->threadRepository->remove($thread);
@@ -145,9 +147,9 @@ class ThreadController extends AbstractController
     /**
      * action lock
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
-    public function lockAction(): \Psr\Http\Message\ResponseInterface
+    public function lockAction(): ResponseInterface
     {
         return $this->htmlResponse();
     }
@@ -155,9 +157,9 @@ class ThreadController extends AbstractController
     /**
      * action rss
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
-    public function rssAction(): \Psr\Http\Message\ResponseInterface
+    public function rssAction(): ResponseInterface
     {
         return $this->htmlResponse();
     }
