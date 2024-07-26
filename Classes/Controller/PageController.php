@@ -36,4 +36,18 @@ class PageController extends AbstractController
         ]);
         return $this->htmlResponse();
     }
+
+    /**
+     * Fetches the current subforum of the current page, where this plugin belongs to
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function subforumAction(): \Psr\Http\Message\ResponseInterface
+    {
+        $categoryPage = $this->pageService->getSubforumAndPrefillThem($GLOBALS['TSFE']->id);
+        $this->view->assignMultiple([
+           'categoryPage' => $categoryPage
+        ]);
+        return $this->htmlResponse();
+    }
 }

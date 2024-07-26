@@ -7,12 +7,12 @@ namespace Weisgerber\Forums\Controller;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
+use Weisgerber\DarfIchMit\Traits\SlugServiceTrait;
 use Weisgerber\DarfIchMit\Utility\DimUtility;
 use Weisgerber\Forums\Domain\Model\Thread;
 use Weisgerber\Forums\Service\UriService;
-use Weisgerber\Forums\Traits\{SlugServiceTrait,ThreadRepositoryTrait,ThreadServiceTrait,UriServiceTrait};
+use Weisgerber\Forums\Traits\{ThreadRepositoryTrait, ThreadServiceTrait, UriServiceTrait};
 
 /**
  * This file is part of the "forums" Extension for TYPO3 CMS.
@@ -45,7 +45,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
         $threads = $this->threadRepository->findAll();
 
         /** @var \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator $paginator */
-        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$page,3);
+        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$page,10);
         /** @var \TYPO3\CMS\Core\Pagination\SimplePagination $pagination */
         $pagination = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Pagination\SimplePagination::class,$paginator);
         $this->view->assignMultiple(
@@ -90,7 +90,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
      *
      * @param Thread $newThread
      */
-    public function createAction(Thread $newThread)
+    public function createAction(Thread $newThread): ResponseInterface
     {
         $this->threadRepository->add($newThread);
 
@@ -100,12 +100,13 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
 
         $this->threadService->postProcessing($newThread);
 
-        $newThread->setSlug($this->slugService->getSlug($record,'thread'));
+        $newThread->setPathSegment($this->slugService->getSlug($newThread->jsonSerialize(), Thread::TABLE_NAME));
         $this->threadRepository->update($newThread);
 
+        // Sodass die URL schon korrekt aufgelöst werden kann bei der Weiterleitung
+        DimUtility::persistAll();
 
-
-        $this->redirect('list');
+        return $this->redirect('show', null, null, ['thread' => $newThread]);
     }
 
     /**

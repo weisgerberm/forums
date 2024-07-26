@@ -23,6 +23,18 @@ defined('TYPO3') || die();
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Forums',
+        'Subforum',
+        [
+            PageController::class => 'subforum'
+        ],
+        // non-cacheable actions
+        [
+            PageController::class => 'subforum'
+        ]
+    );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Forums',
         'Subforums',
         [
             PageController::class => 'subforums'

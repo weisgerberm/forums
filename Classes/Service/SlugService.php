@@ -24,7 +24,6 @@ class SlugService
     public function getSlug(array $entity, string $table, $slugFieldName = 'slug'):String
     {
         $tableName = 'tx_forums_domain_model_'.$table;
-        $slugFieldName = $slugFieldName;
 
         //      Get field configuration
         $fieldConfig = $GLOBALS['TCA'][$tableName]['columns'][$slugFieldName]['config'];

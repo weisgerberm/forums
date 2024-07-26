@@ -5,6 +5,10 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:forums/Resources/Public/Icons/user_plugin_show.svg'
     ],
+    'forums-plugin-subforum' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:forums/Resources/Public/Icons/user_plugin_subforum.svg'
+    ],
     'forums-plugin-subforums' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:forums/Resources/Public/Icons/user_plugin_subforums.svg'

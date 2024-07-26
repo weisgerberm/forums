@@ -30,4 +30,20 @@ class PageService
         }
         return $categoryPages;
     }
+    /**
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
+    public function getSubforumAndPrefillThem(int $categoryPage): Page
+    {
+        $categoryPage = $this->pageRepository->findByUid($categoryPage);
+        $categoryPage->setChildren($this->pageRepository->findByPid($categoryPage->getUid()));
+
+        /** @var Page $categoryPageChild */
+        foreach ($categoryPage->getChildren() as $categoryPageChild){
+            $categoryPageChild->setCachedPostCounter($this->postRepository->countPosts($categoryPageChild->getUid()));
+            $categoryPageChild->setCachedLatestPost($this->postRepository->findLatest($categoryPageChild->getUid()));
+        }
+
+        return $categoryPage;
+    }
 }

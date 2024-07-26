@@ -48,7 +48,7 @@ class ThreadRepository extends AbstractRepository
     /**
      * @param $uid
      */
-    public function findByUidAssoc($uid)
+    public function findByUidAssoc($uid): array
     {
         $query = $this->createQuery();
         $query->matching($query->equals('uid', $uid));

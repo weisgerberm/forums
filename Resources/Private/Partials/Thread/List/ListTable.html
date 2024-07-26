@@ -11,7 +11,7 @@
                 <td>
                     <div class="row">
                         <div class="col-auto">
-                            <f:render partial="Basics/Avatar" arguments="{image:thread.firstPost.frontenduser.avatar.image, width:settings.defaults.avatarWidthThreadCreator, height:settings.defaults.avatarHeightThreadCreator, placeholder:settings.defaults.avatar}"/>
+                            <f:render partial="Basics/Avatar" arguments="{avatar:thread.firstPost.frontenduser.avatar, width:settings.defaults.avatarWidthThreadCreator, height:settings.defaults.avatarHeightThreadCreator, placeholder:settings.defaults.avatar}"/>
                         </div>
                         <div class="col-6">
                             <f:render partial="Thread/List/Headline" arguments="{_all}"/>

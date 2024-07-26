@@ -9,6 +9,12 @@ defined('TYPO3') || die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'Forums',
+    'Subforum',
+    'Show subforum from this page'
+);
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'Forums',
     'Subforums',
     'Show subforums from this page'
 );
@@ -30,4 +36,3 @@ defined('TYPO3') || die();
     'Latestthreads',
     'Latest threads'
 );
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder

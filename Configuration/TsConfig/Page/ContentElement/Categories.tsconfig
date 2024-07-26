@@ -10,6 +10,15 @@ mod.wizards.newContentElement.wizardItems.forums {
         list_type = forums_show
       }
     }
+    subforum {
+      iconIdentifier = forums-plugin-subforum
+      title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_subforum.name
+      description = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_subforum.description
+      tt_content_defValues {
+        CType = list
+        list_type = forums_subforum
+      }
+    }
     subforums {
       iconIdentifier = forums-plugin-subforums
       title = LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_subforums.name

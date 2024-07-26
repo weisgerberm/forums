@@ -344,4 +344,13 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->files = $files;
     }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'uid' => $this->getUid(),
+            'pid' => $this->getPid(),
+            'title' => $this->getTitle(),
+        ];
+    }
 }
