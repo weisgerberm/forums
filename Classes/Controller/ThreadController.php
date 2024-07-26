@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Weisgerber\Forums\Domain\Model\Thread;
 use Weisgerber\Forums\Service\UriService;
 use Weisgerber\Forums\Traits\{SlugServiceTrait,ThreadRepositoryTrait,FrontendUserServiceTrait,ThreadServiceTrait,UriServiceTrait};
@@ -38,6 +39,8 @@ class ThreadController extends AbstractController
     public function listAction(int $page = 1): \Psr\Http\Message\ResponseInterface
     {
         $threads = $this->threadRepository->findAll();
+
+        DebuggerUtility::var_dump("thi");
 
         /** @var \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator $paginator */
         $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$page,3);

@@ -6,6 +6,7 @@
 namespace Weisgerber\Forums\Service;
 
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use Weisgerber\Forums\Service\Configuration\ConfigurationService;
 
@@ -24,8 +25,8 @@ abstract class AbstractService implements SingletonInterface
 
     public function __construct ()
     {
-        $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
-        $this->configurationService = $this->objectManager->get(ConfigurationService::class);
+
+        $this->configurationService = GeneralUtility::makeInstance(ConfigurationService::class);
     }
 
     /**

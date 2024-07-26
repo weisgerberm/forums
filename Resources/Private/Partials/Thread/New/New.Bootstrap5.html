@@ -3,11 +3,11 @@
 
 <f:flashMessages />
 
-<forums:render style="Generic" partial="FormErrors" />
+<f:render partial="FormErrors" />
 
 <f:form action="create" name="newThread" object="{newThread}">
-    <forums:render partial="Thread/New/FormFields" />
-    <forums:render partial="Thread/New/Advanced" arguments="{_all}"/>
+    <f:render partial="Thread/New/FormFields" />
+    <f:render partial="Thread/New/Advanced" arguments="{_all}"/>
 
     <div class="row">
         <div class="col-12">

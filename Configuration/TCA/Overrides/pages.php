@@ -2,6 +2,28 @@
 defined('TYPO3') || die();
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 
+// Add the new doktype to the page type selector
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+    'pages',
+    'doktype',
+    [
+        'label' => 'Subforum',
+        'value' => \Weisgerber\Forums\Domain\Model\Page::PAGE_TYPE_SUBFORUM_CATEGORY,
+        'icon'  => 'apps-pagetree-subforum-category',
+        'group' => 'special',
+    ],
+);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+    'pages',
+    'doktype',
+    [
+        'label' => 'Subforum',
+        'value' => \Weisgerber\Forums\Domain\Model\Page::PAGE_TYPE_SUBFORUM,
+        'icon'  => 'apps-pagetree-subforum',
+        'group' => 'special',
+    ],
+);
+
 \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule(
     $GLOBALS['TCA']['pages'],
     [

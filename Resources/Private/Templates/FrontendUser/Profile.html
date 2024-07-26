@@ -7,10 +7,10 @@
     </h1>
     <f:if condition="{frontendUser}">
         <f:then>
-            <forums:render partial="FrontendUser/Profile/Overview" arguments="{_all}" />
+            <f:render partial="FrontendUser/Profile/Overview" arguments="{_all}" />
         </f:then>
         <f:else>
-            <forums:render partial="FrontendUser/Profile/PermissionDenied" />
+            <f:render partial="FrontendUser/Profile/PermissionDenied" />
         </f:else>
     </f:if>
 </f:section>

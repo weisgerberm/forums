@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Domain\Repository;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
@@ -31,7 +33,7 @@ class ThreadRepository extends AbstractRepository
     {
 
         /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
-        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings = GeneralUtility::makeInstance( Typo3QuerySettings::class);
         $contentObj = $this->getConfigurationManager()->getContentObject();
         if (!is_null($contentObj->data)) {
 

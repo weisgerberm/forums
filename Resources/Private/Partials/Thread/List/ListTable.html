@@ -11,11 +11,11 @@
                 <td>
                     <div class="columns is-vcentered">
                         <div class="column is-narrow">
-                            <forums:render partial="Basics/Avatar" arguments="{image:thread.firstPost.frontendUser.avatar.image, width:settings.defaults.avatarWidthThreadCreator, height:settings.defaults.avatarHeightThreadCreator, placeholder:settings.defaults.avatar}"/>
+                            <f:render partial="Basics/Avatar" arguments="{image:thread.firstPost.frontendUser.avatar.image, width:settings.defaults.avatarWidthThreadCreator, height:settings.defaults.avatarHeightThreadCreator, placeholder:settings.defaults.avatar}"/>
                         </div>
                         <div class="column is-half">
-                            <forums:render partial="Thread/List/Headline" arguments="{_all}"/>
-                            <forums:render partial="Thread/List/Creator" arguments="{_all}"/>
+                            <f:render partial="Thread/List/Headline" arguments="{_all}"/>
+                            <f:render partial="Thread/List/Creator" arguments="{_all}"/>
                         </div>
                         <div class="column">
                             <div class="icon-text">
@@ -36,7 +36,7 @@
                         <div class="column">
                             <div class="{settings.css.row}">
                                 <div class="col-12">
-                                    <forums:render partial="Thread/List/LastPoster" arguments="{_all}"/>
+                                    <f:render partial="Thread/List/LastPoster" arguments="{_all}"/>
 
                                 </div>
 

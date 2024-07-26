@@ -3,12 +3,12 @@
 <f:if condition="{categoryPages}">
     <f:then>
         <f:for each="{categoryPages}" as="categoryPage">
-            <forums:render partial="Page/List/ListTable" arguments="{_all}" />
+            <f:render partial="Page/List/ListTable" arguments="{_all}" />
         </f:for>
 
     </f:then>
     <f:else>
-        <forums:render partial="Page/List/ListTableEmpty" arguments="{_all}" />
+        <f:render partial="Page/List/ListTableEmpty" arguments="{_all}" />
 
     </f:else>
 </f:if>

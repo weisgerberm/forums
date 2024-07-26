@@ -1,4 +1,8 @@
 <?php
+
+use TYPO3\CMS\Core\DataHandling\PageDoktypeRegistry;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 defined('TYPO3') || die();
 
 (static function() {
@@ -43,9 +47,19 @@ defined('TYPO3') || die();
 
 
 })();
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 
-$GLOBALS['PAGES_TYPES'][\Weisgerber\Forums\Domain\Model\Page::PAGE_TYPE_SUBFORUM] = [
-    'type' => 'sys',
-    'allowedTables' => '*',
-];
+$dokTypeRegistry = GeneralUtility::makeInstance(PageDoktypeRegistry::class);
+$dokTypeRegistry->add(
+    \Weisgerber\Forums\Domain\Model\Page::PAGE_TYPE_SUBFORUM,
+    [
+        'type' => 'sys',
+        'allowedTables' => '*',
+    ],
+);
+$dokTypeRegistry->add(
+    \Weisgerber\Forums\Domain\Model\Page::PAGE_TYPE_SUBFORUM_CATEGORY,
+    [
+        'type' => 'sys',
+        'allowedTables' => '*',
+    ],
+);

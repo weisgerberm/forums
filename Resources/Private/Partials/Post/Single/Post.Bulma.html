@@ -5,7 +5,7 @@
             <p class="card-header-title">
                 <a href="#" class="link">#412</a>
             </p>
-            <forums:render partial="Post/PostDropdownButton" arguments="{_all}" />
+            <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
         </header>
         <div class="card-content">
             <div class="tile is-ancestor">
@@ -16,7 +16,7 @@
                                 <p>
                                     <f:if condition="{image:post.frontendUser.image}">
                                         <f:then>
-                                            <forums:render partial="Basics/Avatar" arguments="{image:post.frontendUser.image, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+                                            <f:render partial="Basics/Avatar" arguments="{image:post.frontendUser.image, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
                                         </f:then>
                                         <f:else>
                                             <img src="{settings.defaults.avatar}" />
@@ -24,7 +24,7 @@
                                     </f:if>
                                 </p>
                                 <p class="subtitle is-5 my-2">
-                                    <forums:render style="Generic" partial="Basics/Username" arguments="{frontendUser:post.frontendUser}" />
+                                    <f:render partial="Basics/Username" arguments="{frontendUser:post.frontendUser}" />
                                 </p>
                                 <div class="block">
                                     <span class="tag is-primary is-light">Administrator</span>

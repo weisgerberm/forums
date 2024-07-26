@@ -2,11 +2,11 @@
 <f:if condition="{pages}">
     <f:then>
         <f:for each="{pages}" as="page">
-            <forums:render partial="Subforum/List/ListTable" arguments="{_all}" />
+            <f:render partial="Subforum/List/ListTable" arguments="{_all}" />
         </f:for>
     </f:then>
     <f:else>
-        <forums:render partial="Subforum/List/ListTableEmpty" arguments="{_all}" />
+        <f:render partial="Subforum/List/ListTableEmpty" arguments="{_all}" />
 
     </f:else>
 </f:if>

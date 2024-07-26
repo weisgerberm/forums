@@ -176,7 +176,7 @@ return [
                 'fallbackCharacter' => '-',
                 'eval' => 'uniqueInPid',
             ],
-            
+
         ],
         'files' => [
             'exclude' => true,
@@ -222,12 +222,11 @@ return [
                     'foreign_match_fields' => [
                         'fieldname' => 'files',
                         'tablenames' => 'tx_forums_domain_model_thread',
-                        'table_local' => 'sys_file',
                     ],
                     'maxitems' => 1
                 ]
             ),
-            
+
         ],
         'posts' => [
             'exclude' => true,
@@ -273,7 +272,7 @@ return [
                     ],
                 ],
             ],
-            
+
         ],
         'active_users' => [
             'exclude' => true,
@@ -299,8 +298,8 @@ return [
                     ],
                 ],
             ],
-            
+
         ],
-    
+
     ],
 ];

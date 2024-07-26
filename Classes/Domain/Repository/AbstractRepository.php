@@ -2,6 +2,7 @@
 namespace Weisgerber\Forums\Domain\Repository;
 
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Weisgerber\Forums\Service\Configuration\ConfigurationService;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface;
@@ -33,14 +34,15 @@ abstract class AbstractRepository extends \TYPO3\CMS\Extbase\Persistence\Reposit
 	 * @return ConfigurationManagerInterface
 	 */
 	public function getConfigurationManager() {
-		return $this->objectManager->get(ConfigurationManagerInterface::class);
+
+		return GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
 	}
 
     /**
      * @return ConfigurationService
      */
 	protected function getConfigurationService() {
-	    return $this->objectManager->get(ConfigurationService::class);
+	    return GeneralUtility::makeInstance(ConfigurationService::class);
     }
 
 	/**

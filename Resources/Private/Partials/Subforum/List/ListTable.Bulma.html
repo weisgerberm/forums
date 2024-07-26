@@ -29,7 +29,7 @@
                 <div class="column is-one-third">
                     <f:if condition="{page.cachedLatestPost}">
                         <f:then>
-                            <forums:render partial="Subforum/List/LatestPost" arguments="{post:page.cachedLatestPost}" />
+                            <f:render partial="Subforum/List/LatestPost" arguments="{post:page.cachedLatestPost}" />
 
                         </f:then>
                         <f:else>

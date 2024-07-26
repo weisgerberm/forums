@@ -10,11 +10,11 @@
     </f:link.action>
     <f:if condition="{threads}">
         <f:then>
-            <forums:render partial="Thread/List/ListTable" arguments="{_all}" />
-            <forums:render partial="Thread/List/Pagination" arguments="{_all}" />
+            <f:render partial="Thread/List/ListTable" arguments="{_all}" />
+            <f:render partial="Thread/List/Pagination" arguments="{_all}" />
         </f:then>
         <f:else>
-            <forums:render partial="Thread/List/ListTableEmpty" arguments="{_all}" />
+            <f:render partial="Thread/List/ListTableEmpty" arguments="{_all}" />
 
         </f:else>
     </f:if>

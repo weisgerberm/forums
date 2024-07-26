@@ -18,10 +18,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
     <f:flashMessages />
 
-    <forums:render partial="FormErrors" />
+    <f:render partial="FormErrors" />
 
     <f:form action="create" name="newPollOption" object="{newPollOption}">
-    <forums:render partial="PollOption/FormFields" />
+    <f:render partial="PollOption/FormFields" />
     <f:form.submit value="Create new" />
     </f:form>
 </f:section>
