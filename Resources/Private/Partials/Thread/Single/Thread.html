@@ -1,24 +1,13 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 
-    <h1>{thread.headline}</h1>
-    <div class="fs-6 text-muted">
-        <span class="icon-text">
-            <f:if condition="{thread.firstPost.frontenduser}">
-                <span class="icon is-small">
-                    <i class="fas fa-user-edit"></i>
-                </span>
-                <span>
-                    <f:render partial="Basics/Username" arguments="{frontenduser:thread.firstPost.frontenduser}" />
-                </span>
-            </f:if>
-            <span class="icon is-small">
-                <i class="far fa-clock"></i>
-            </span>
-            <span>
-                <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{thread.firstPost.currentPostContent.crdate}"></f:format.date>
-            </span>
-
-        </span>
-    </div>
+    <h1>{thread.title}</h1>
     <f:render partial="Post/List/List" arguments="{_all}" />
+    <h2 class="mt-6"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:reply" /></h2>
+    <f:security.ifHasRole role="6">
+        <f:then>
+            <f:render partial="Post/New/New" arguments="{_all}" />
+        </f:then><f:else>
+            <f:render partial="Post/New/NewForbidden" arguments="{_all}" />
+        </f:else>
+    </f:security.ifHasRole>
 </html>

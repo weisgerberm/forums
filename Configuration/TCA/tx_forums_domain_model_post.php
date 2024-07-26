@@ -1,4 +1,7 @@
 <?php
+
+use Weisgerber\DarfIchMit\Utility\TcaUtility;
+
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_post',
@@ -141,7 +144,7 @@ return [
                 'rows' => 15,
                 'eval' => 'trim',
             ],
-            
+
         ],
         'post_content' => [
             'exclude' => true,
@@ -192,15 +195,23 @@ return [
             ],
 
         ],
-    
+
         'thread' => [
             'config' => [
                 'type' => 'passthrough',
             ],
         ],
         'frontenduser' => [
+            'label' => TcaUtility::title('frontenduser'),
+            'description' => TcaUtility::desc('frontenduser'),
+            'l10n_mode' => 'exclude',
+            'exclude' => true,
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'group',
+                'allowed' => 'fe_users',
+                'maxitems' => 1,
+                'size' => 1,
+                'default' => 0,
             ],
         ],
     ],

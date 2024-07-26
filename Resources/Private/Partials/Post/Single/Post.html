@@ -1,54 +1,43 @@
-<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
-
-    <div class="card">
-        <header class="card-header is-no-shadow">
-            <p class="card-header-title">
-                <a href="#" class="link">#412</a>
-            </p>
-            <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
-        </header>
-        <div class="card-content">
-            <div class="tile is-ancestor">
-                <div class="tile is-vertical is-2">
+<html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:variable name="counter">{iterator.index+1}</f:variable>
+    <div class="card mb-5" id="post-{counter}">
+        <div class="card-body">
+            <header class="card-title">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-3">
+                        <a href="#post-{counter}" title="Post number {counter} in this thread" class="link-dark">#{counter}</a>
+                        <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.currentPostContent.crdate}"></f:format.date>
+                    </div>
+                    <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
+                </div>
+            </header>
+            <div class="row">
+                <div class="col-3">
                     <div class="tile">
                         <div class="tile is-parent is-vertical has-text-centered">
                             <article class="tile is-child">
                                 <p>
-                                    <f:if condition="{image:post.frontendUser.image}">
-                                        <f:then>
-                                            <f:render partial="Basics/Avatar" arguments="{image:post.frontendUser.image, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
-                                        </f:then>
-                                        <f:else>
-                                            <img src="{settings.defaults.avatar}" />
-                                        </f:else>
+                                    <f:if condition="{post.frontenduser.avatar}">
+                                        <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+
                                     </f:if>
                                 </p>
                                 <p class="subtitle is-5 my-2">
-                                    <f:render partial="Basics/Username" arguments="{frontendUser:post.frontendUser}" />
+                                    <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser}" />
                                 </p>
-                                <div class="block">
-                                    <span class="tag is-primary is-light">Administrator</span>
+                                <div class="d-flex align-items-center">
+                                    <f:if condition="{post.frontenduser}">
+                                        <b><f:render partial="Basics/XP" arguments="{amount:post.frontenduser.xp}"/></b> <span class="vr mx-2"></span> <social:rank xp="{post.frontenduser.xp}" />
+                                    </f:if>
                                 </div>
                             </article>
-
                         </div>
-
                     </div>
                 </div>
-                <div class="tile is-parent">
+                <div class="col-9">
                     <article class="tile is-child notification is-light">
                         <div class="content">
-                            <f:if condition="{post.currentPostContent.headline}">
-                                <p class="title">{post.currentPostContent.headline}</p>
-                            </f:if>
-
-                            <p class="heading">
-                                <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.currentPostContent.crdate}"></f:format.date>
-                            </p>
-                            <p class="subtitle">{post.currentPostContent.content -> f:format.html()}</p>
-                            <div class="content">
-                                <!-- Content -->
-                            </div>
+                            {post.currentPostContent.content -> f:format.html()}
                         </div>
                     </article>
                 </div>

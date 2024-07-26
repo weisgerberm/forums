@@ -4,34 +4,20 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldFrontenduser;
 
-/**
- * This file is part of the "forums" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * (c) 2022 Mark Weisgerber <mark.weisgerber@outlook.de>
- */
-
-/**
- * Post
- */
 class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
-    /**
-     * frontendUser
-     *
-     * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser|null
-     */
-    protected $frontenduser = null;
+    use FieldFrontenduser;
 
     /**
      * related thread
      *
      * @var \Weisgerber\Forums\Domain\Model\Thread
      */
+    #[Lazy()]
     protected $thread = null;
 
     /**
@@ -39,21 +25,21 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @var bool
      */
-    protected $spam = false;
+    protected bool $spam = false;
 
     /**
      * awaitingAdminApproval
      *
      * @var bool
      */
-    protected $awaitingAdminApproval = false;
+    protected bool $awaitingAdminApproval = false;
 
     /**
      * adminComment
      *
      * @var string
      */
-    protected $adminComment = '';
+    protected string $adminComment = '';
 
     /**
      * multiple PostContent Objects for history and edit mode
@@ -61,6 +47,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\PostContent>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
+    #[Lazy()]
     protected $postContent = null;
 
     /**
@@ -69,6 +56,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\PostLike>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
+    #[Lazy()]
     protected $likes = null;
 
     /**
@@ -76,6 +64,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @var \Weisgerber\Forums\Domain\Model\Poll
      */
+    #[Lazy()]
     protected $poll = null;
 
     /**
@@ -86,16 +75,6 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getSpam()
     {
         return $this->spam;
-    }
-
-    /**
-     * Returns the frontendUser
-     *
-     * @return FrontendUser|null
-     */
-    public function getFrontenduser()
-    {
-        return $this->frontenduser;
     }
 
     /**
@@ -203,6 +182,9 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getPostContent()
     {
+        if ($this->postContent instanceof LazyLoadingProxy) {
+            $this->postContent->_loadRealInstance();
+        }
         return $this->postContent;
     }
 
@@ -215,7 +197,7 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
 
         // no check necessary if a postContent > 0 because there MUST be one item
-        return $this->postContent[$this->postContent->count() - 1];
+        return $this->getPostContent()[$this->postContent->count() - 1];
     }
 
     /**
@@ -258,6 +240,9 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getLikes()
     {
+        if ($this->likes instanceof LazyLoadingProxy) {
+            $this->likes->_loadRealInstance();
+        }
         return $this->likes;
     }
 
@@ -279,6 +264,9 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getPoll()
     {
+        if ($this->poll instanceof LazyLoadingProxy) {
+            $this->poll->_loadRealInstance();
+        }
         return $this->poll;
     }
 
@@ -291,14 +279,6 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setPoll(\Weisgerber\Forums\Domain\Model\Poll $poll)
     {
         $this->poll = $poll;
-    }
-
-    /**
-     * @param ?FrontendUser $frontenduser
-     */
-    public function setFrontenduser(?FrontendUser $frontenduser)
-    {
-        $this->frontenduser = $frontenduser;
     }
 
     /**
@@ -327,6 +307,9 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getThread()
     {
+        if ($this->thread instanceof LazyLoadingProxy) {
+            $this->thread->_loadRealInstance();
+        }
         return $this->thread;
     }
 

@@ -1,11 +1,10 @@
 CREATE TABLE tx_forums_domain_model_thread
 (
-	headline             varchar(255) NOT NULL DEFAULT '',
+	title                varchar(255) NOT NULL DEFAULT '',
 	closed               smallint(1) unsigned NOT NULL DEFAULT '0',
 	cached_counter_posts int(11) NOT NULL DEFAULT '0',
 	cached_counter_views int(11) NOT NULL DEFAULT '0',
 	sticky               smallint(1) unsigned NOT NULL DEFAULT '0',
-	slug                 varchar(255) NOT NULL DEFAULT '',
 	files                int(11) unsigned NOT NULL DEFAULT '0',
 	posts                int(11) unsigned NOT NULL DEFAULT '0',
 	tags                 int(11) unsigned NOT NULL DEFAULT '0',

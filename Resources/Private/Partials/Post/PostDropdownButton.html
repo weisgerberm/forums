@@ -1,39 +1,37 @@
-<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<html data-namespace-typo3-fluid="true"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
 
 <div class="dropdown">
-    <div class="dropdown-trigger">
-        <button class="card-header-icon" aria-haspopup="true" aria-controls="dropdown-menu">
-            <span class="icon">
-                <i class="fas fa-ellipsis-h"></i>
-              </span>
-        </button>
-    </div>
-    <div class="dropdown-menu" id="dropdown-menu" role="menu">
-        <div class="dropdown-content">
-            <a href="#" class="dropdown-item ">
-                <span class="icon is-small">
-                <i class="fas fa-edit"></i>
-              </span> <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:edit" />
+    <button aria-controls="dropdown-menu" aria-expanded="false" aria-haspopup="true" class="btn btn-link mb-0"
+            data-bs-toggle="dropdown">
+        <f:render arguments="{icon:'menu-dots', additionalClasses:'font-weight-bolder'}" partial="Prefabs/Icon"/>
+    </button>
+    <ul class="dropdown-menu" id="dropdown-menu" role="menu">
+        <li class="dropdown-item ">
+            <a href="#" class="align-items-center d-flex gap-2">
+                <f:render arguments="{icon:'message-pen'}" partial="Prefabs/Icon"/>
+                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:edit"/>
             </a>
-            <a href="#" class="dropdown-item has-text-danger">
-                <span class="icon is-small">
-                <i class="fas fa-trash-alt"></i>
-              </span> <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:delete" />
+        </li>
+        <li class="dropdown-item ">
+            <a class="link-danger align-items-center d-flex gap-2" href="#">
+                <f:render arguments="{icon:'flag-diagonal-33'}" partial="Prefabs/Icon"/>
+                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:delete"/>
             </a>
-            <hr class="dropdown-divider">
+        </li>
+        <li class="dropdown-item ">
+            <a class="align-items-center d-flex gap-2" class="align-items-center d-flex gap-2">
+                <f:render arguments="{icon:'flag-diagonal-33'}" partial="Prefabs/Icon"/>
+                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:report"/>
+            </a>
+        </li>
+        <li class="dropdown-item ">
+            <a class="align-items-center d-flex gap-2" href="#">
+                <f:render arguments="{icon:'msg-quote'}" partial="Prefabs/Icon"/>
+            <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:quote"/>
+            </a>
+        </li>
 
-            <a class="dropdown-item">
-                <span class="icon is-small">
-                <i class="far fa-flag"></i>
-              </span> <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:report" />
-            </a>
-            <a href="#" class="dropdown-item">
-                <span class="icon is-small">
-                <i class="fas fa-quote-right"></i>
-              </span> <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:quote" />
-            </a>
-
-        </div>
-    </div>
+    </ul>
 </div>
 </html>

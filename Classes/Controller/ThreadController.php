@@ -9,6 +9,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
+use Weisgerber\DarfIchMit\Utility\DimUtility;
 use Weisgerber\Forums\Domain\Model\Thread;
 use Weisgerber\Forums\Service\UriService;
 use Weisgerber\Forums\Traits\{SlugServiceTrait,ThreadRepositoryTrait,ThreadServiceTrait,UriServiceTrait};
@@ -25,7 +26,7 @@ use Weisgerber\Forums\Traits\{SlugServiceTrait,ThreadRepositoryTrait,ThreadServi
 /**
  * ThreadController
  */
-class ThreadController extends AbstractController
+class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractController
 {
     use SlugServiceTrait;
     use ThreadRepositoryTrait;
@@ -63,8 +64,9 @@ class ThreadController extends AbstractController
      * @return ResponseInterface
      */
     #[IgnoreValidation(['argumentName' => 'thread'])]
-    public function showAction(Thread $thread): ResponseInterface
+    public function showAction(Thread $thread, int $currentPage = 1): ResponseInterface
     {
+        $this->fetchFeUser();
         $this->view->assign('thread', $thread);
         return $this->htmlResponse();
     }
@@ -90,10 +92,9 @@ class ThreadController extends AbstractController
      */
     public function createAction(Thread $newThread)
     {
-
         $this->threadRepository->add($newThread);
 
-        GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class)->persistAll();
+        DimUtility::persistAll();
         /** @var Thread $record */
         $record = $this->threadRepository->findByUidAssoc($newThread->getUid());
 

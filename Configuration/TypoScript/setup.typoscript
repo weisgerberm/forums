@@ -16,6 +16,7 @@ plugin.tx_forums {
   }
 
   settings {
+    noPermission = 123
     defaults {
       # File location for users without avatar
       avatar = {$plugin.tx_forums.settings.defaults.avatar}

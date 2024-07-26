@@ -5,27 +5,16 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Domain\Model;
 
 
-/**
- * This file is part of the "forums" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * (c) 2022 Mark Weisgerber <mark.weisgerber@outlook.de>
- */
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldPathSegment;
+use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldTitle;
 
-/**
- * Thread
- */
 class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
+    use FieldPathSegment;
+    use FieldTitle;
+
     public const string TABLE_NAME = 'tx_forums_domain_model_thread';
-    /**
-     * threads headline / subject
-     *
-     * @var string
-     */
-    protected string $headline = '';
 
     /**
      * flag whether the thread is closed for further posts
@@ -56,13 +45,6 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $sticky = false;
 
     /**
-     * url slug
-     *
-     * @var string
-     */
-    protected $slug = '';
-
-    /**
      * files
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
@@ -73,7 +55,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * posts
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\Post>
+     * @var ObjectStorage<Post>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $posts = null;
@@ -81,7 +63,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * tags
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\Tag>
+     * @var ObjectStorage<Tag>
      */
     protected $tags = null;
 
@@ -97,7 +79,6 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function __construct()
     {
-
         // Do not remove the next line: It would break the functionality
         $this->initializeObject();
     }
@@ -112,17 +93,17 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function initializeObject()
     {
-        $this->posts = $this->posts ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->tags = $this->tags ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->posts = $this->posts ?: new ObjectStorage();
+        $this->tags = $this->tags ?: new ObjectStorage();
     }
 
     /**
      * Adds a Post
      *
-     * @param \Weisgerber\Forums\Domain\Model\Post $post
+     * @param Post $post
      * @return void
      */
-    public function addPost(\Weisgerber\Forums\Domain\Model\Post $post)
+    public function addPost(Post $post)
     {
         $this->posts->attach($post);
     }
@@ -130,10 +111,10 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Post
      *
-     * @param \Weisgerber\Forums\Domain\Model\Post $postToRemove The Post to be removed
+     * @param Post $postToRemove The Post to be removed
      * @return void
      */
-    public function removePost(\Weisgerber\Forums\Domain\Model\Post $postToRemove)
+    public function removePost(Post $postToRemove)
     {
         $this->posts->detach($postToRemove);
     }
@@ -141,9 +122,9 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the posts
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\Post>
+     * @return ObjectStorage<Post>
      */
-    public function getPosts(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getPosts(): ObjectStorage
     {
         return $this->posts;
     }
@@ -151,16 +132,16 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the posts
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\Post> $posts
+     * @param ObjectStorage<Post> $posts
      * @return void
      */
-    public function setPosts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $posts)
+    public function setPosts(ObjectStorage $posts)
     {
         $this->posts = $posts;
     }
 
     /**
-     * @return \Weisgerber\Forums\Domain\Model\Post
+     * @return Post
      */
     public function getFirstPost()
     {
@@ -168,32 +149,11 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return \Weisgerber\Forums\Domain\Model\Post
+     * @return Post
      */
     public function getLastPost()
     {
         return $this->getPosts()->offsetGet($this->getPosts()->count() - 1);
-    }
-
-    /**
-     * Returns the headline
-     *
-     * @return string
-     */
-    public function getHeadline()
-    {
-        return $this->headline;
-    }
-
-    /**
-     * Sets the headline
-     *
-     * @param string $headline
-     * @return void
-     */
-    public function setHeadline(string $headline)
-    {
-        $this->headline = $headline;
     }
 
     /**
@@ -303,10 +263,10 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Adds a Tag
      *
-     * @param \Weisgerber\Forums\Domain\Model\Tag $tag
+     * @param Tag $tag
      * @return void
      */
-    public function addTag(\Weisgerber\Forums\Domain\Model\Tag $tag)
+    public function addTag(Tag $tag)
     {
         $this->tags->attach($tag);
     }
@@ -314,10 +274,10 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Tag
      *
-     * @param \Weisgerber\Forums\Domain\Model\Tag $tagToRemove The Tag to be removed
+     * @param Tag $tagToRemove The Tag to be removed
      * @return void
      */
-    public function removeTag(\Weisgerber\Forums\Domain\Model\Tag $tagToRemove)
+    public function removeTag(Tag $tagToRemove)
     {
         $this->tags->detach($tagToRemove);
     }
@@ -325,9 +285,9 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the tags
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\Tag>
+     * @return ObjectStorage<Tag>
      */
-    public function getTags(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getTags(): ObjectStorage
     {
         return $this->tags;
     }
@@ -335,10 +295,10 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the tags
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\Tag> $tags
+     * @param ObjectStorage<Tag> $tags
      * @return void
      */
-    public function setTags(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags)
+    public function setTags(ObjectStorage $tags)
     {
         $this->tags = $tags;
     }
@@ -362,27 +322,6 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setActiveUsers(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $activeUsers)
     {
         $this->activeUsers = $activeUsers;
-    }
-
-    /**
-     * Returns the slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Sets the slug
-     *
-     * @param string $slug
-     * @return void
-     */
-    public function setSlug(string $slug)
-    {
-        $this->slug = $slug;
     }
 
     /**

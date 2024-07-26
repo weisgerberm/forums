@@ -5,23 +5,20 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Controller;
 
 
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Weisgerber\DarfIchMit\Domain\Model\Xp;
+use Weisgerber\DarfIchMit\Traits\XpServiceTrait;
+use Weisgerber\Forums\Domain\Model\{Post, Thread};
+use Weisgerber\Forums\Domain\Repository\ThreadRepository;
 use Weisgerber\Forums\Traits\PostRepositoryTrait;
 
-/**
- * This file is part of the "Forums" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * (c) 2022 Mark Weisgerber <mark.weisgerber@outlook.de>
- */
-
-/**
- * PostController
- */
-class PostController extends AbstractController
+class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractController
 {
     use PostRepositoryTrait;
+    use XpServiceTrait;
 
     /**
      * @return \Psr\Http\Message\ResponseInterface
@@ -47,23 +44,45 @@ class PostController extends AbstractController
     /**
      * action create
      *
-     * @param \Weisgerber\Forums\Domain\Model\Post $newPost
+     * @param Post $newPost
+     * @throws AspectNotFoundException
      */
-    public function createAction(\Weisgerber\Forums\Domain\Model\Post $newPost)
+    #[IgnoreValidation(['argumentName' => 'thread'])]
+    public function createAction(Post $newPost, Thread $thread): \Psr\Http\Message\ResponseInterface
     {
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->postRepository->add($newPost);
-        $this->redirect('list');
+        $frontendUser = $this->fetchFeUser();
+        if($frontendUser === null){
+            \nn\t3::Http()->redirect( $this->settings['noPermission'] );
+        }
+
+        // Wir setzen selber den frontenduser und vertrauen nicht auf den fe-user aus dem Formular, weil dieser gefälscht sein könnte
+        $newPost->setFrontenduser($frontendUser);
+        $thread->addPost($newPost);
+
+        /** @var ThreadRepository $threadRepository */
+        $threadRepository = GeneralUtility::makeInstance(ThreadRepository::class);
+        $threadRepository->update($thread);
+
+        // XP gutschreiben
+        $this->xpService->gain($frontendUser, 1, Xp::TYPE_FORUM_POST);
+
+        \nn\t3::Message()->OK(
+            "Danke für deinen Beitrag",
+        "Du hast 1 XP verdient!");
+
+
+        // Wieder zurück zum Thread springen
+        return $this->redirect('show', 'Thread', null, ['thread' => $thread]);
     }
 
     /**
      * action edit
      *
-     * @param \Weisgerber\Forums\Domain\Model\Post $post
+     * @param Post $post
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("post")
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function editAction(\Weisgerber\Forums\Domain\Model\Post $post): \Psr\Http\Message\ResponseInterface
+    public function editAction(Post $post): \Psr\Http\Message\ResponseInterface
     {
         $this->view->assign('post', $post);
         return $this->htmlResponse();
@@ -72,9 +91,9 @@ class PostController extends AbstractController
     /**
      * action update
      *
-     * @param \Weisgerber\Forums\Domain\Model\Post $post
+     * @param Post $post
      */
-    public function updateAction(\Weisgerber\Forums\Domain\Model\Post $post)
+    public function updateAction(Post $post)
     {
         $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->postRepository->update($post);
@@ -84,9 +103,9 @@ class PostController extends AbstractController
     /**
      * action delete
      *
-     * @param \Weisgerber\Forums\Domain\Model\Post $post
+     * @param Post $post
      */
-    public function deleteAction(\Weisgerber\Forums\Domain\Model\Post $post)
+    public function deleteAction(Post $post)
     {
         $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->postRepository->remove($post);

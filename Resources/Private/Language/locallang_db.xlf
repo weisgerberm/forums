@@ -18,21 +18,6 @@
 			<trans-unit id="tx_forums_domain_model_thread.cached_counter_views" resname="tx_forums_domain_model_thread.cached_counter_views">
 				<source>Cached Counter Views</source>
 			</trans-unit>
-			<trans-unit id="tx_forums_domain_model_thread.sticky" resname="tx_forums_domain_model_thread.sticky">
-				<source>Sticky</source>
-			</trans-unit>
-			<trans-unit id="tx_forums_domain_model_thread.slug" resname="tx_forums_domain_model_thread.slug">
-				<source>Slug</source>
-			</trans-unit>
-			<trans-unit id="tx_forums_domain_model_thread.files" resname="tx_forums_domain_model_thread.files">
-				<source>Files</source>
-			</trans-unit>
-			<trans-unit id="tx_forums_domain_model_thread.posts" resname="tx_forums_domain_model_thread.posts">
-				<source>Posts</source>
-			</trans-unit>
-			<trans-unit id="tx_forums_domain_model_thread.tags" resname="tx_forums_domain_model_thread.tags">
-				<source>Tags</source>
-			</trans-unit>
 			<trans-unit id="tx_forums_domain_model_thread.active_users" resname="tx_forums_domain_model_thread.active_users">
 				<source>Active Users</source>
 			</trans-unit>

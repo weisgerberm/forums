@@ -6,14 +6,9 @@ use Weisgerber\Forums\Domain\Model\Thread;
 return [
     'ctrl' => TcaUtility::getController(Thread::TABLE_NAME,'forums', [
         'sortby' => 'sorting',
-        'delete' => 'deleted',
-        'enablecolumns' => [
-            'disabled' => 'hidden'
-        ],
-        'searchFields' => 'headline,slug'
-    ]),
+    ], false),
     'types' => [
-        '1' => ['showitem' => TcaUtility::tab(null, ['headline','closed','cached_counter_posts','cached_counter_views','sticky','slug','files','posts','tags','active_users']).
+        '1' => ['showitem' => TcaUtility::tab(null, ['title','closed','cached_counter_posts','cached_counter_views','sticky','slug','files','posts','tags','active_users']).
             TcaUtility::finishTabs()],
     ],
     'columns' => \nn\t3::TCA()->createConfig(
@@ -21,87 +16,35 @@ return [
         ['hidden'],
         [
             'categories' => TcaUtility::getCategory('1'),
-            'headline' => [
+            'path_segment' => TcaUtility::getFieldPathSegment(),
+            'title' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.headline',
-                'config' => [
-                    'type' => 'input',
-                    'size' => 30,
-                    'eval' => 'trim',
-                    'default' => ''
-                ],
+                'label' => TcaUtility::title('title'),
+                'config' => TcaUtility::getInput(true),
             ],
             'closed' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.closed',
-                'config' => [
-                    'type' => 'check',
-                    'renderType' => 'checkboxToggle',
-                    'items' => [
-                        [
-                            0 => '',
-                            1 => '',
-                        ]
-                    ],
-                    'default' => 0,
-                ]
+                'label' => TcaUtility::title('closed'),
+                'config' => TcaUtility::getCheckboxToggle(),
             ],
             'cached_counter_posts' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.cached_counter_posts',
-                'config' => [
-                    'type' => 'input',
-                    'size' => 4,
-                    'eval' => 'int',
-                    'default' => 0
-                ]
+                'label' => TcaUtility::title('cached_counter_posts'),
+                'config' => TcaUtility::getNumber(),
             ],
             'cached_counter_views' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.cached_counter_views',
-                'config' => [
-                    'type' => 'input',
-                    'size' => 4,
-                    'eval' => 'int',
-                    'default' => 0
-                ]
+                'label' => TcaUtility::title('cached_counter_views'),
+                'config' => TcaUtility::getNumber(),
             ],
             'sticky' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.sticky',
-                'config' => [
-                    'type' => 'check',
-                    'renderType' => 'checkboxToggle',
-                    'items' => [
-                        [
-                            0 => '',
-                            1 => '',
-                        ]
-                    ],
-                    'default' => 0,
-                ]
-            ],
-            'slug' => [
-                'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.slug',
-                'config' => [
-                    'type' => 'slug',
-                    'size' => 50,
-                    'generatorOptions' => [
-                        'fields' => ['title'], // TODO: adjust this field to the one you want to use
-                        'fieldSeparator' => '-',
-                        'replacements' => [
-                            '/' => '',
-                        ],
-                    ],
-                    'fallbackCharacter' => '-',
-                    'eval' => 'uniqueInPid',
-                ],
-
+                'label' => TcaUtility::title('sticky'),
+                'config' => TcaUtility::getCheckboxToggle(),
             ],
             'files' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.files',
+                'label' => TcaUtility::title('files'),
                 'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                     'files',
                     [
@@ -151,7 +94,7 @@ return [
             ],
             'posts' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.posts',
+                'label' => TcaUtility::title('posts'),
                 'config' => [
                     'type' => 'inline',
                     'foreign_table' => 'tx_forums_domain_model_post',
@@ -171,7 +114,7 @@ return [
             ],
             'tags' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.tags',
+                'label' => TcaUtility::title('tags'),
                 'config' => [
                     'type' => 'select',
                     'renderType' => 'selectMultipleSideBySide',
@@ -197,7 +140,7 @@ return [
             ],
             'active_users' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_thread.active_users',
+                'label' => TcaUtility::title('active_users'),
                 'config' => [
                     'type' => 'select',
                     'renderType' => 'selectMultipleSideBySide',
