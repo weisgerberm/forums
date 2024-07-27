@@ -105,6 +105,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function addPost(Post $post)
     {
+        $this->setCachedCounterPosts(count($this->posts));
         $this->posts->attach($post);
     }
 

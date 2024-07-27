@@ -8,8 +8,10 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Weisgerber\DarfIchMit\Domain\Model\Xp;
 use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
 use Weisgerber\DarfIchMit\Traits\SlugServiceTrait;
+use Weisgerber\DarfIchMit\Traits\XpServiceTrait;
 use Weisgerber\DarfIchMit\Utility\DimUtility;
 use Weisgerber\Forums\Domain\Model\Thread;
 use Weisgerber\Forums\Service\UriService;
@@ -34,19 +36,20 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     use FrontendUserServiceTrait;
     use ThreadServiceTrait;
     use UriServiceTrait;
+    use XpServiceTrait;
 
     /**
      * action list
      *
-     * @param int $page
+     * @param int $currentPage
      * @return ResponseInterface
      */
-    public function listAction(int $page = 1): ResponseInterface
+    public function listAction(int $currentPage = 1): ResponseInterface
     {
         $threads = $this->threadRepository->findAll();
 
         /** @var \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator $paginator */
-        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$page,10);
+        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$currentPage, 10);
         /** @var \TYPO3\CMS\Core\Pagination\SimplePagination $pagination */
         $pagination = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Pagination\SimplePagination::class,$paginator);
         $this->view->assignMultiple(
@@ -67,6 +70,8 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     #[IgnoreValidation(['argumentName' => 'thread'])]
     public function showAction(Thread $thread, int $currentPage = 1): ResponseInterface
     {
+        $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
+        $this->threadRepository->update($thread);
         $this->fetchFeUser();
         $this->view->assign('thread', $thread);
         return $this->htmlResponse();
@@ -93,6 +98,11 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
      */
     public function createAction(Thread $newThread): ResponseInterface
     {
+        $frontendUser = $this->fetchFeUser();
+        if($frontendUser === null){
+            \nn\t3::Http()->redirect( $this->settings['noPermission'] );
+        }
+
         $this->threadRepository->add($newThread);
 
         DimUtility::persistAll();
@@ -103,6 +113,13 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
 
         $newThread->setPathSegment($this->slugService->getSlug($newThread->jsonSerialize(), Thread::TABLE_NAME));
         $this->threadRepository->update($newThread);
+
+        // XP gutschreiben
+        $this->xpService->gain($frontendUser, 3, Xp::TYPE_FORUM_THREAD);
+
+        \nn\t3::Message()->OK(
+            "Danke, dass du ein neues Thema erstellt hast",
+            "Du hast 3 XP verdient!");
 
         // Sodass die URL schon korrekt aufgelöst werden kann bei der Weiterleitung
         DimUtility::persistAll();
