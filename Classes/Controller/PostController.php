@@ -34,16 +34,6 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
     }
 
     /**
-     * action new
-     *
-     * @return \Psr\Http\Message\ResponseInterface
-     */
-    public function newAction(): \Psr\Http\Message\ResponseInterface
-    {
-        return $this->htmlResponse();
-    }
-
-    /**
      * action create
      *
      * @param Post $newPost
@@ -97,9 +87,8 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
      */
     public function updateAction(Post $post)
     {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->postRepository->update($post);
-        $this->redirect('list');
+        $this->redirect('show', 'Thread', null, ['thread' => $post->getThread()]);
     }
 
     /**

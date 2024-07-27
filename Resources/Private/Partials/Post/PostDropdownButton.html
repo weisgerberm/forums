@@ -16,10 +16,10 @@
         <f:if condition="{post.frontenduser} == {frontendUser}">
             <f:then>
                 <li class="dropdown-item ">
-                    <a href="#" class="align-items-center d-flex gap-2">
+                    <f:link.action action="edit" class="align-items-center d-flex gap-2" controller="Post" arguments="{post:post}">
                         <f:render arguments="{icon:'message-pen'}" partial="Prefabs/Icon"/>
                         <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:edit"/>
-                    </a>
+                    </f:link.action>
                 </li>
                 <f:if condition="{post.softDeleted}">
                     <f:then>
