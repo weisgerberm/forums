@@ -1,6 +1,6 @@
 <?php
 
-use Weisgerber\Forums\Controller\{FrontendUserController, PageController, PostController, ThreadController};
+use Weisgerber\Forums\Controller\{PageController, PostController, ThreadController};
 
 defined('TYPO3') || die();
 
@@ -10,13 +10,11 @@ defined('TYPO3') || die();
         'Show',
         [
             ThreadController::class => 'list, show, new, create, edit, update, delete',
-            FrontendUserController::class => 'show, latest',
             PostController::class => 'new, create, edit, update, delete'
         ],
         // non-cacheable actions
         [
             ThreadController::class => 'list, show, new, create, edit, update, delete',
-            FrontendUserController::class => 'show, latest',
             PostController::class => 'new, create, edit, update, delete'
         ]
     );

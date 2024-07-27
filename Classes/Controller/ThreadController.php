@@ -7,6 +7,7 @@ namespace Weisgerber\Forums\Controller;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
 use Weisgerber\DarfIchMit\Traits\SlugServiceTrait;
 use Weisgerber\DarfIchMit\Utility\DimUtility;
