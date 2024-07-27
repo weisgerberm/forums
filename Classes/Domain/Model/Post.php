@@ -7,10 +7,14 @@ namespace Weisgerber\Forums\Domain\Model;
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldFrontenduser;
+use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldSoftDeleted;
 
 class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     use FieldFrontenduser;
+    use FieldSoftDeleted;
+
+    public const string TABLE_NAME = 'tx_forums_domain_model_post';
 
     /**
      * related thread

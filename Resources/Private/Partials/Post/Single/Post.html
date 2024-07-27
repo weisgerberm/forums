@@ -1,6 +1,7 @@
 <html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:variable name="counter">{iterator.index+1}</f:variable>
-    <div class="card mb-5" id="post-{counter}">
+    <div class="card mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" id="post-{counter}">
+
         <div class="card-body">
             <header class="card-title">
                 <div class="d-flex justify-content-between">
@@ -17,7 +18,7 @@
                         <div class="tile is-parent is-vertical has-text-centered">
                             <article class="tile is-child">
                                 <p>
-                                    <f:if condition="{post.frontenduser.avatar}">
+                                    <f:if condition="{post.frontenduser}">
                                         <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
 
                                     </f:if>
@@ -35,11 +36,21 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    <article class="tile is-child notification is-light">
-                        <div class="content">
-                            {post.currentPostContent.content -> f:format.html()}
-                        </div>
-                    </article>
+                    <f:if condition="{post.softDeleted}">
+                        <f:then>
+                            <div class="teaser-stripe teaser-stripe-product text-sm">
+                                - Der Benutzer hat diesen Beitrag gelöscht -
+                            </div>
+                        </f:then>
+                        <f:else>
+                            <article class="">
+                                <div class="content">
+                                    {post.currentPostContent.content -> f:format.html()}
+                                </div>
+                            </article>
+                        </f:else>
+                    </f:if>
+
                 </div>
             </div>
         </div>

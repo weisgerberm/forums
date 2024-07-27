@@ -1,27 +1,19 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:latest-activities" /></th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="card-header pb-0 p-3">
+    <h6 class="mb-0"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:latest-activities" /></h6>
+</div>
+<div class="card-body">
+    <ul class="list-group">
         <f:for each="{posts}" as="post">
-            <tr>
-                <td>
-                    <p>
-                        {post.frontendUser.username} · Vor 10 Sekunden
-                    </p>
-                    <p>
-                        Thema: <f:link.action class="text-sm" action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread}" >
-                            {post.thread.title}
-                        </f:link.action>
-                    </p>
-                </td>
-
-            </tr>
+            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                <div class="d-flex flex-column">
+                    <h6 class="mb-1 text-dark font-weight-bold text-sm">Thema: <f:link.action class="" action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread}" >
+                        {post.thread.title}
+                    </f:link.action></h6>
+                    <span class="text-xs"><f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> {post.frontendUser.username} · Vor 10 Sekunden</span>
+                </div>
+            </li>
         </f:for>
-
-    </tbody>
-</table>
+    </ul>
+</div>
 </html>

@@ -10,12 +10,12 @@ defined('TYPO3') || die();
         'Show',
         [
             ThreadController::class => 'list, show, new, create, edit, update, delete',
-            PostController::class => 'new, create, edit, update, delete'
+            PostController::class => 'new, create, edit, update, delete, restore'
         ],
         // non-cacheable actions
         [
             ThreadController::class => 'list, show, new, create, edit, update, delete',
-            PostController::class => 'new, create, edit, update, delete'
+            PostController::class => 'new, create, edit, update, delete, restore'
         ]
     );
 

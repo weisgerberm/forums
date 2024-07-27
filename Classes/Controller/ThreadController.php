@@ -73,7 +73,9 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
         $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
         $this->threadRepository->update($thread);
         $this->fetchFeUser();
-        $this->view->assign('thread', $thread);
+        $this->view->assignMultiple([
+                'thread' => $thread,
+        ]);
         return $this->htmlResponse();
     }
 

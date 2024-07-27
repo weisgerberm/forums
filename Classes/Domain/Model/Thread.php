@@ -6,13 +6,14 @@ namespace Weisgerber\Forums\Domain\Model;
 
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldPathSegment;
-use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldTitle;
+use Weisgerber\DarfIchMit\Domain\Model\Traits\{FieldCrDate, FieldPathSegment, FieldTitle, FieldTstamp};
 
 class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     use FieldPathSegment;
     use FieldTitle;
+    use FieldCrDate;
+    use FieldTstamp;
 
     public const string TABLE_NAME = 'tx_forums_domain_model_thread';
 
@@ -28,21 +29,21 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @var int
      */
-    protected $cachedCounterPosts = 0;
+    protected int $cachedCounterPosts = 0;
 
     /**
      * cached value for better performance
      *
      * @var int
      */
-    protected $cachedCounterViews = 0;
+    protected int $cachedCounterViews = 0;
 
     /**
      * sticky on top of the subforum
      *
      * @var bool
      */
-    protected $sticky = false;
+    protected bool $sticky = false;
 
     /**
      * files

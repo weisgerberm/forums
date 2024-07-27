@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Controller;
 
 
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
@@ -12,6 +13,7 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
 use Weisgerber\DarfIchMit\Traits\XpServiceTrait;
 use Weisgerber\Forums\Domain\Model\{Post, Thread};
+use Weisgerber\DarfIchMit\Utility\DimUtility;
 use Weisgerber\Forums\Domain\Repository\ThreadRepository;
 use Weisgerber\Forums\Traits\PostRepositoryTrait;
 
@@ -79,9 +81,9 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
      * action edit
      *
      * @param Post $post
-     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("post")
      * @return \Psr\Http\Message\ResponseInterface
      */
+    #[IgnoreValidation(['argumentName' => 'post'])]
     public function editAction(Post $post): \Psr\Http\Message\ResponseInterface
     {
         $this->view->assign('post', $post);
@@ -105,10 +107,52 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
      *
      * @param Post $post
      */
-    public function deleteAction(Post $post)
+    #[IgnoreValidation(['argumentName' => 'post'])]
+    public function deleteAction(Post $post): ResponseInterface
     {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->postRepository->remove($post);
-        $this->redirect('list');
+        $frontendUser = $this->frontendUserService->getLoggedInUser();
+
+        if($frontendUser === $post->getFrontenduser()){
+            $post->setSoftDeleted(true);
+            $this->postRepository->update($post);
+            DimUtility::persistAll();
+            \nn\t3::Message()->OK(
+                "Dein Beitrag wurde gelöscht",
+                "Wenn du es dir anders überlegst, kannst du ihn einfach wiederherstellen.");
+        }else{
+            \nn\t3::Message()->ERROR(
+                "Der Beitrag wurde nicht gelöscht",
+                "Dieser Beitrag gehört nicht dir!");
+        }
+
+
+        return $this->redirect('show', 'Thread', null, ['thread' => $post->getThread()]);
+    }
+
+    /**
+     * action recover
+     *
+     * @param Post $post
+     */
+    #[IgnoreValidation(['argumentName' => 'post'])]
+    public function restoreAction(Post $post): ResponseInterface
+    {
+        $frontendUser = $this->frontendUserService->getLoggedInUser();
+
+        if($frontendUser === $post->getFrontenduser()){
+            $post->setSoftDeleted(false);
+            $this->postRepository->update($post);
+            DimUtility::persistAll();
+            \nn\t3::Message()->OK(
+                "Dein Beitrag wurde wiederhergestellt",
+                "Schön, dass du es dir anders überlegt hast. ");
+        }else{
+            \nn\t3::Message()->ERROR(
+                "Der Beitrag wurde nicht wiederhergestellt",
+                "Dieser Beitrag gehört nicht dir!");
+        }
+
+
+        return $this->redirect('show', 'Thread', null, ['thread' => $post->getThread()]);
     }
 }

@@ -8,29 +8,48 @@
     </button>
     <ul class="dropdown-menu" id="dropdown-menu" role="menu">
         <li class="dropdown-item ">
-            <a href="#" class="align-items-center d-flex gap-2">
-                <f:render arguments="{icon:'message-pen'}" partial="Prefabs/Icon"/>
-                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:edit"/>
-            </a>
-        </li>
-        <li class="dropdown-item ">
-            <a class="link-danger align-items-center d-flex gap-2" href="#">
-                <f:render arguments="{icon:'flag-diagonal-33'}" partial="Prefabs/Icon"/>
-                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:delete"/>
-            </a>
-        </li>
-        <li class="dropdown-item ">
-            <a class="align-items-center d-flex gap-2" class="align-items-center d-flex gap-2">
-                <f:render arguments="{icon:'flag-diagonal-33'}" partial="Prefabs/Icon"/>
-                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:report"/>
-            </a>
-        </li>
-        <li class="dropdown-item ">
             <a class="align-items-center d-flex gap-2" href="#">
                 <f:render arguments="{icon:'msg-quote'}" partial="Prefabs/Icon"/>
-            <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:quote"/>
+                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:quote"/>
             </a>
         </li>
+        <f:if condition="{post.frontenduser} == {frontendUser}">
+            <f:then>
+                <li class="dropdown-item ">
+                    <a href="#" class="align-items-center d-flex gap-2">
+                        <f:render arguments="{icon:'message-pen'}" partial="Prefabs/Icon"/>
+                        <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:edit"/>
+                    </a>
+                </li>
+                <f:if condition="{post.softDeleted}">
+                    <f:then>
+                        <li class="dropdown-item ">
+                            <f:link.action action="restore" class="link-danger align-items-center d-flex gap-2" controller="Post" arguments="{post:post}">
+                                <f:render arguments="{icon:'repeat-2'}" partial="Prefabs/Icon"/>
+                                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:restore"/>
+                            </f:link.action>
+                        </li>
+                    </f:then><f:else>
+                        <li class="dropdown-item ">
+                            <f:link.action action="delete" class="link-danger align-items-center d-flex gap-2" controller="Post" arguments="{post:post}">
+                                <f:render arguments="{icon:'trash'}" partial="Prefabs/Icon"/>
+                                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:delete"/>
+                            </f:link.action>
+                        </li>
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <li class="dropdown-item ">
+                    <a class="align-items-center d-flex gap-2" class="align-items-center d-flex gap-2">
+                        <f:render arguments="{icon:'flag-diagonal-33'}" partial="Prefabs/Icon"/>
+                        <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:report"/>
+                    </a>
+                </li>
+            </f:else>
+        </f:if>
+
+
 
     </ul>
 </div>

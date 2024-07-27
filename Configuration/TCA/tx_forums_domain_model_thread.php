@@ -13,7 +13,7 @@ return [
     ],
     'columns' => \nn\t3::TCA()->createConfig(
         Thread::TABLE_NAME,
-        ['hidden'],
+        ['hidden','crdate'],
         [
             'categories' => TcaUtility::getCategory('1'),
             'path_segment' => TcaUtility::getFieldPathSegment(),
@@ -99,7 +99,6 @@ return [
                     'type' => 'inline',
                     'foreign_table' => 'tx_forums_domain_model_post',
                     'foreign_field' => 'thread',
-                    'foreign_sortby' => 'sorting',
                     'maxitems' => 9999,
                     'appearance' => [
                         'collapseAll' => 0,

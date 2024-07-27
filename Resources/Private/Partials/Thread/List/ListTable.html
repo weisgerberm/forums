@@ -15,7 +15,11 @@
                         </div>
                         <div class="col-6">
                             <f:render partial="Thread/List/Headline" arguments="{_all}"/>
-                            <f:render partial="Thread/List/Creator" arguments="{_all}"/>
+                            <div>
+
+                                <f:render partial="Thread/List/Creator" arguments="{_all}"/> <f:format.date pattern="MEDIUM">{thread.crdate}</f:format.date>
+                            </div>
+
                         </div>
                         <div class="col">
                             <div class="icon-text">
