@@ -29,9 +29,9 @@ plugin.tx_forums{
       # Avatar image height in thread list view for the latest post
       avatarHeightThreadLatestPost = 50c
       # Avatar image width in post list view / thread show view
-      avatarWidthPost = 100c
+      avatarWidthPost = 130c
       # Avatar image height in post list view / thread show view
-      avatarHeightPost = 100c
+      avatarHeightPost = 130c
       # Default thread items displayed per page
       threadItemsPerPage = 10
     }

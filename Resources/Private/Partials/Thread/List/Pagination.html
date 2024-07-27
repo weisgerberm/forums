@@ -1,13 +1,3 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
-<nav class="pagination" role="navigation" aria-label="pagination">
-    <a class="pagination-previous {f:if(condition:'{pagination.previousPageNumber}',else:'is-disabled')}" title="This is the first page">Previous</a>
-    <a class="pagination-next">Next page</a>
-    <ul class="pagination-list">
-        <f:for each="{pagination.allPageNumbers}" as="pageNumber">
-            <li>
-                <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">{pageNumber}</a>
-            </li>
-        </f:for>
-    </ul>
-</nav>
+<f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator}"/>
 </html>
