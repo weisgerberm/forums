@@ -9,11 +9,13 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
 use Weisgerber\DarfIchMit\Traits\XpServiceTrait;
-use Weisgerber\Forums\Domain\Model\{Post, Thread};
+use Weisgerber\Forums\Domain\Model\{DTO\EditPostDTO, Post, PostContent, Thread};
 use Weisgerber\DarfIchMit\Utility\DimUtility;
+use Weisgerber\DarfIchMit\Utility\DTOUtility;
 use Weisgerber\Forums\Domain\Repository\ThreadRepository;
 use Weisgerber\Forums\Traits\PostRepositoryTrait;
 
@@ -23,9 +25,9 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
     use XpServiceTrait;
 
     /**
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
-    public function latestAction(): \Psr\Http\Message\ResponseInterface
+    public function latestAction(): ResponseInterface
     {
         $this->view->assignMultiple([
             'posts' => $this->postRepository->findLatestAmount()
@@ -40,7 +42,7 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
      * @throws AspectNotFoundException
      */
     #[IgnoreValidation(['argumentName' => 'thread'])]
-    public function createAction(Post $newPost, Thread $thread): \Psr\Http\Message\ResponseInterface
+    public function createAction(Post $newPost, Thread $thread): ResponseInterface
     {
         $frontendUser = $this->fetchFeUser();
         if($frontendUser === null){
@@ -67,28 +69,51 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
         return $this->redirect('show', 'Thread', null, ['thread' => $thread]);
     }
 
+
     /**
-     * action edit
+     * Displays the edit form for a post
      *
      * @param Post $post
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
     #[IgnoreValidation(['argumentName' => 'post'])]
-    public function editAction(Post $post): \Psr\Http\Message\ResponseInterface
+    public function editAction(Post $post): ResponseInterface
     {
+        $frontendUser = $this->frontendUserService->getLoggedInUser();
+        if($frontendUser === null || $post->getFrontenduser() !== $frontendUser){
+            \nn\t3::Http()->redirect( $this->settings['noPermission'] );
+
+        }
+
         $this->view->assign('post', $post);
         return $this->htmlResponse();
     }
 
     /**
-     * action update
+     * Updates a post but only accepts a DTO for security reasons
      *
-     * @param Post $post
+     * @param Post $editPostDTO
      */
-    public function updateAction(Post $post)
+    #[IgnoreValidation(['argumentName' => 'editPostDTO'])]
+    public function updateAction(EditPostDTO $editPostDTO): ResponseInterface
     {
-        $this->postRepository->update($post);
-        $this->redirect('show', 'Thread', null, ['thread' => $post->getThread()]);
+        $frontendUser = $this->frontendUserService->getLoggedInUser();
+        if($frontendUser === null){
+            \nn\t3::Http()->redirect( $this->settings['noPermission'] );
+
+        }
+        /** @var PostContent $postContent */
+        $postContent = GeneralUtility::makeInstance(PostContent::class);
+        $postContent->setPid($editPostDTO->getPost()->getPid());
+        $postContent->setDescription($editPostDTO->getDescription());
+        $postContent->setPost($editPostDTO->getPost());
+
+        $editPostDTO->getPost()->addPostContent($postContent);
+
+
+        $this->postRepository->update($editPostDTO->getPost());
+
+        return $this->redirect('show', 'Thread', null, ['thread' => $editPostDTO->getPost()->getThread()]);
     }
 
     /**

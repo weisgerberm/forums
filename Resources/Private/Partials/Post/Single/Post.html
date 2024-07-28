@@ -20,7 +20,6 @@
                                 <p>
                                     <f:if condition="{post.frontenduser}">
                                         <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
-
                                     </f:if>
                                 </p>
                                 <p class="subtitle is-5 my-2">
@@ -45,7 +44,7 @@
                         <f:else>
                             <article class="">
                                 <div class="content">
-                                    {post.currentPostContent.content -> f:format.html()}
+                                    {post.currentPostContent.description -> f:format.nl2br()}
                                 </div>
                             </article>
                         </f:else>

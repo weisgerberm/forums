@@ -10,14 +10,10 @@
         </div>
     </div>
 </f:comment>
-    <div class="field is-horizontal">
-        <div class="field-body">
-            <div class="field">
-                <p class="control">
-                    <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" placeholder="Deine Nachricht ..." rows="10" property="postContent.0.content" class="form-control forums-rte"></f:form.textarea>
-                    <div class="forums-rte-wordcount"></div>
-                </p>
-            </div>
-        </div>
-    </div>
+
+<p class="control">
+    <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" placeholder="Deine Nachricht ..." rows="10" property="postContent.0.description" class="form-control forums-rte"></f:form.textarea>
+    <div class="forums-rte-wordcount"></div>
+</p>
+
 </html>
