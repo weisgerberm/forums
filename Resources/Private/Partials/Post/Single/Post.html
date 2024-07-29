@@ -1,19 +1,26 @@
 <html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:variable name="counter">{iterator.index+1}</f:variable>
     <div class="card mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" id="post-{counter}">
-
         <div class="card-body">
             <header class="card-title">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex gap-3">
-                        <a href="#post-{counter}" title="Post number {counter} in this thread" class="link-dark">#{counter}</a>
-                        <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.currentPostContent.crdate}"></f:format.date>
+                <div class="row">
+                    <div class="col-5 col-sm-4 col-md-3 col-lg-2">
+                        <a href="#post-{counter}" title="Post number {counter} in this thread" class="link-dark">#<span class="text-bold">{counter}</span></a>
                     </div>
-                    <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
+                    <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+                        <div class="d-flex justify-content-between">
+                            <div class="text-muted text-xs" data-tippy-content="Datum des Posts">
+                                <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date>
+                            </div>
+                            <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
+                        </div>
+                    </div>
+
                 </div>
+
             </header>
             <div class="row">
-                <div class="col-3">
+                <div class="col-5 col-sm-4 col-md-3 col-lg-2">
                     <div class="tile">
                         <div class="tile is-parent is-vertical has-text-centered">
                             <article class="tile is-child">
@@ -25,25 +32,30 @@
                                 <p class="subtitle is-5 my-2">
                                     <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser}" />
                                 </p>
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center text-xs">
                                     <f:if condition="{post.frontenduser}">
-                                        <b><f:render partial="Basics/XP" arguments="{amount:post.frontenduser.xp}"/></b> <span class="vr mx-2"></span> <social:rank xp="{post.frontenduser.xp}" />
+                                        <f:render partial="Basics/XP" arguments="{amount:post.frontenduser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{post.frontenduser.xp}" />
                                     </f:if>
                                 </div>
                             </article>
                         </div>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-7 col-sm-8 col-md-9 col-lg-10">
                     <f:if condition="{post.softDeleted}">
                         <f:then>
                             <div class="teaser-stripe teaser-stripe-product text-sm">
-                                - Der Benutzer hat diesen Beitrag gelöscht -
+                                <span>
+                                    <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/> Der Benutzer hat diesen Beitrag gelöscht <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/>
+                                </span>
                             </div>
                         </f:then>
                         <f:else>
                             <article class="">
                                 <div class="content">
+                                    <f:if condition="{post.quote}">
+                                        <f:render partial="Post/Quote/QuoteMessage" arguments="{postContent:post.quote}"/>
+                                    </f:if>
                                     {post.currentPostContent.description -> f:format.nl2br()}
                                 </div>
                             </article>
@@ -53,5 +65,12 @@
                 </div>
             </div>
         </div>
+        <f:if condition="{post.edited}">
+            <div class="card-footer text-end text-xs text-lighter">
+                <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary'}" partial="Prefabs/Icon"/> Dieser Beitrag wurde zuletzt am <f:format.date pattern="MEDIUM">{post.currentPostContent.crdate}</f:format.date> bearbeitet
+            </div>
+        </f:if>
+
     </div>
+<f:render partial="Prefabs/HorizontalRule" arguments="{additionalClasses:'mb-3 d-sm-none'}" />
 </html>

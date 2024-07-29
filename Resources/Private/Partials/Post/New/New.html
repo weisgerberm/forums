@@ -1,3 +1,21 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:form action="create" controller="Post" name="newPost" object="{newPost}">
+    <f:if condition="{quotePost}">
+        <f:then>
+            <h2 class="mt-6"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:reply-with-quote" /></h2>
+            <f:render partial="Post/Quote/QuoteHint" arguments="{_all}" />
+        </f:then>
+        <f:else>
+            <h2 class="mt-6"><f:translate key="reply" /></h2>
+        </f:else>
+
+    </f:if>
+    <div class="col-5 col-sm-4 col-md-3 col-lg-2">
+
+    </div>
+    <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+
+    </div>
     <f:render partial="Basics/ReplyRTE" arguments="{_all}" />
+</f:form>
 </html>

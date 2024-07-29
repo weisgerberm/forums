@@ -1,14 +1,8 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 
-    <f:link.action action="new" class="btn btn-primary mb-3">
-        <span class="icon-text">
-          <span class="icon is-small">
-            <i class="fas fa-marker"></i>
-          </span>
-          <span><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:new-thread" /></span>
-        </span>
-    </f:link.action>
-    <f:if condition="{threads}">
+<f:render partial="Prefabs/ButtonIcon" arguments="{action:'new',LLL:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:new-thread',type:'action',icon:'message', additionalClasses:'btn-primary mt-5', additionalIconClasses:''}"/>
+
+<f:if condition="{threads}">
         <f:then>
             <f:render partial="Thread/List/ListTable" arguments="{_all}" />
             <f:render partial="Thread/List/Pagination" arguments="{_all}" />
@@ -18,5 +12,7 @@
 
         </f:else>
     </f:if>
+    <f:render partial="Prefabs/ButtonIcon" arguments="{action:'new',LLL:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:new-thread',type:'action',icon:'message', additionalClasses:'btn-primary', additionalIconClasses:''}"/>
+
 
 </html>

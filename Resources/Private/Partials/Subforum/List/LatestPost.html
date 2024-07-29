@@ -3,7 +3,9 @@
     <footer class="card-footer">
         <div class="card-footer-item" title="{post.frontendUser.username}">
             <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:32, height:32, placeholder:settings.defaults.avatar}"/>
-
+            <div class="d-flex align-items-center text-nowrap my-2 text-xs">
+                <f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> <f:render partial="Basics/Username" arguments="{frontenduser:post.frontendUser, additionalClasses:'link-dark'}" />
+            </div>
         </div>
         <div class="card-footer-item">
             <div class="content">
@@ -11,10 +13,10 @@
                     {post.thread.title}
                 </f:link.action>
                 <br>
-                <small>
-                    <f:render partial="Basics/Username" arguments="{frontenduser:post.frontendUser, additionalClasses:'link-dark'}" />
-                </small> · <small>31m</small>
 
+                <div class="text-xs">
+                    <f:format.date pattern="MEDIUM">{post.currentPostContent.crdate}</f:format.date>
+                </div>
             </div>
         </div>
     </footer>

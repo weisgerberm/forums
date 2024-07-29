@@ -10,7 +10,7 @@
                     <h6 class="mb-1 text-dark font-weight-bold text-sm">Thema: <f:link.action class="" action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread}" >
                         {post.thread.title}
                     </f:link.action></h6>
-                    <span class="text-xs"><f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> {post.frontendUser.username} · Vor 10 Sekunden</span>
+                    <span class="d-inline-flex align-items-center text-xs"><f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> {post.frontendUser.username}</span>
                 </div>
             </li>
         </f:for>

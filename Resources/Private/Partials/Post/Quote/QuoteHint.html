@@ -1,0 +1,20 @@
+<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="d-flex mb-2">
+    <f:form.hidden property="quote" value="{quotePost.currentPostContent}" />
+    <div class="width-48-px"><f:render arguments="{icon:'message-quote', additionalClasses:'fs-1'}" partial="Prefabs/Icon"/></div>
+    <div class="my-auto ms-3">
+        <div class="h-100">
+            <h5 class="mb-0"><f:translate key="post-by-x" arguments="{0:quotePost.frontendUser.username}" /></h5>
+            <div class="text-sm text-body">
+                <f:format.crop append="..." maxCharacters="80">{quotePost.currentPostContent.description}</f:format.crop>
+            </div>
+        </div>
+    </div>
+    <f:link.action class="text-sm text-secondary ms-auto me-3 my-auto d-flex" action="show" section="reply" arguments="{thread:thread}">
+        <span><f:translate key="remove-quote" /></span>
+        <span>
+            <f:render arguments="{icon:'e-remove', additionalClasses:'fs-3'}" partial="Prefabs/Icon"/>
+        </span>
+    </f:link.action>
+</div>
+</html>

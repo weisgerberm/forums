@@ -15,9 +15,9 @@ class PostContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     use FieldCrDate;
     use FieldDescription;
 
-    protected Post $post;
+    protected ?Post $post = null;
 
-    public function getPost(): Post
+    public function getPost(): ?Post
     {
         return $this->post;
     }

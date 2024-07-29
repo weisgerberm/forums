@@ -65,7 +65,7 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $limit
      * @return mixed
      */
-    public function findLatestAmount(int $pageUid = 0, int $limit = 5)
+    public function findLatestAmount(int $pageUid = 0, int $limit = 15)
     {
 
         /** @var Typo3QuerySettings $querySettings */

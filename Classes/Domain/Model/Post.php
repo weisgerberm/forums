@@ -25,6 +25,14 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $thread = null;
 
     /**
+     * quote
+     *
+     * @var \Weisgerber\Forums\Domain\Model\PostContent
+     */
+    #[Lazy()]
+    protected $quote = null;
+
+    /**
      * spam
      *
      * @var bool
@@ -323,5 +331,23 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setThread(?Thread $thread)
     {
         $this->thread = $thread;
+    }
+
+    public function isEdited(): bool
+    {
+        return (count($this->getPostContent()) > 1);
+    }
+
+    public function getQuote(): ?PostContent
+    {
+        if ($this->quote instanceof LazyLoadingProxy) {
+            $this->quote->_loadRealInstance();
+        }
+        return $this->quote;
+    }
+
+    public function setQuote(?PostContent $quote): void
+    {
+        $this->quote = $quote;
     }
 }

@@ -7,9 +7,17 @@ return [
     'ctrl' => TcaUtility::getController(Thread::TABLE_NAME,'forums', [
         'sortby' => 'sorting',
     ], false),
+    'palettes' => TcaUtility::getPalettes([
+        'p_cache' => [
+            'label' => 'Zwischengespeicherte Werte',
+            'showitem' => 'cached_counter_posts, cached_counter_views'
+        ],
+    ]),
     'types' => [
-        '1' => ['showitem' => TcaUtility::tab(null, ['title','closed','cached_counter_posts','cached_counter_views','sticky','slug','files','posts','tags','active_users']).
-            TcaUtility::finishTabs()],
+        '1' => ['showitem' => TcaUtility::tab(null, ['p_name','p_slug','p_cache','posts','tags','active_users']).
+            TcaUtility::languageTab().
+            TcaUtility::accessTab().'closed,sticky,'.
+            TcaUtility::notesTab()],
     ],
     'columns' => \nn\t3::TCA()->createConfig(
         Thread::TABLE_NAME,
@@ -97,7 +105,7 @@ return [
                 'label' => TcaUtility::title('posts'),
                 'config' => [
                     'type' => 'inline',
-                    'foreign_table' => 'tx_forums_domain_model_post',
+                    'foreign_table' => \Weisgerber\Forums\Domain\Model\Post::TABLE_NAME,
                     'foreign_field' => 'thread',
                     'maxitems' => 9999,
                     'appearance' => [

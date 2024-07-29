@@ -5,14 +5,18 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
 use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
 use Weisgerber\DarfIchMit\Traits\SlugServiceTrait;
 use Weisgerber\DarfIchMit\Traits\XpServiceTrait;
 use Weisgerber\DarfIchMit\Utility\DimUtility;
+use Weisgerber\Forums\Domain\Model\Post;
 use Weisgerber\Forums\Domain\Model\Thread;
 use Weisgerber\Forums\Service\UriService;
 use Weisgerber\Forums\Traits\{ThreadRepositoryTrait, ThreadServiceTrait, UriServiceTrait};
@@ -64,17 +68,25 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     /**
      * action show
      *
-     * @param Thread $thread
+     * @param Thread    $thread
+     * @param int       $currentPage
+     * @param Post|null $quotePost
      * @return ResponseInterface
+     * @throws AspectNotFoundException
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     #[IgnoreValidation(['argumentName' => 'thread'])]
-    public function showAction(Thread $thread, int $currentPage = 1): ResponseInterface
+    #[IgnoreValidation(['argumentName' => 'quotePost'])]
+    public function showAction(Thread $thread, int $currentPage = 1, ?Post $quotePost = null): ResponseInterface
     {
         $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
         $this->threadRepository->update($thread);
         $this->fetchFeUser();
         $this->view->assignMultiple([
-                'thread' => $thread,
+            'thread' => $thread,
+            'currentPage' => $currentPage,
+            'quotePost' => $quotePost,
         ]);
         return $this->htmlResponse();
     }

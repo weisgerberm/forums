@@ -2,16 +2,15 @@
       xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
 
 <div class="dropdown">
-    <button aria-controls="dropdown-menu" aria-expanded="false" aria-haspopup="true" class="btn btn-link mb-0"
-            data-bs-toggle="dropdown">
+    <button aria-controls="dropdown-menu" aria-expanded="false" aria-haspopup="true" data-tippy-content="Aktionen für diesen Post anzeigen" class="btn btn-link mb-0 pb-0" data-bs-toggle="dropdown">
         <f:render arguments="{icon:'menu-dots', additionalClasses:'font-weight-bolder'}" partial="Prefabs/Icon"/>
     </button>
     <ul class="dropdown-menu" id="dropdown-menu" role="menu">
         <li class="dropdown-item ">
-            <a class="align-items-center d-flex gap-2" href="#">
-                <f:render arguments="{icon:'msg-quote'}" partial="Prefabs/Icon"/>
+            <f:link.action class="align-items-center d-flex gap-2" addQueryString="1" arguments="{quotePost:post}">
+                <f:render arguments="{icon:'message-quote'}" partial="Prefabs/Icon"/>
                 <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:quote"/>
-            </a>
+            </f:link.action>
         </li>
         <f:if condition="{post.frontenduser} == {frontendUser}">
             <f:then>
@@ -41,7 +40,7 @@
             </f:then>
             <f:else>
                 <li class="dropdown-item ">
-                    <a class="align-items-center d-flex gap-2" class="align-items-center d-flex gap-2">
+                    <a class="align-items-center d-flex gap-2" class="align-items-center d-flex gap-2" rel=“nofollow“>
                         <f:render arguments="{icon:'flag-diagonal-33'}" partial="Prefabs/Icon"/>
                         <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:report"/>
                     </a>

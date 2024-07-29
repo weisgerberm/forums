@@ -1,0 +1,9 @@
+<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="text-xs">
+    <f:render partial="Basics/Username" arguments="{frontenduser:postContent.post.frontendUser}" /> schrieb:
+
+</div>
+<blockquote class="bg-light blockquote mt-2 ps-3 py-2 text-sm">
+    <f:format.crop append="..." maxCharacters="300">{postContent.description -> f:format.raw()}</f:format.crop>
+</blockquote>
+</html>

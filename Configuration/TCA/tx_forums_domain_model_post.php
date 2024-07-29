@@ -2,6 +2,7 @@
 
 use Weisgerber\DarfIchMit\Utility\TcaUtility;
 use Weisgerber\Forums\Domain\Model\Post;
+use Weisgerber\Forums\Domain\Model\PostContent;
 
 return [
     'ctrl' => TcaUtility::getController(Post::TABLE_NAME, 'forums', [
@@ -13,7 +14,7 @@ return [
         '1' => [
             'showitem' => TcaUtility::tab(
                 null,
-                ['spam', 'soft_deleted', 'awaiting_admin_approval', 'admin_comment', 'post_content', 'likes', 'poll']
+                ['spam', 'quote', 'soft_deleted', 'awaiting_admin_approval', 'admin_comment', 'post_content', 'likes', 'poll']
             )
         ],
     ],
@@ -115,6 +116,19 @@ return [
                 'config' => [
                     'type' => 'group',
                     'allowed' => 'fe_users',
+                    'maxitems' => 1,
+                    'size' => 1,
+                    'default' => 0,
+                ],
+            ],
+            'quote' => [
+                'label' => TcaUtility::title('quote'),
+                'description' => TcaUtility::desc('quote'),
+                'l10n_mode' => 'exclude',
+                'exclude' => true,
+                'config' => [
+                    'type' => 'group',
+                    'allowed' => PostContent::TABLE_NAME,
                     'maxitems' => 1,
                     'size' => 1,
                     'default' => 0,

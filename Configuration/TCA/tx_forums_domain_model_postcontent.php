@@ -10,8 +10,10 @@ return [
         'label' => 'description',
         'searchFields' => '',
     ], false, false),
+    'palettes' => TcaUtility::getPalettes(),
     'types' => [
-        '1' => ['showitem' => TcaUtility::tab(null, ['description'])],
+        '1' => ['showitem' => TcaUtility::tab(null, ['p_txt']) .
+            TcaUtility::finishTabs()],
     ],
     'columns' => \nn\t3::TCA()->createConfig(
         PostContent::TABLE_NAME,
@@ -20,19 +22,7 @@ return [
             'description' => [
                 'exclude' => true,
                 'label' => TcaUtility::title('description'),
-                'config' => [
-                    'type' => 'text',
-                    'enableRichtext' => true,
-                    'richtextConfiguration' => 'default',
-                    'fieldControl' => [
-                        'fullScreenRichtext' => [
-                            'disabled' => false,
-                        ],
-                    ],
-                    'cols' => 40,
-                    'rows' => 15,
-                    'eval' => 'trim',
-                ],
+                'config' => TcaUtility::getText(),
 
             ],
             'post' => [

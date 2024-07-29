@@ -1,17 +1,17 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-    <div class="forums__rte is-relative">
+    <div id="reply" class="forums__rte is-relative">
         <f:render partial="FormErrors" />
-        <f:form action="create" controller="Post" name="newPost" object="{newPost}">
-            <f:form.hidden name="thread" value="{thread}" />
-            <f:render partial="Basics/ReplyRTE.Basic" arguments="{_all}" />
-            <f:render partial="Basics/ReplyRTE.Advanced" arguments="{_all}"/>
-            <f:if condition="!{forbidden}">
-                <div class="row">
-                    <div class="col-12">
-                        <f:form.submit class="btn btn-primary" value="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:create-new-post')}" />
-                    </div>
+
+        <f:form.hidden name="thread" value="{thread}" />
+        <f:render partial="Basics/ReplyRTE.Basic" arguments="{_all}" />
+        <f:render partial="Basics/ReplyRTE.Advanced" arguments="{_all}"/>
+        <f:if condition="!{forbidden}">
+            <div class="row">
+                <div class="col-12">
+                    <f:form.submit class="btn btn-primary" value="{f:translate(key:'create-new-post')}" />
                 </div>
-            </f:if>
-        </f:form>
+            </div>
+        </f:if>
+
     </div>
 </html>

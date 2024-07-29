@@ -16,18 +16,17 @@
                     </div>
 
                 </div>
-                <div class="col-auto">
+                <div class="col">
                     <div class="align-items-baseline d-flex" data-tippy-content="Anzahl der Beiträge in diesem Bereich">
                         <f:render partial="Prefabs/Icon" arguments="{icon:'msg', additionalClasses:'icon-16 me-1'}" />
                         <span>{page.cachedPostCounter}</span>
 
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-4">
                     <f:if condition="{page.cachedLatestPost}">
                         <f:then>
                             <f:render partial="Subforum/List/LatestPost" arguments="{post:page.cachedLatestPost}" />
-
                         </f:then>
                         <f:else>
 

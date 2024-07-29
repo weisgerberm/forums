@@ -1,8 +1,13 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 
     <h1>{thread.title}</h1>
+    <div class="thread__controls thread__controls--top align-items-center d-flex justify-content-between">
+        <a href="#reply" class="btn btn-secondary">Antworten</a>
+        <div class="text-sm">
+            <f:count>{thread.posts}</f:count> Beiträge
+        </div>
+    </div>
     <f:render partial="Post/List/List" arguments="{_all}" />
-    <h2 class="mt-6"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:reply" /></h2>
     <f:security.ifHasRole role="6">
         <f:then>
             <f:render partial="Post/New/New" arguments="{_all}" />
