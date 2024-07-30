@@ -7,7 +7,12 @@
             <f:count>{thread.posts}</f:count> Beiträge
         </div>
     </div>
+    <f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, passthrough:'{thread:thread, action:\'show\'}'}"/>
+
     <f:render partial="Post/List/List" arguments="{_all}" />
+
+    <f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, passthrough:'{thread:thread, action:\'show\'}'}"/>
+
     <f:security.ifHasRole role="6">
         <f:then>
             <f:render partial="Post/New/New" arguments="{_all}" />

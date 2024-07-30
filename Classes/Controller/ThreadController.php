@@ -6,8 +6,11 @@ namespace Weisgerber\Forums\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -83,9 +86,24 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
         $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
         $this->threadRepository->update($thread);
         $this->fetchFeUser();
+
+        // Normal numeric pagination
+        $paginator = new ArrayPaginator(
+            $thread->getPosts()->toArray(),
+            $currentPage,
+            10
+        );
+
+        $pagination = new SlidingWindowPagination(
+            $paginator,
+            15
+        );
+
         $this->view->assignMultiple([
             'thread' => $thread,
             'currentPage' => $currentPage,
+            'pagination' => $pagination,
+            'paginator' => $paginator,
             'quotePost' => $quotePost,
         ]);
         return $this->htmlResponse();
