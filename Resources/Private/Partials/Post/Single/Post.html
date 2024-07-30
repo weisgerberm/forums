@@ -1,5 +1,5 @@
 <html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:variable name="counter">{iterator.index+1}</f:variable>
+<f:variable name="counter">{keyOfFirstPaginatedItem+iterator.index+1}</f:variable>
     <div class="card mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" id="post-{counter}">
         <div class="card-body">
             <header class="card-title">
@@ -23,12 +23,11 @@
                 <div class="col-5 col-sm-4 col-md-3 col-lg-2">
                     <div class="tile">
                         <div class="tile is-parent is-vertical has-text-centered">
-                            <article class="tile is-child">
-                                <p>
-                                    <f:if condition="{post.frontenduser}">
-                                        <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
-                                    </f:if>
-                                </p>
+
+                                <f:if condition="{post.frontenduser}">
+                                    <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+                                </f:if>
+
                                 <p class="subtitle is-5 my-2">
                                     <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser}" />
                                 </p>
@@ -37,7 +36,6 @@
                                         <f:render partial="Basics/XP" arguments="{amount:post.frontenduser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{post.frontenduser.xp}" />
                                     </f:if>
                                 </div>
-                            </article>
                         </div>
                     </div>
                 </div>

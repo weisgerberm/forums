@@ -1,7 +1,7 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 <div class="card d-none d-md-flex">
-    <footer class="card-footer">
-        <div class="card-footer-item" title="{post.frontendUser.username}">
+    <footer class="card-footer py-3">
+        <div class="card-footer-item mb-n1" title="{post.frontendUser.username}">
             <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:32, height:32, placeholder:settings.defaults.avatar}"/>
             <div class="d-flex align-items-center text-nowrap my-2 text-xs">
                 <f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> <f:render partial="Basics/Username" arguments="{frontenduser:post.frontendUser, additionalClasses:'link-dark'}" />
@@ -9,7 +9,7 @@
         </div>
         <div class="card-footer-item">
             <div class="content">
-                <f:link.action action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread}" >
+                <f:link.action class="d-inline-block lh-1" action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread}" >
                     {post.thread.title}
                 </f:link.action>
                 <br>
