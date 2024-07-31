@@ -129,4 +129,4 @@ $tmp_forums_columns['frontenduser7'] = [
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users', $tmp_forums_columns);
 
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-$GLOBALS['TCA']['fe_users']['types'][0]['showitem'] .= ',--div--;Forum, threads_per_page, posts_per_page, subscribe_to_thread_after_reply, allow_display_email, cached_counter_posts, posts, thread_subscriptions, signatures, post_likes, poll_votes, friends, private_messages, blacklisted_users';
+$GLOBALS['TCA']['fe_users']['types'][0]['showitem'] .= ',--div--;Forum, threads_per_page, posts_per_page, subscribe_to_thread_after_reply, allow_display_email, cached_counter_posts, posts, thread_subscriptions, signatures, post_likes, poll_votes, private_messages';
