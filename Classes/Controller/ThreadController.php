@@ -149,10 +149,6 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
         // XP gutschreiben
         $this->xpService->gain($frontendUser, 3, Xp::TYPE_FORUM_THREAD);
 
-        \nn\t3::Message()->OK(
-            "Danke, dass du ein neues Thema erstellt hast",
-            "Du hast 3 XP verdient!");
-
         // Sodass die URL schon korrekt aufgelöst werden kann bei der Weiterleitung
         DimUtility::persistAll();
 

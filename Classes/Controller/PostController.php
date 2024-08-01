@@ -60,11 +60,6 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
         // XP gutschreiben
         $this->xpService->gain($frontendUser, 1, Xp::TYPE_FORUM_POST);
 
-        \nn\t3::Message()->OK(
-            "Danke für deinen Beitrag",
-        "Du hast 1 XP verdient!");
-
-
         // Wieder zurück zum Thread springen
         return $this->redirect('show', 'Thread', null, ['thread' => $thread]);
     }
