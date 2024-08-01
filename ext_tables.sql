@@ -27,13 +27,9 @@ CREATE TABLE tx_forums_domain_model_post
 
 CREATE TABLE fe_users
 (
-	frontenduser7                   int(11) unsigned              DEFAULT '0' NOT NULL,
-	threads_per_page                int(11)                       DEFAULT '0' NOT NULL,
-	posts_per_page                  int(11)                       DEFAULT '0' NOT NULL,
 	subscribe_to_thread_after_reply smallint(1) unsigned NOT NULL DEFAULT '0',
 	posts                           int(11) unsigned     NOT NULL DEFAULT '0',
 	thread_subscriptions            int(11) unsigned     NOT NULL DEFAULT '0',
-	signatures                      int(11) unsigned     NOT NULL DEFAULT '0',
 	post_likes                      int(11) unsigned     NOT NULL DEFAULT '0',
 	poll_votes                      int(11) unsigned     NOT NULL DEFAULT '0'
 );
@@ -42,13 +38,6 @@ CREATE TABLE tx_forums_domain_model_threadsubscription
 (
 	frontenduser     int(11) unsigned DEFAULT '0' NOT NULL,
 	thread_reference int(11) unsigned DEFAULT '0'
-);
-
-CREATE TABLE tx_forums_domain_model_signature
-(
-	frontenduser int(11) unsigned              DEFAULT '0' NOT NULL,
-	activated    smallint(1) unsigned NOT NULL DEFAULT '0',
-	content      text
 );
 
 CREATE TABLE tx_forums_domain_model_postcontent
