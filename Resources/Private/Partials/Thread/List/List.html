@@ -1,18 +1,21 @@
-<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:render partial="Prefabs/ButtonIcon" arguments="{action:'new',LLL:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:new-thread',type:'action',icon:'message', additionalClasses:'btn-primary mt-5', additionalIconClasses:''}"/>
+<f:render partial="Prefabs/ButtonIcon"
+          arguments="{action:'new',LLL:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:new-thread',type:'action',icon:'message', additionalClasses:'btn-primary mt-5', additionalIconClasses:''}"/>
 
 <f:if condition="{threads}">
-        <f:then>
-            <f:render partial="Thread/List/ListTable" arguments="{_all}" />
-            <f:render partial="Thread/List/Pagination" arguments="{_all}" />
-        </f:then>
-        <f:else>
-            <f:render partial="Thread/List/ListTableEmpty" arguments="{_all}" />
+    <f:then>
+        <f:render partial="Thread/List/ListTable" arguments="{_all}"/>
+        <f:render partial="Thread/List/Pagination" arguments="{_all}"/>
+    </f:then>
+    <f:else>
+        <f:render partial="Thread/List/ListTableEmpty" arguments="{_all}"/>
 
-        </f:else>
-    </f:if>
-    <f:render partial="Prefabs/ButtonIcon" arguments="{action:'new',LLL:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:new-thread',type:'action',icon:'message', additionalClasses:'btn-primary', additionalIconClasses:''}"/>
-
+    </f:else>
+</f:if>
+<f:if condition="{threads -> f:count()} > 5">
+    <f:render partial="Prefabs/ButtonIcon"
+              arguments="{action:'new',LLL:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:new-thread',type:'action',icon:'message', additionalClasses:'btn-primary', additionalIconClasses:''}"/>
+</f:if>
 
 </html>
