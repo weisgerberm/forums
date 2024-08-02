@@ -1,4 +1,7 @@
 <?php
+
+use Weisgerber\DarfIchMit\Utility\TcaUtility;
+
 defined('TYPO3') || die();
 
 $tmp_forums_columns = [
@@ -32,18 +35,8 @@ $tmp_forums_columns = [
     ],
     'subscribe_to_thread_after_reply' => [
         'exclude' => true,
-        'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser.subscribe_to_thread_after_reply',
-        'config' => [
-            'type' => 'check',
-            'renderType' => 'checkboxToggle',
-            'items' => [
-                [
-                    0 => '',
-                    1 => '',
-                ]
-            ],
-            'default' => 0,
-        ]
+        'label' => TcaUtility::title('subscribe_to_thread_after_reply'),
+        'config' => TcaUtility::getCheckboxToggle(),
     ],
     'thread_subscriptions' => [
         'exclude' => true,
