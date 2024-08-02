@@ -2,9 +2,9 @@
 
     <h1>{thread.title}</h1>
     <div class="thread__controls thread__controls--top align-items-center d-flex justify-content-between">
-        <a href="#reply" class="btn btn-secondary">Antworten</a>
+        <a href="#reply" class="btn btn-secondary"><f:translate key="reply" /></a>
         <div class="text-sm">
-            <f:count>{thread.posts}</f:count> Beiträge
+            <f:translate key="LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:x-posts" arguments="{0:'{thread.posts -> f:count()}'}" />
         </div>
     </div>
     <f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, passthrough:'{thread:thread, action:\'show\'}'}"/>
