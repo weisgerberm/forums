@@ -7,15 +7,16 @@
                     <div class="col-5 col-sm-4 col-md-3 col-lg-2">
                         <a href="#post-{counter}" title="Post number {counter} in this thread" class="link-dark">#<span class="text-bold">{counter}</span></a>
                     </div>
-                    <div class="col-7 col-sm-8 col-md-9 col-lg-10">
-                        <div class="d-flex justify-content-between">
-                            <div class="text-muted text-xs" data-tippy-content="Datum des Posts">
-                                <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date>
+                    <f:if condition="!{post.softDeleted}">
+                        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+                            <div class="d-flex justify-content-between">
+                                <div class="text-muted text-xs" data-tippy-content="Datum des Posts">
+                                    <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date>
+                                </div>
+                                <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
                             </div>
-                            <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
                         </div>
-                    </div>
-
+                    </f:if>
                 </div>
 
             </header>
@@ -44,7 +45,7 @@
                         <f:then>
                             <div class="teaser-stripe teaser-stripe-product text-sm">
                                 <span>
-                                    <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/> Der Benutzer hat diesen Beitrag gelöscht <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/>
+                                    <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/> Dieser Beitrag wurde gelöscht <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/>
                                 </span>
                             </div>
                         </f:then>
