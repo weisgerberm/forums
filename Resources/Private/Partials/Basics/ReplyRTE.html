@@ -8,10 +8,14 @@
         <f:if condition="!{forbidden}">
             <div class="row">
                 <div class="col-12">
-                    <f:form.submit class="btn btn-primary" value="{f:translate(key:'create-new-post')}" />
+                    <div class="submit submit--lock">
+                        <div class="submit__loader">
+                            <span class="spinner-border spinner-border-sm" role="status"></span>
+                        </div>
+                        <f:form.submit class="submit__input btn btn-primary" value="{f:translate(key:'create-new-post')}" />
+                    </div>
                 </div>
             </div>
         </f:if>
-
     </div>
 </html>
