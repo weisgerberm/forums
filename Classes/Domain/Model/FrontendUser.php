@@ -181,14 +181,6 @@ class FrontendUser extends AbstractEntity
     protected $threadSubscriptions = null;
 
     /**
-     * signatures
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\Signature>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
-     */
-    protected $signatures = null;
-
-    /**
      * postLikes
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\PostLike>
@@ -253,7 +245,6 @@ class FrontendUser extends AbstractEntity
         $this->image = $this->image ?? new ObjectStorage();
         $this->posts = $this->posts ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->threadSubscriptions = $this->threadSubscriptions ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->signatures = $this->signatures ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->postLikes = $this->postLikes ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->pollVotes = $this->pollVotes ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->friends = $this->friends ?: new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -347,27 +338,6 @@ class FrontendUser extends AbstractEntity
         $this->threadSubscriptions = $threadSubscriptions;
     }
 
-    /**
-     * Adds a Signature
-     *
-     * @param \Weisgerber\Forums\Domain\Model\Signature $signature
-     * @return void
-     */
-    public function addSignature(\Weisgerber\Forums\Domain\Model\Signature $signature)
-    {
-        $this->signatures->attach($signature);
-    }
-
-    /**
-     * Removes a Signature
-     *
-     * @param \Weisgerber\Forums\Domain\Model\Signature $signatureToRemove The Signature to be removed
-     * @return void
-     */
-    public function removeSignature(\Weisgerber\Forums\Domain\Model\Signature $signatureToRemove)
-    {
-        $this->signatures->detach($signatureToRemove);
-    }
 
     /**
      * Returns the signatures
