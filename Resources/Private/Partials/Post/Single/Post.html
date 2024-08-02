@@ -49,14 +49,13 @@
                             </div>
                         </f:then>
                         <f:else>
-                            <article class="">
-                                <div class="content">
-                                    <f:if condition="{post.quote}">
-                                        <f:render partial="Post/Quote/QuoteMessage" arguments="{postContent:post.quote}"/>
-                                    </f:if>
-                                    {post.currentPostContent.description -> f:format.nl2br()}
-                                </div>
-                            </article>
+                            <div class="content">
+                                <f:if condition="{post.quote}">
+                                    <f:render partial="Post/Quote/QuoteMessage" arguments="{postContent:post.quote}"/>
+                                </f:if>
+                                {post.currentPostContent.description -> f:format.nl2br()}
+                            </div>
+                            <f:render partial="Post/Signature" arguments="{frontendUser:post.frontenduser}" />
                         </f:else>
                     </f:if>
 
