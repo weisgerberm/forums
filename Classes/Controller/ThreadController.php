@@ -74,6 +74,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
      * @param Thread    $thread
      * @param int       $currentPage
      * @param Post|null $quotePost
+     * @param int      $jumpToLatest
      * @return ResponseInterface
      * @throws AspectNotFoundException
      * @throws IllegalObjectTypeException
@@ -81,7 +82,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
      */
     #[IgnoreValidation(['argumentName' => 'thread'])]
     #[IgnoreValidation(['argumentName' => 'quotePost'])]
-    public function showAction(Thread $thread, int $currentPage = 1, ?Post $quotePost = null): ResponseInterface
+    public function showAction(Thread $thread, int $currentPage = 1, ?Post $quotePost = null, int $jumpToLatest = 0): ResponseInterface
     {
         $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
         $this->threadRepository->update($thread);
@@ -91,7 +92,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
         $paginator = new ArrayPaginator(
             $thread->getPosts()->toArray(),
             $currentPage,
-            10
+            (int) $this->settings['defaults']['threadItemsPerPage']
         );
 
         $pagination = new SlidingWindowPagination(
@@ -101,6 +102,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
 
         $this->view->assignMultiple([
             'thread' => $thread,
+            'jumpToLatest' => $jumpToLatest,
             'currentPage' => $currentPage,
             'pagination' => $pagination,
             'paginator' => $paginator,

@@ -1,6 +1,6 @@
 <html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:variable name="counter">{keyOfFirstPaginatedItem+iterator.index+1}</f:variable>
-    <div class="card mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" id="post-{counter}">
+    <div class="card mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" {f:if(condition: '{jumpToLatest} && {iterator.isLast}', then: 'data-jump-to="true"')} id="post-{counter}">
         <div class="card-body">
             <header class="card-title">
                 <div class="row">

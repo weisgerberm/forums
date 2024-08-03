@@ -2,11 +2,11 @@
 <f:form action="create" controller="Post" name="newPost" object="{newPost}" class="lock-submit">
     <f:if condition="{quotePost}">
         <f:then>
-            <h2 class="mt-6"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:reply-with-quote" /></h2>
+            <h2 class="mt-4"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:reply-with-quote" /></h2>
             <f:render partial="Post/Quote/QuoteHint" arguments="{_all}" />
         </f:then>
         <f:else>
-            <h2 class="mt-6"><f:translate key="reply" /></h2>
+            <h2 class="mt-4"><f:translate key="reply" /></h2>
         </f:else>
 
     </f:if>

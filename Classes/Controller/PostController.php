@@ -60,8 +60,10 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
         // XP gutschreiben
         $this->xpService->gain($frontendUser, 1, Xp::TYPE_FORUM_POST);
 
+        $returnPageNo = ceil(count($thread->getPosts()) / (int) $this->settings['defaults']['threadItemsPerPage']);
+
         // Wieder zurück zum Thread springen
-        return $this->redirect('show', 'Thread', null, ['thread' => $thread]);
+        return $this->redirect('show', 'Thread', null, ['currentPage' => $returnPageNo, 'thread' => $thread, 'jumpToLatest' => true]);
     }
 
 
