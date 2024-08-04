@@ -1,0 +1,12 @@
+TCEMAIN.linkHandler {
+  thread {
+    handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
+    label = Thread
+    configuration {
+      table = tx_forums_domain_model_thread
+      storagePid = 6105
+    }
+    displayBefore = news
+    scanAfter = page
+  }
+}

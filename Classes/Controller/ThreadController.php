@@ -14,7 +14,10 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Weisgerber\DarfIchMit\Domain\Model\Activity;
+use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
+use Weisgerber\DarfIchMit\Traits\ActivityServiceTrait;
 use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
 use Weisgerber\DarfIchMit\Traits\SlugServiceTrait;
 use Weisgerber\DarfIchMit\Traits\XpServiceTrait;
@@ -44,6 +47,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     use ThreadServiceTrait;
     use UriServiceTrait;
     use XpServiceTrait;
+    use ActivityServiceTrait;
 
     /**
      * action list
@@ -141,7 +145,6 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
 
         DimUtility::persistAll();
         /** @var Thread $record */
-        $record = $this->threadRepository->findByUidAssoc($newThread->getUid());
 
         $this->threadService->postProcessing($newThread);
 
@@ -151,9 +154,15 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
         // XP gutschreiben
         $this->xpService->gain($frontendUser, 3, Xp::TYPE_FORUM_THREAD);
 
+
+
         // Sodass die URL schon korrekt aufgelöst werden kann bei der Weiterleitung
         DimUtility::persistAll();
-
+        $this->activityService->addActivity(
+            $newThread->getTitle(),
+            Activity::TYPE_FORUM_THREAD,
+            (new LinkBuilderDTO(Activity::TYPE_FORUM_THREAD, $newThread->getUid()))->build()
+        );
         return $this->redirect('show', null, null, ['thread' => $newThread]);
     }
 

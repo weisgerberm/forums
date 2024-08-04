@@ -9,13 +9,13 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Weisgerber\DarfIchMit\Domain\Model\Activity;
+use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
+use Weisgerber\DarfIchMit\Traits\ActivityServiceTrait;
 use Weisgerber\DarfIchMit\Traits\XpServiceTrait;
-use Weisgerber\Forums\Domain\Model\{DTO\EditPostDTO, Post, PostContent, Thread};
 use Weisgerber\DarfIchMit\Utility\DimUtility;
-use Weisgerber\DarfIchMit\Utility\DTOUtility;
+use Weisgerber\Forums\Domain\Model\{DTO\EditPostDTO, Post, PostContent, Thread};
 use Weisgerber\Forums\Domain\Repository\ThreadRepository;
 use Weisgerber\Forums\Traits\PostRepositoryTrait;
 
@@ -23,6 +23,7 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
 {
     use PostRepositoryTrait;
     use XpServiceTrait;
+    use ActivityServiceTrait;
 
     /**
      * @return ResponseInterface
@@ -45,8 +46,8 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
     public function createAction(Post $newPost, Thread $thread): ResponseInterface
     {
         $frontendUser = $this->fetchFeUser();
-        if($frontendUser === null){
-            \nn\t3::Http()->redirect( $this->settings['noPermission'] );
+        if ($frontendUser === null) {
+            \nn\t3::Http()->redirect($this->settings['noPermission']);
         }
 
         // Wir setzen selber den frontenduser und vertrauen nicht auf den fe-user aus dem Formular, weil dieser gefälscht sein könnte
@@ -60,10 +61,21 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
         // XP gutschreiben
         $this->xpService->gain($frontendUser, 1, Xp::TYPE_FORUM_POST);
 
-        $returnPageNo = ceil(count($thread->getPosts()) / (int) $this->settings['defaults']['threadItemsPerPage']);
+        $this->activityService->addActivity(
+            $thread->getTitle(),
+            Activity::TYPE_FORUM_POST,
+            (new LinkBuilderDTO(Activity::TYPE_FORUM_THREAD, $thread->getUid()))->build()
+        );
+
+        $returnPageNo = ceil(count($thread->getPosts()) / (int)$this->settings['defaults']['threadItemsPerPage']);
 
         // Wieder zurück zum Thread springen
-        return $this->redirect('show', 'Thread', null, ['currentPage' => $returnPageNo, 'thread' => $thread, 'jumpToLatest' => true]);
+        return $this->redirect(
+            'show',
+            'Thread',
+            null,
+            ['currentPage' => $returnPageNo, 'thread' => $thread, 'jumpToLatest' => true]
+        );
     }
 
 
@@ -77,9 +89,8 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
     public function editAction(Post $post): ResponseInterface
     {
         $frontendUser = $this->frontendUserService->getLoggedInUser();
-        if($frontendUser === null || $post->getFrontenduser() !== $frontendUser){
-            \nn\t3::Http()->redirect( $this->settings['noPermission'] );
-
+        if ($frontendUser === null || $post->getFrontenduser() !== $frontendUser) {
+            \nn\t3::Http()->redirect($this->settings['noPermission']);
         }
 
         $this->view->assign('post', $post);
@@ -95,9 +106,8 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
     public function updateAction(EditPostDTO $editPostDTO): ResponseInterface
     {
         $frontendUser = $this->frontendUserService->getLoggedInUser();
-        if($frontendUser === null){
-            \nn\t3::Http()->redirect( $this->settings['noPermission'] );
-
+        if ($frontendUser === null) {
+            \nn\t3::Http()->redirect($this->settings['noPermission']);
         }
         /** @var PostContent $postContent */
         $postContent = GeneralUtility::makeInstance(PostContent::class);
@@ -123,17 +133,19 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
     {
         $frontendUser = $this->frontendUserService->getLoggedInUser();
 
-        if($frontendUser === $post->getFrontenduser()){
+        if ($frontendUser === $post->getFrontenduser()) {
             $post->setSoftDeleted(true);
             $this->postRepository->update($post);
             DimUtility::persistAll();
             \nn\t3::Message()->OK(
                 "Dein Beitrag wurde gelöscht",
-                "Wenn du es dir anders überlegst, kannst du ihn einfach wiederherstellen.");
-        }else{
+                "Wenn du es dir anders überlegst, kannst du ihn einfach wiederherstellen."
+            );
+        } else {
             \nn\t3::Message()->ERROR(
                 "Der Beitrag wurde nicht gelöscht",
-                "Dieser Beitrag gehört nicht dir!");
+                "Dieser Beitrag gehört nicht dir!"
+            );
         }
 
 
@@ -150,17 +162,19 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
     {
         $frontendUser = $this->frontendUserService->getLoggedInUser();
 
-        if($frontendUser === $post->getFrontenduser()){
+        if ($frontendUser === $post->getFrontenduser()) {
             $post->setSoftDeleted(false);
             $this->postRepository->update($post);
             DimUtility::persistAll();
             \nn\t3::Message()->OK(
                 "Dein Beitrag wurde wiederhergestellt",
-                "Schön, dass du es dir anders überlegt hast. ");
-        }else{
+                "Schön, dass du es dir anders überlegt hast. "
+            );
+        } else {
             \nn\t3::Message()->ERROR(
                 "Der Beitrag wurde nicht wiederhergestellt",
-                "Dieser Beitrag gehört nicht dir!");
+                "Dieser Beitrag gehört nicht dir!"
+            );
         }
 
 

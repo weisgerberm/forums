@@ -63,3 +63,4 @@ plugin.tx_forums {
 @import 'EXT:forums/Configuration/TypoScript/Blocks/blocks.setup.typoscript'
 @import 'EXT:forums/Configuration/TypoScript/Page/page.setup.typoscript'
 @import 'EXT:forums/Configuration/TypoScript/DoktypeInit.setup.typoscript'
+@import 'EXT:forums/Configuration/TypoScript/RecordLinks/*.typoscript'

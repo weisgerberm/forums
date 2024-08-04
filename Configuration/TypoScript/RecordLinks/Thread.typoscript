@@ -1,0 +1,11 @@
+config.recordLinks {
+  thread {
+    forceLink = 0
+    typolink {
+      parameter.field = pid
+      additionalParams.data = field:uid
+      additionalParams.wrap = &tx_forums_show[controller]=Thread&tx_forums_show[action]=show&tx_forums_show[thread]=|
+    }
+  }
+}
+
