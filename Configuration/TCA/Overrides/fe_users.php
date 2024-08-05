@@ -36,7 +36,7 @@ $tmp_forums_columns = [
     'subscribe_to_thread_after_reply' => [
         'exclude' => true,
         'label' => TcaUtility::title('subscribe_to_thread_after_reply'),
-        'config' => TcaUtility::getCheckboxToggle(),
+        'config' => TcaUtility::getCheckboxToggle(1),
     ],
     'thread_subscriptions' => [
         'exclude' => true,

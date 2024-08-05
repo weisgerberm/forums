@@ -27,7 +27,7 @@ CREATE TABLE tx_forums_domain_model_post
 
 CREATE TABLE fe_users
 (
-	subscribe_to_thread_after_reply smallint(1) unsigned NOT NULL DEFAULT '0',
+	subscribe_to_thread_after_reply smallint(1) unsigned NOT NULL DEFAULT '1',
 	posts                           int(11) unsigned     NOT NULL DEFAULT '0',
 	thread_subscriptions            int(11) unsigned     NOT NULL DEFAULT '0',
 	post_likes                      int(11) unsigned     NOT NULL DEFAULT '0',
