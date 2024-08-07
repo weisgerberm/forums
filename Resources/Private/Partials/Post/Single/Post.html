@@ -15,7 +15,7 @@
         </f:else>
     </f:if>
 </f:if>
-    <div class="card card-body blur shadow-blur mx-4 {f:if(condition: '!{post.softDeleted}', then: 'mt-n12 ')}mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" {f:if(condition: '{jumpToLatest} && {iterator.isLast}', then: 'data-jump-to="true"')} id="post-{counter}">
+    <div class="card card-body blur shadow-blur mx-1 mx-sm-4 {f:if(condition: '!{post.softDeleted}', then: 'mt-n12 ')}mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" {f:if(condition: '{jumpToLatest} && {iterator.isLast}', then: 'data-jump-to="true"')} id="post-{counter}">
         <div class="card-body">
 
             <header class="card-title">
