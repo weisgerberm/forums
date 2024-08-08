@@ -7,7 +7,7 @@
     </button>
     <ul class="dropdown-menu" id="dropdown-menu" role="menu">
         <li class="dropdown-item ">
-            <f:link.action class="align-items-center d-flex gap-2" addQueryString="1" arguments="{quotePost:post}">
+            <f:link.action class="align-items-center d-flex gap-2 link-dark" addQueryString="1" arguments="{quotePost:post}">
                 <f:render arguments="{icon:'message-quote'}" partial="Prefabs/Icon"/>
                 <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:quote"/>
             </f:link.action>
@@ -15,7 +15,7 @@
         <f:if condition="{post.frontenduser} == {frontendUser}">
             <f:then>
                 <li class="dropdown-item ">
-                    <f:link.action action="edit" class="align-items-center d-flex gap-2" controller="Post" arguments="{post:post}">
+                    <f:link.action action="edit" class="align-items-center d-flex gap-2 link-dark" controller="Post" arguments="{post:post}">
                         <f:render arguments="{icon:'message-pen'}" partial="Prefabs/Icon"/>
                         <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:edit"/>
                     </f:link.action>
@@ -23,7 +23,7 @@
                 <f:if condition="{post.softDeleted}">
                     <f:then>
                         <li class="dropdown-item ">
-                            <f:link.action action="restore" class="link-danger align-items-center d-flex gap-2" controller="Post" arguments="{post:post}">
+                            <f:link.action action="restore" class="link-danger align-items-center d-flex gap-2 link-dark" controller="Post" arguments="{post:post}">
                                 <f:render arguments="{icon:'repeat-2'}" partial="Prefabs/Icon"/>
                                 <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:restore"/>
                             </f:link.action>
@@ -40,7 +40,7 @@
             </f:then>
             <f:else>
                 <li class="dropdown-item ">
-                    <a class="align-items-center d-flex gap-2" class="align-items-center d-flex gap-2" rel=“nofollow“>
+                    <a class="align-items-center d-flex gap-2" class="align-items-center d-flex gap-2 link-dark" rel=“nofollow“>
                         <f:render arguments="{icon:'flag-diagonal-33'}" partial="Prefabs/Icon"/>
                         <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:report"/>
                     </a>
