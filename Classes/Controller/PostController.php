@@ -63,7 +63,7 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
 
         $this->activityService->addActivity(
             $thread->getTitle(),
-            Activity::TYPE_SOCIAL_ADD_BLACKLIST,
+            Activity::TYPE_FORUM_POST,
             (new LinkBuilderDTO(Activity::TYPE_FORUM_THREAD, $thread->getUid()))->build()
         );
 
