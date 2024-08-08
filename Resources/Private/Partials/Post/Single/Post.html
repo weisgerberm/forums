@@ -4,18 +4,18 @@
 <f:if condition="!{post.softDeleted}">
     <f:if condition="{post.frontendUser.coverPicture}">
         <f:then>
-            <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{post.frontendUser.coverPicture.image.0}', width: '1304')}); background-position-y: 50%;">
+            <div id="post-{counter}" class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{post.frontendUser.coverPicture.image.0}', width: '1400')}); background-position-y: 50%;">
                 <span class="mask bg-gradient-primary opacity-1"></span>
             </div>
         </f:then>
         <f:else>
-            <div class="page-header min-height-300 border-radius-xl mt-4 bg-gradient-primary text-center">
+            <div id="post-{counter}" class="page-header min-height-300 border-radius-xl mt-4 bg-gradient-primary text-center">
 
             </div>
         </f:else>
     </f:if>
 </f:if>
-    <div class="card card-body blur shadow-blur mx-1 mx-sm-4 {f:if(condition: '!{post.softDeleted}', then: 'mt-n12 ')}mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" {f:if(condition: '{jumpToLatest} && {iterator.isLast}', then: 'data-jump-to="true"')} id="post-{counter}">
+    <div class="card card-body blur shadow-blur mx-1 mx-sm-4 {f:if(condition: '!{post.softDeleted}', then: 'mt-n12 ')}mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" {f:if(condition: '{jumpToLatest} && {iterator.isLast}', then: 'data-jump-to="true"')}>
         <div class="card-body">
 
             <header class="card-title">
