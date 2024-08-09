@@ -88,6 +88,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     #[IgnoreValidation(['argumentName' => 'quotePost'])]
     public function showAction(Thread $thread, int $currentPage = 1, ?Post $quotePost = null, int $jumpToLatest = 0): ResponseInterface
     {
+        // Wenn der Benutzer zum neusten Beitrag springen will, dann schauen wir nach, welche Seite er dafür braucht und machen dafür einen redirect
         if($jumpToLatest && $currentPage === 1){
             $returnPageNo = ceil(count($thread->getPosts()) / (int)$this->settings['defaults']['threadItemsPerPage']);
             if($returnPageNo>1){
