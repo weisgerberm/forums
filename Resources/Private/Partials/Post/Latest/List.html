@@ -1,5 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<div class="card">
+<h5 class=""><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:latest-activities" /></h5>
+<div class="card mt-3">
     <f:if condition="{posts}">
         <f:then>
             <f:render partial="Post/Latest/ListTable" arguments="{posts:posts}" />
