@@ -38,23 +38,19 @@
             </header>
             <div class="row">
                 <div class="col-5 col-sm-4 col-md-3 col-lg-2">
-                    <div class="tile">
-                        <div class="tile is-parent is-vertical has-text-centered">
+                    <f:if condition="{post.frontenduser}">
+                        <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+                    </f:if>
 
-                                <f:if condition="{post.frontenduser}">
-                                    <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
-                                </f:if>
-
-                                <p class="subtitle is-5 my-2">
-                                    <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser}" />
-                                </p>
-                                <div class="d-flex align-items-center text-xs">
-                                    <f:if condition="{post.frontenduser}">
-                                        <f:render partial="Basics/XP" arguments="{amount:post.frontenduser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{post.frontenduser.xp}" />
-                                    </f:if>
-                                </div>
-                        </div>
+                    <p class="subtitle is-5 my-2">
+                        <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser}" />
+                    </p>
+                    <div class="d-flex align-items-center text-xs">
+                        <f:if condition="{post.frontenduser}">
+                            <f:render partial="Basics/XP" arguments="{amount:post.frontenduser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{post.frontenduser.xp}" />
+                        </f:if>
                     </div>
+
                 </div>
                 <div class="col-7 col-sm-8 col-md-9 col-lg-10">
                     <f:if condition="{post.softDeleted}">

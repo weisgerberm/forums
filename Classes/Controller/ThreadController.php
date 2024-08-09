@@ -132,10 +132,11 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
      */
     public function newAction(): ResponseInterface
     {
-        $frontendUser = $this->frontendUserService->getLoggedInUser();
-        if(is_null($frontendUser)){
-            return $this->uriService->reloadWithStatus( UriService::HTTP_FORBIDDEN);
+        $frontendUser = $this->fetchFeUser();
+        if($frontendUser === null){
+            \nn\t3::Http()->redirect( $this->settings['noPermission'] );
         }
+
         return $this->htmlResponse();
     }
 

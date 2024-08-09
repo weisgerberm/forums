@@ -1,4 +1,4 @@
-<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 
     <h1>{thread.title}</h1>
     <div class="thread__controls thread__controls--top align-items-center d-flex justify-content-between">
@@ -15,7 +15,32 @@
 
     <f:security.ifHasRole role="6">
         <f:then>
-            <f:render partial="Post/New/New" arguments="{_all}" />
+            <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{frontendUser.coverPicture.image.0}', width: '1400')}); background-position-y: 50%;">
+                <span class="mask bg-gradient-primary opacity-1"></span>
+            </div>
+            <div class=" mt-n12 card card-body blur shadow-blur mx-1 mx-sm-4">
+                <div class="row">
+                    <div class="col-5 col-sm-4 col-md-3 col-lg-2">
+                        <f:if condition="{frontendUser}">
+                            <f:render partial="Basics/Avatar" arguments="{avatar:frontendUser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+                        </f:if>
+
+                        <p class="subtitle is-5 my-2">
+                            <f:render partial="Basics/Username" arguments="{frontenduser:frontendUser}" />
+                        </p>
+                        <div class="d-flex align-items-center text-xs">
+                            <f:if condition="{frontendUser}">
+                                <f:render partial="Basics/XP" arguments="{amount:frontendUser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{frontendUser.xp}" />
+                            </f:if>
+                        </div>
+
+                    </div>
+                    <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+                        <f:render partial="Post/New/New" arguments="{_all}" />
+                    </div>
+                </div>
+            </div>
+
         </f:then><f:else>
             <f:render partial="Post/New/NewForbidden" arguments="{_all}" />
         </f:else>

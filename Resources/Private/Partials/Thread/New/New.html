@@ -1,4 +1,4 @@
-<html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <h1 class="title is-1"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:create-new-thread" /></h1>
 
 
@@ -6,13 +6,35 @@
 <f:render partial="FormErrors" />
 
 <f:form action="create" name="newThread" object="{newThread}">
-    <f:render partial="Thread/New/FormFields" />
-    <f:render partial="Thread/New/Advanced" arguments="{_all}"/>
+    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{frontendUser.coverPicture.image.0}', width: '1400')}); background-position-y: 50%;">
+        <span class="mask bg-gradient-primary opacity-1"></span>
+    </div>
+    <div class="mt-n12 card card-body blur shadow-blur mx-1 mx-sm-4">
+        <div class="row">
+            <div class="col-5 col-sm-4 col-md-3 col-lg-2">
+                <f:if condition="{frontendUser}">
+                    <f:render partial="Basics/Avatar" arguments="{avatar:frontendUser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+                </f:if>
 
-    <div class="row">
-        <div class="col-12">
-            <f:form.submit class="btn btn-primary" value="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:create-new-thread')}" />
+                <p class="subtitle is-5 my-2">
+                    <f:render partial="Basics/Username" arguments="{frontenduser:frontendUser}" />
+                </p>
+                <div class="d-flex align-items-center text-xs">
+                    <f:if condition="{frontendUser}">
+                        <f:render partial="Basics/XP" arguments="{amount:frontendUser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{frontendUser.xp}" />
+                    </f:if>
+                </div>
+
+            </div>
+            <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+                <f:render partial="Thread/New/FormFields" />
+                <f:comment>
+                <f:render partial="Thread/New/Advanced" arguments="{_all}"/>
+                </f:comment>
+                <f:form.submit class="btn btn-primary mt-3" value="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:create-new-thread')}" />
+            </div>
         </div>
+
     </div>
 </f:form>
 </html>
