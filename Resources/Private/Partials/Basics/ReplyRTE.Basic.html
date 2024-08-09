@@ -10,10 +10,12 @@
         </div>
     </div>
 </f:comment>
-
-<p class="control">
-    <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}" rows="6" property="postContent.0.description" class="form-control forums-rte"></f:form.textarea>
+<div class="page-header min-height-200 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{frontendUser.coverPicture.image.0}', width: '1400')}); background-position-y: 50%;">
+    <span class="mask bg-gradient-primary opacity-1"></span>
+</div>
+<div class="control mt-n9 card card-body blur shadow-blur mx-1 mx-sm-4">
+    <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}" rows="5" property="postContent.0.description" class="form-control forums-rte"></f:form.textarea>
     <div class="forums-rte-wordcount"></div>
-</p>
+</div>
 
 </html>
