@@ -67,14 +67,14 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
             (new LinkBuilderDTO(Activity::TYPE_FORUM_THREAD, $thread->getUid()))->build()
         );
 
-        $returnPageNo = ceil(count($thread->getPosts()) / (int)$this->settings['defaults']['threadItemsPerPage']);
+//        $returnPageNo = ceil(count($thread->getPosts()) / (int)$this->settings['defaults']['threadItemsPerPage']);
 
         // Wieder zurück zum Thread springen
         return $this->redirect(
             'show',
             'Thread',
             null,
-            ['currentPage' => $returnPageNo, 'thread' => $thread, 'jumpToLatest' => true]
+            ['thread' => $thread, 'jumpToLatest' => true]
         );
     }
 

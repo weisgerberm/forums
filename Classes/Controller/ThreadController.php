@@ -88,6 +88,13 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     #[IgnoreValidation(['argumentName' => 'quotePost'])]
     public function showAction(Thread $thread, int $currentPage = 1, ?Post $quotePost = null, int $jumpToLatest = 0): ResponseInterface
     {
+        if($jumpToLatest && $currentPage === 1){
+            $returnPageNo = ceil(count($thread->getPosts()) / (int)$this->settings['defaults']['threadItemsPerPage']);
+            if($returnPageNo>1){
+                return $this->redirect('show', null, null, ['thread' => $thread, 'currentPage' => $returnPageNo, 'jumpToLatest' => $jumpToLatest, 'quotePost' => $quotePost]);
+            }
+        }
+
         $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
         $this->threadRepository->update($thread);
         $this->fetchFeUser();
@@ -103,6 +110,8 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
             $paginator,
             15
         );
+
+
 
         $this->view->assignMultiple([
             'thread' => $thread,
