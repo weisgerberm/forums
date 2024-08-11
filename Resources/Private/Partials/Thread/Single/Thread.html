@@ -20,7 +20,7 @@
                     <span class="mask bg-gradient-primary opacity-1"></span>
                 </div>
             </f:if>
-            <div class="card card-body blur shadow-blur mx-1 mx-sm-4 {f:if(condition: '{frontendUser.coverPicture}', then: 'mt-n12 ')}">
+            <div class="card card-body blur shadow-blur{f:if(condition: '{frontendUser.coverPicture}', then: ' mx-1 mx-sm-4 mt-n12 ')}">
                 <div class="row">
                     <div class="col-5 col-sm-4 col-md-3 col-lg-2">
                         <f:if condition="{frontendUser}">

@@ -2,7 +2,7 @@
 <div class="card d-none d-md-flex">
     <footer class="card-footer py-3">
         <div class="card-footer-item mb-n1" title="{post.frontendUser.username}">
-            <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:32, height:32, placeholder:settings.defaults.avatar}"/>
+            <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, avatarSize:'sm', username:post.frontendUser.username, fallbackLetterColor:'primary', width:32, height:32, placeholder:settings.defaults.avatar}"/>
             <div class="d-flex align-items-center text-nowrap my-2 text-xs">
                 <f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> {post.frontendUser.username}
             </div>

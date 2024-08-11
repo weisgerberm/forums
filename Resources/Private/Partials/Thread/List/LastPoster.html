@@ -5,7 +5,7 @@
                 {thread.lastPost.frontenduser.username}
             </div>
             <div class="column is-narrow">
-                <f:render partial="Basics/Avatar" arguments="{avatar:thread.lastPost.frontenduser.avatar, width:settings.defaults.avatarWidthThreadLatestPost, height:settings.defaults.avatarHeightThreadLatestPost, placeholder:settings.defaults.avatar}"/>
+                <f:render partial="Basics/Avatar" arguments="{avatar:thread.lastPost.frontenduser.avatar, username:thread.lastPost.frontendUser.username, fallbackLetterColor:'primary', fallbackBorderColor:'white', width:settings.defaults.avatarWidthThreadLatestPost, height:settings.defaults.avatarHeightThreadLatestPost}"/>
             </div>
         </div>
     </f:link.action>

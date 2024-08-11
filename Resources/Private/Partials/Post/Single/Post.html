@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-5 col-sm-4 col-md-3 col-lg-2">
                     <f:if condition="{post.frontenduser}">
-                        <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+                        <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, avatarSize:'lg', username:post.frontendUser.username, fallbackLetterColor:'primary', width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
                     </f:if>
 
                     <p class="subtitle is-5 my-2">
