@@ -1,17 +1,19 @@
 <html data-namespace-typo3-fluid="true"
       xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
 
-<f:if condition="{frontendUser.signature}">
+<f:if condition="{frontendUser.signature} || {frontendUser.signatureDogs}">
     <f:render partial="Prefabs/HorizontalRule" arguments="{additionalClasses:''}" />
     <div class="post__signature text-lighter text-xs">
         {frontendUser.signature}
     </div>
 
     <f:for each="{frontendUser.signatureDogs}" as="dog">
-        <f:variable name="tooltip">{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:view-profile-of',arguments:{0:dog.title})}</f:variable>
-        <f:link.action extensionName="DarfIchMitSocial" data="{tippy-content:tooltip}" class="{additionalClasses}" pageUid="6026" controller="Dog" action="show" pluginName="DogCard" arguments="{dog:dog}">
-            <f:render partial="Basics/Avatar" arguments="{avatar:dog.avatar, username:dog.title, avatarSize:'lg', fallbackBorderColor:'primary',fallbackLetterColor:'secondary', additionalClasses:'w-100 border-radius-lg shadow-sm fs-3', genericClasses:'mt-2', width:74, height:74}" />
-        </f:link.action>
+        <span class="move-on-hover d-inline-block">
+            <f:variable name="tooltip">{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:view-profile-of',arguments:{0:dog.title})}</f:variable>
+            <f:link.action extensionName="DarfIchMitSocial" data="{tippy-content:tooltip}" class="{additionalClasses}" pageUid="6026" controller="Dog" action="show" pluginName="DogCard" arguments="{dog:dog}">
+                <f:render partial="Basics/Avatar" arguments="{avatar:dog.avatar, username:dog.title, avatarSize:'lg', fallbackBorderColor:'primary',fallbackLetterColor:'secondary', additionalClasses:'w-100 border-radius-lg shadow-sm fs-3', genericClasses:'mt-2', width:74, height:74}" />
+            </f:link.action>
+        </span>
     </f:for>
 </f:if>
 </html>
