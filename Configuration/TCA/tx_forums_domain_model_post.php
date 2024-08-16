@@ -14,8 +14,9 @@ return [
         '1' => [
             'showitem' => TcaUtility::tab(
                 null,
-                ['spam', 'quote', 'soft_deleted', 'awaiting_admin_approval', 'admin_comment', 'post_content', 'likes', 'poll']
-            )
+                ['post_content', 'likes']
+            ) .
+            TcaUtility::accessTab().'spam,quote,soft_deleted,awaiting_admin_approval,admin_comment'
         ],
     ],
     'columns' => \nn\t3::TCA()->createConfig(
@@ -24,57 +25,44 @@ return [
         [
             'spam' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_post.spam',
+                'label' => TcaUtility::title('spam'),
+                'description' => TcaUtility::desc('spam'),
                 'config' => TcaUtility::getCheckboxToggle(),
             ],
             'soft_deleted' => [
                 'exclude' => true,
                 'label' => TcaUtility::title('soft_deleted'),
+                'description' => TcaUtility::desc('soft_deleted'),
                 'config' => TcaUtility::getCheckboxToggle(),
             ],
             'awaiting_admin_approval' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_post.awaiting_admin_approval',
+                'label' => TcaUtility::title('awaiting_admin_approval'),
                 'config' => TcaUtility::getCheckboxToggle(),
             ],
             'admin_comment' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_post.admin_comment',
-                'config' => [
-                    'type' => 'text',
-                    'enableRichtext' => true,
-                    'richtextConfiguration' => 'default',
-                    'fieldControl' => [
-                        'fullScreenRichtext' => [
-                            'disabled' => false,
-                        ],
-                    ],
-                    'cols' => 40,
-                    'rows' => 15,
-                    'eval' => 'trim',
-                ],
+                'label' => TcaUtility::title('admin_comment'),
+                'config' => TcaUtility::getText(),
             ],
             'post_content' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_post.post_content',
+                'label' => TcaUtility::title('post_content'),
                 'config' => [
                     'type' => 'inline',
-                    'foreign_table' => 'tx_forums_domain_model_postcontent',
+                    'foreign_table' => PostContent::TABLE_NAME,
                     'foreign_field' => 'post',
                     'maxitems' => 9999,
                     'appearance' => [
-                        'collapseAll' => 0,
-                        'levelLinksPosition' => 'top',
-                        'showSynchronizationLink' => 1,
-                        'showPossibleLocalizationRecords' => 1,
-                        'showAllLocalizationLink' => 1
+                        'collapseAll' => 1,
+                        'levelLinksPosition' => 'none',
                     ],
                 ],
 
             ],
             'likes' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_post.likes',
+                'label' => TcaUtility::title('likes'),
                 'config' => [
                     'type' => 'inline',
                     'foreign_table' => 'tx_forums_domain_model_postlike',
@@ -92,7 +80,7 @@ return [
             ],
             'poll' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_post.poll',
+                'label' => TcaUtility::title('poll'),
                 'config' => [
                     'type' => 'select',
                     'renderType' => 'selectSingle',
