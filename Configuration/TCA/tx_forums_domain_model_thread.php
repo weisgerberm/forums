@@ -152,17 +152,18 @@ return [
                     'type' => 'select',
                     'renderType' => 'selectMultipleSideBySide',
                     'foreign_table' => 'fe_users',
+                    'MM' => 'tx_forums_thread_fe_users_mm',
                     'default' => 0,
                     'size' => 10,
                     'autoSizeMax' => 30,
-                    'maxitems' => 1,
+                    'maxitems' => 99999,
                     'multiple' => 0,
                     'fieldControl' => [
                         'editPopup' => [
                             'disabled' => false,
                         ],
                         'addRecord' => [
-                            'disabled' => false,
+                            'disabled' => true,
                         ],
                         'listModule' => [
                             'disabled' => true,

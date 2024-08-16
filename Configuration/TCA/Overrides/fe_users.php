@@ -40,11 +40,13 @@ $tmp_forums_columns = [
     ],
     'thread_subscriptions' => [
         'exclude' => true,
-        'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser.thread_subscriptions',
+        'label' => TcaUtility::title('thread_subscriptions'),
+        'description' => TcaUtility::desc('thread_subscriptions'),
         'config' => [
             'type' => 'inline',
-            'foreign_table' => 'tx_forums_domain_model_threadsubscription',
-            'foreign_field' => 'frontenduser',
+            'foreign_table' => \Weisgerber\Forums\Domain\Model\Thread::TABLE_NAME,
+            'MM' => 'tx_forums_thread_fe_users_mm',
+            'MM_opposite_field' => 'active_users',
             'maxitems' => 9999,
             'appearance' => [
                 'collapseAll' => 0,
