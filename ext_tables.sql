@@ -8,7 +8,7 @@ CREATE TABLE tx_forums_domain_model_thread
 	files                int(11) unsigned     NOT NULL DEFAULT '0',
 	posts                int(11) unsigned     NOT NULL DEFAULT '0',
 	tags                 int(11) unsigned     NOT NULL DEFAULT '0',
-	active_users         int(11) unsigned              DEFAULT '0'
+	subscribers          int(11) unsigned              DEFAULT '0'
 );
 
 CREATE TABLE tx_forums_domain_model_post

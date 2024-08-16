@@ -7,7 +7,7 @@ use Weisgerber\Forums\Domain\Model\PostContent;
 return [
     'ctrl' => TcaUtility::getController(Post::TABLE_NAME, 'forums', [
         'default_sortby' => '',
-        'label' => 'spam',
+        'label' => 'post_content',
         'searchFields' => '',
     ], false, false),
     'types' => [

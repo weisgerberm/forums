@@ -14,7 +14,7 @@ return [
         ],
     ]),
     'types' => [
-        '1' => ['showitem' => TcaUtility::tab(null, ['p_name','p_slug','p_cache','posts','tags','active_users']).
+        '1' => ['showitem' => TcaUtility::tab(null, ['p_name','p_slug','p_cache','posts','tags','subscribers']).
             TcaUtility::languageTab().
             TcaUtility::accessTab().'closed,sticky,'.
             TcaUtility::notesTab()],
@@ -145,9 +145,10 @@ return [
                 ],
 
             ],
-            'active_users' => [
+            'subscribers' => [
                 'exclude' => true,
-                'label' => TcaUtility::title('active_users'),
+                'label' => TcaUtility::title('subscribers'),
+                'description' => TcaUtility::desc('subscribers'),
                 'config' => [
                     'type' => 'select',
                     'renderType' => 'selectMultipleSideBySide',
