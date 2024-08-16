@@ -1,6 +1,7 @@
 <?php
 
 use Weisgerber\DarfIchMit\Utility\TcaUtility;
+use Weisgerber\Forums\Domain\Model\Post;
 use Weisgerber\Forums\Domain\Model\Thread;
 
 return [
@@ -50,62 +51,12 @@ return [
                 'label' => TcaUtility::title('sticky'),
                 'config' => TcaUtility::getCheckboxToggle(),
             ],
-            'files' => [
-                'exclude' => true,
-                'label' => TcaUtility::title('files'),
-                'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                    'files',
-                    [
-                        'appearance' => [
-                            'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:media.addFileReference'
-                        ],
-                        'foreign_types' => [
-                            '0' => [
-                                'showitem' => '
-                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                                'showitem' => '
-                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                                'showitem' => '
-                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                                'showitem' => '
-                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                                'showitem' => '
-                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                                'showitem' => '
-                                --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                --palette--;;filePalette'
-                            ]
-                        ],
-                        'foreign_match_fields' => [
-                            'fieldname' => 'files',
-                            'tablenames' => 'tx_forums_domain_model_thread',
-                        ],
-                        'maxitems' => 1
-                    ]
-                ),
-
-            ],
             'posts' => [
                 'exclude' => true,
                 'label' => TcaUtility::title('posts'),
                 'config' => [
                     'type' => 'inline',
-                    'foreign_table' => \Weisgerber\Forums\Domain\Model\Post::TABLE_NAME,
+                    'foreign_table' => Post::TABLE_NAME,
                     'foreign_field' => 'thread',
                     'maxitems' => 9999,
                     'appearance' => [
