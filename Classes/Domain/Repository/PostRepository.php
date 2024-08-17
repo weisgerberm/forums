@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use Weisgerber\DarfIchMit\Domain\Model\FrontendUser;
 
 /**
  * This file is part of the "forums" Extension for TYPO3 CMS.
@@ -77,6 +79,21 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         }
         $query->setOrderings(['uid' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
         $query->setLimit($limit);
+        return $query->execute();
+    }
+
+    /**
+     * @param FrontendUser $frontendUser
+     * @return object|null
+     */
+    public function findUsersPosts(FrontendUser $frontendUser): QueryResultInterface
+    {
+
+        /** @var Typo3QuerySettings $querySettings */
+        $query = $this->createQuery();
+
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->matching($query->equals('frontenduser', $frontendUser));
         return $query->execute();
     }
 }

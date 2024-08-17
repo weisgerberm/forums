@@ -55,20 +55,21 @@ $tmp_forums_columns = [
             ],
         ],
     ],
-    'posts' => [
-        'exclude' => true,
-        'label' => TcaUtility::title('posts'),
-        'config' => [
-            'type' => 'inline',
-            'foreign_table' => Post::TABLE_NAME,
-            'foreign_field' => 'frontenduser',
-            'maxitems' => 999999,
-            'appearance' => [
-                'collapseAll' => 1,
-                'levelLinksPosition' => 'top',
-            ],
-        ],
-    ],
+    // Erstmal nicht nötig weil sonst zu viele Daten andauernd abgefragt werden, auch wenn es lazy ist. Wenn die Posts nötig sind, frag ich sie seperat ab, weil im post eine Referenz zum fe_user vorliegt!
+//    'posts' => [
+//        'exclude' => true,
+//        'label' => TcaUtility::title('posts'),
+//        'config' => [
+//            'type' => 'inline',
+//            'foreign_table' => Post::TABLE_NAME,
+//            'foreign_field' => 'frontenduser',
+//            'maxitems' => 999999,
+//            'appearance' => [
+//                'collapseAll' => 1,
+//                'levelLinksPosition' => 'top',
+//            ],
+//        ],
+//    ],
     'post_likes' => [
         'exclude' => true,
         'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser.post_likes',
@@ -108,4 +109,4 @@ $tmp_forums_columns = [
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users', $tmp_forums_columns);
 
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-$GLOBALS['TCA']['fe_users']['types'][0]['showitem'] .= ',--div--;Forum, threads_per_page, posts_per_page, subscribe_to_thread_after_reply, allow_display_email, posts, thread_subscriptions, post_likes, poll_votes';
+$GLOBALS['TCA']['fe_users']['types'][0]['showitem'] .= ',--div--;Forum, threads_per_page, posts_per_page, subscribe_to_thread_after_reply, allow_display_email, thread_subscriptions, post_likes, poll_votes';
