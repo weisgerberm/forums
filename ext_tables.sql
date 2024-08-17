@@ -5,7 +5,6 @@ CREATE TABLE tx_forums_domain_model_thread
 	cached_counter_posts int(11)              NOT NULL DEFAULT '0',
 	cached_counter_views int(11)              NOT NULL DEFAULT '0',
 	sticky               smallint(1) unsigned NOT NULL DEFAULT '0',
-	files                int(11) unsigned     NOT NULL DEFAULT '0',
 	posts                int(11) unsigned     NOT NULL DEFAULT '0',
 	tags                 int(11) unsigned     NOT NULL DEFAULT '0',
 	subscribers          int(11) unsigned              DEFAULT '0'

@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Domain\Model;
 
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use Weisgerber\DarfIchMit\Domain\Model\Traits\{FieldCrDate, FieldPathSegment, FieldTitle, FieldTstamp};
+use Weisgerber\DarfIchMit\Domain\Model\FrontendUser;
 
 class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
@@ -46,19 +50,12 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected bool $sticky = false;
 
     /**
-     * files
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
-     */
-    protected $files = null;
-
-    /**
-     * posts
+     * All posts related to this thread
      *
      * @var ObjectStorage<Post>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
+    #[Cascade(['value' => 'remove'])]
+    #[Lazy()]
     protected $posts = null;
 
     /**
@@ -66,13 +63,15 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @var ObjectStorage<Tag>
      */
+    #[Lazy()]
     protected $tags = null;
 
     /**
-     * subscribers
+     * List of subscribers to this thread
      *
-     * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
+     * @var ObjectStorage<\Weisgerber\DarfIchMit\Domain\Model\FrontendUser>
      */
+    #[Lazy()]
     protected $subscribers = null;
 
     /**
@@ -96,6 +95,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->posts = $this->posts ?: new ObjectStorage();
         $this->tags = $this->tags ?: new ObjectStorage();
+        $this->subscribers = $this->subscribers ?: new ObjectStorage();
     }
 
     /**
@@ -128,6 +128,9 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getPosts(): ObjectStorage
     {
+        if ($this->posts instanceof LazyLoadingProxy) {
+            $this->posts->_loadRealInstance();
+        }
         return $this->posts;
     }
 
@@ -291,6 +294,9 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getTags(): ObjectStorage
     {
+        if ($this->tags instanceof LazyLoadingProxy) {
+            $this->tags->_loadRealInstance();
+        }
         return $this->tags;
     }
 
@@ -306,13 +312,38 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the activeUsers
+     * Returns all subscribers of this thread
      *
-     * @return \Weisgerber\DarfIchMit\Domain\Model\FrontendUser|null
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage|null
      */
     public function getSubscribers()
     {
+        if ($this->subscribers instanceof LazyLoadingProxy) {
+            $this->subscribers->_loadRealInstance();
+        }
         return $this->subscribers;
+    }
+
+    /**
+     * Adds a subscriber to the thread
+     *
+     * @param FrontendUser $frontendUser
+     * @return void
+     */
+    public function addSubscriber(FrontendUser $frontendUser): void
+    {
+        $this->subscribers->attach($frontendUser);
+    }
+
+    /**
+     * Checks if the given user is already a subscriber
+     *
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $frontendUser
+     * @return bool
+     */
+    public function hasSubscriber(FrontendUser $frontendUser): bool
+    {
+        return $this->subscribers->contains($frontendUser);
     }
 
     /**
@@ -321,30 +352,9 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $subscribers
      * @return void
      */
-    public function setSubscribers(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $subscribers)
+    public function setSubscribers(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $subscribers): void
     {
         $this->subscribers = $subscribers;
-    }
-
-    /**
-     * Returns the files
-     *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     */
-    public function getFiles()
-    {
-        return $this->files;
-    }
-
-    /**
-     * Sets the files
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $files
-     * @return void
-     */
-    public function setFiles(\TYPO3\CMS\Extbase\Domain\Model\FileReference $files)
-    {
-        $this->files = $files;
     }
 
     public function jsonSerialize(): array

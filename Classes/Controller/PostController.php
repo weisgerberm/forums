@@ -9,6 +9,8 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use Weisgerber\DarfIchMit\Domain\Model\Activity;
 use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
@@ -37,10 +39,14 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
     }
 
     /**
-     * action create
+     * Creating a post in a thread
      *
-     * @param Post $newPost
+     * @param Post   $newPost
+     * @param Thread $thread
+     * @return ResponseInterface
      * @throws AspectNotFoundException
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
     #[IgnoreValidation(['argumentName' => 'thread'])]
     public function createAction(Post $newPost, Thread $thread): ResponseInterface
@@ -50,15 +56,20 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
             \nn\t3::Http()->redirect($this->settings['noPermission']);
         }
 
-        // Wir setzen selber den frontenduser und vertrauen nicht auf den fe-user aus dem Formular, weil dieser gefälscht sein könnte
+        // We set the frontenduser ourselves and do not rely on the fe-user from the form because it could be fake
         $newPost->setFrontenduser($frontendUser);
         $thread->addPost($newPost);
+
+        // Subscribe to thread when not already happened and the user has the option on
+        if($frontendUser->getSubscribeToThreadAfterReply() && !$thread->hasSubscriber($frontendUser)){
+            $thread->addSubscriber($frontendUser);
+        }
 
         /** @var ThreadRepository $threadRepository */
         $threadRepository = GeneralUtility::makeInstance(ThreadRepository::class);
         $threadRepository->update($thread);
 
-        // XP gutschreiben
+        // Credit XP
         $this->xpService->gain($frontendUser, 1, Xp::TYPE_FORUM_POST);
 
         $this->activityService->addActivity(
@@ -67,7 +78,6 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
             (new LinkBuilderDTO(Activity::TYPE_FORUM_THREAD, $thread->getUid()))->build()
         );
 
-//        $returnPageNo = ceil(count($thread->getPosts()) / (int)$this->settings['defaults']['threadItemsPerPage']);
 
         // Wieder zurück zum Thread springen
         return $this->redirect(

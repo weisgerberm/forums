@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldFrontenduser;
 use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldSoftDeleted;
 
@@ -56,11 +58,12 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * multiple PostContent Objects for history and edit mode
      *
+     * Muss nicht lazy sein und könnte ggf. eher negativ sein, weil wir bei einem post eigentlich IMMER den postcontent benötigen
+     *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\PostContent>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
-    #[Lazy()]
-    protected $postContent = null;
+    #[Cascade(['value' => 'remove'])]
+    protected ObjectStorage|null $postContent = null;
 
     /**
      * likes
@@ -192,11 +195,8 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Weisgerber\Forums\Domain\Model\PostContent>
      */
-    public function getPostContent()
+    public function getPostContent():ObjectStorage
     {
-        if ($this->postContent instanceof LazyLoadingProxy) {
-            $this->postContent->_loadRealInstance();
-        }
         return $this->postContent;
     }
 
