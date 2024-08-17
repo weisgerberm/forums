@@ -69,11 +69,11 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $tags = null;
 
     /**
-     * activeUsers
+     * subscribers
      *
      * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
      */
-    protected $activeUsers = null;
+    protected $subscribers = null;
 
     /**
      * __construct
@@ -310,20 +310,20 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \Weisgerber\DarfIchMit\Domain\Model\FrontendUser|null
      */
-    public function getActiveUsers()
+    public function getSubscribers()
     {
-        return $this->activeUsers;
+        return $this->subscribers;
     }
 
     /**
      * Sets the activeUsers
      *
-     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $activeUsers
+     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $subscribers
      * @return void
      */
-    public function setActiveUsers(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $activeUsers)
+    public function setSubscribers(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $subscribers)
     {
-        $this->activeUsers = $activeUsers;
+        $this->subscribers = $subscribers;
     }
 
     /**

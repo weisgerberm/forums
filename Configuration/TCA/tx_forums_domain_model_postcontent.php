@@ -8,6 +8,7 @@ return [
         'default_sortby' => '',
         'descriptionColumn' => '',
         'label' => 'description',
+        'hideTable' => 1,
         'searchFields' => '',
     ], false, false),
     'palettes' => TcaUtility::getPalettes(),
