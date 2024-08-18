@@ -14,7 +14,7 @@
 
     <div class="card card-body blur shadow-blur{f:if(condition: '{frontendUser.coverPicture}', then: ' mx-1 mx-sm-4 mt-n12')}">
         <div class="row">
-            <div class="col-5 col-sm-4 col-md-3 col-lg-2">
+            <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center">
                 <f:if condition="{frontendUser}">
                     <f:render partial="Basics/Avatar" arguments="{avatar:frontendUser.avatar, avatarSize:'lg', username:frontendUser.username, fallbackLetterColor:'primary', width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
                 </f:if>
