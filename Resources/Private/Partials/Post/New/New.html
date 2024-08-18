@@ -6,7 +6,9 @@
             <f:render partial="Post/Quote/QuoteHint" arguments="{_all}" />
         </f:then>
         <f:else>
-            <h2 class="mt-4"><f:translate key="reply" /></h2>
+            <h2 class="mt-3 align-items-center d-flex gap-3">
+                <f:render arguments="{icon:'compose-2'}" partial="Prefabs/Icon"/> <f:translate key="reply" />
+            </h2>
         </f:else>
 
     </f:if>
