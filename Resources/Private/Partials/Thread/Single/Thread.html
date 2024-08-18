@@ -4,8 +4,6 @@
     <div class="thread__controls thread__controls--top align-items-center d-flex justify-content-between">
         <div class="d-flex gap-3">
             <f:render partial="Prefabs/ButtonIcon" arguments="{type:'none', href:'#reply', title: '{f:translate(key:\'reply\')}',icon:'d-add', additionalClasses:'btn btn-secondary mb-0'}"/>
-
-            <a href="#reply" class=""><f:translate key="reply" /></a>
             <f:render partial="Prefabs/ButtonIcon" arguments="{type:'action', action:'subscribe', arguments:'{thread:thread}', title: '{f:translate(key:\'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:subscribe-thread\')}',icon:'bell-plus', additionalClasses:'btn-outline-secondary'}"/>
 
         </div>
