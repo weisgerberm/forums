@@ -14,6 +14,7 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Domain\Model\Activity;
 use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
@@ -165,8 +166,6 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
         // XP gutschreiben
         $this->xpService->gain($frontendUser, 3, Xp::TYPE_FORUM_THREAD);
 
-
-
         // Sodass die URL schon korrekt aufgelöst werden kann bei der Weiterleitung
         DimUtility::persistAll();
         $this->activityService->addActivity(
@@ -178,59 +177,36 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     }
 
     /**
-     * action edit
+     * Subscribe the current logged in user to the given thread
      *
      * @param Thread $thread
-     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("thread")
      * @return ResponseInterface
+     * @throws AspectNotFoundException
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
-    public function editAction(Thread $thread): ResponseInterface
+    #[IgnoreValidation(['argumentName' => 'thread'])]
+    public function subscribeAction(Thread $thread): ResponseInterface
     {
-        $this->view->assign('thread', $thread);
-        return $this->htmlResponse();
-    }
+        $frontendUser = $this->fetchFeUser();
+        if($frontendUser === null){
+            \nn\t3::Http()->redirect( $this->settings['noPermission'] );
+        }
 
-    /**
-     * action update
-     *
-     * @param Thread $thread
-     */
-    public function updateAction(Thread $thread)
-    {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->threadRepository->update($thread);
-        $this->redirect('list');
-    }
+        if($frontendUser->hasThreadSubscription($thread)){
+            // Falls der Benutzer bereits Abonnent ist geben wir lediglich eine Nachricht aus und unternehmen sonst nichts
+            \nn\t3::Message()->WARNING(
+                LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:that-didnt-work', 'EXT:darf_ich_mit'),
+                LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:already-subscribed-thread', 'EXT:forums'));
+        }else{
+            // Der Benutzer hat noch kein Abonnement und das legen wir nun an
+            \nn\t3::Message()->OK(
+                LocalizationUtility::translate('LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:super', 'EXT:darf_ich_mit_social'),
+                LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:subscribed-thread', 'EXT:forums'));
+            $thread->addSubscriber($frontendUser);
+            $this->threadRepository->update($thread);
+        }
 
-    /**
-     * action delete
-     *
-     * @param Thread $thread
-     */
-    public function deleteAction(Thread $thread)
-    {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->threadRepository->remove($thread);
-        $this->redirect('list');
-    }
-
-    /**
-     * action lock
-     *
-     * @return ResponseInterface
-     */
-    public function lockAction(): ResponseInterface
-    {
-        return $this->htmlResponse();
-    }
-
-    /**
-     * action rss
-     *
-     * @return ResponseInterface
-     */
-    public function rssAction(): ResponseInterface
-    {
-        return $this->htmlResponse();
+        return $this->redirect('show', null, null, ['thread' => $thread]);
     }
 }

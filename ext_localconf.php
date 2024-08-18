@@ -9,12 +9,12 @@ defined('TYPO3') || die();
         'Forums',
         'Show',
         [
-            ThreadController::class => 'list, show, new, create, edit, update, delete',
+            ThreadController::class => 'list, show, new, create, subscribe',
             PostController::class => 'create, edit, update, delete, restore, quote'
         ],
         // non-cacheable actions
         [
-            ThreadController::class => 'list, show, new, create, edit, update, delete',
+            ThreadController::class => 'list, show, new, create, subscribe',
             PostController::class => 'create, edit, update, delete, restore, quote'
         ]
     );

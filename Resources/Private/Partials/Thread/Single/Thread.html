@@ -2,16 +2,19 @@
 
     <h1>{thread.title}</h1>
     <div class="thread__controls thread__controls--top align-items-center d-flex justify-content-between">
-        <a href="#reply" class="btn btn-secondary"><f:translate key="reply" /></a>
+        <div class="d-flex gap-3">
+            <a href="#reply" class="btn btn-secondary mb-0"><f:translate key="reply" /></a>
+            <f:render partial="Prefabs/ButtonIcon" arguments="{type:'action', action:'subscribe', arguments:'{thread:thread}', title: '{f:translate(key:\'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:subscribe-thread\')}',icon:'d-add', additionalClasses:'btn-outline-secondary'}"/>
+
+        </div>
         <div class="text-sm">
             <f:translate key="LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:x-posts" arguments="{0:'{thread.posts -> f:count()}'}" />
         </div>
     </div>
-    <f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, passthrough:'{thread:thread, action:\'show\'}'}"/>
 
+    <f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, passthrough:'{thread:thread, action:\'show\'}', additionalClasses:'pt-2'}"/>
     <f:render partial="Post/List/List" arguments="{_all}" />
-
-    <f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, passthrough:'{thread:thread, action:\'show\'}'}"/>
+    <f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, passthrough:'{thread:thread, action:\'show\'}', additionalClasses:'pt-4'}"/>
 
     <f:security.ifHasRole role="6">
         <f:then>
