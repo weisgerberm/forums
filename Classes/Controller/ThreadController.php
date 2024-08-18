@@ -10,36 +10,19 @@ use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
-use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
-use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
-use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
+use TYPO3\CMS\Extbase\Persistence\Exception\{IllegalObjectTypeException, UnknownObjectException};
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Domain\Model\Activity;
 use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
-use Weisgerber\DarfIchMit\Traits\ActivityServiceTrait;
-use Weisgerber\DarfIchMit\Traits\FrontendUserServiceTrait;
-use Weisgerber\DarfIchMit\Traits\SlugServiceTrait;
-use Weisgerber\DarfIchMit\Traits\XpServiceTrait;
+use Weisgerber\DarfIchMit\Traits\{ActivityServiceTrait, FrontendUserServiceTrait, SlugServiceTrait, XpServiceTrait};
 use Weisgerber\DarfIchMit\Utility\DimUtility;
-use Weisgerber\Forums\Domain\Model\Post;
-use Weisgerber\Forums\Domain\Model\Thread;
-use Weisgerber\Forums\Service\UriService;
+use Weisgerber\Forums\Domain\Model\{Post, Thread};
 use Weisgerber\Forums\Traits\{ThreadRepositoryTrait, ThreadServiceTrait, UriServiceTrait};
+use Weisgerber\DarfIchMit\Utility\MathUtility;
+use Weisgerber\Forums\Domain\Repository\PostRepository;
 
-/**
- * This file is part of the "forums" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * (c) 2022 Mark Weisgerber <mark.weisgerber@outlook.de>
- */
-
-/**
- * ThreadController
- */
 class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractController
 {
     use SlugServiceTrait;
@@ -79,7 +62,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
      * @param Thread    $thread
      * @param int       $currentPage
      * @param Post|null $quotePost
-     * @param int      $jumpToLatest
+     * @param int       $jumpTo
      * @return ResponseInterface
      * @throws AspectNotFoundException
      * @throws IllegalObjectTypeException
@@ -87,14 +70,25 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
      */
     #[IgnoreValidation(['argumentName' => 'thread'])]
     #[IgnoreValidation(['argumentName' => 'quotePost'])]
-    public function showAction(Thread $thread, int $currentPage = 1, ?Post $quotePost = null, int $jumpToLatest = 0): ResponseInterface
+    public function showAction(Thread $thread, int $currentPage = 1, ?Post $quotePost = null, int $jumpTo = 0): ResponseInterface
     {
+        $returnPageNo = 0;
+
         // Wenn der Benutzer zum neusten Beitrag springen will, dann schauen wir nach, welche Seite er dafür braucht und machen dafür einen redirect
-        if($jumpToLatest && $currentPage === 1){
-            $returnPageNo = ceil(count($thread->getPosts()) / (int)$this->settings['defaults']['threadItemsPerPage']);
-            if($returnPageNo>1){
-                return $this->redirect('show', null, null, ['thread' => $thread, 'currentPage' => $returnPageNo, 'jumpToLatest' => $jumpToLatest, 'quotePost' => $quotePost]);
+        if($jumpTo === 1 && $currentPage === 1){
+            $returnPageNo = MathUtility::getPageNo(count($thread->getPosts()), (int)$this->settings['defaults']['threadItemsPerPage']);
+        }else if($jumpTo > 1){
+            // Wenn größer als 1, dann suchen wir eine Post-UID
+            /** @var PostRepository $postRepository */
+            $postRepository = GeneralUtility::makeInstance(PostRepository::class);
+            $targetPost = $postRepository->findByUid($jumpTo);
+            if($targetPost){
+                $returnPageNo = MathUtility::getPageNo($thread->getPosts()->getPosition($targetPost), (int)$this->settings['defaults']['threadItemsPerPage']);
             }
+        }
+
+        if($returnPageNo>1){
+            return $this->redirect('show', null, null, ['thread' => $thread, 'currentPage' => $returnPageNo, 'jumpTo' => $jumpTo, 'quotePost' => $quotePost]);
         }
 
         $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
@@ -117,7 +111,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
 
         $this->view->assignMultiple([
             'thread' => $thread,
-            'jumpToLatest' => $jumpToLatest,
+            'jumpTo' => $jumpTo,
             'currentPage' => $currentPage,
             'pagination' => $pagination,
             'paginator' => $paginator,

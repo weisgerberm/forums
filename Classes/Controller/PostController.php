@@ -84,7 +84,7 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
             'show',
             'Thread',
             null,
-            ['thread' => $thread, 'jumpToLatest' => true]
+            ['thread' => $thread, 'jumpTo' => 1]
         );
     }
 
