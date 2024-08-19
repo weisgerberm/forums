@@ -1,4 +1,21 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:translate key="reply" />
-<f:render partial="Basics/ReplyRTE" arguments="{forbidden:1}" />
+<h2 class="mt-3 align-items-center d-flex gap-3">
+    <f:render arguments="{icon:'compose-2'}" partial="Prefabs/Icon"/> <f:translate key="reply" />
+</h2>
+<div class="position-relative mb-6 mb-md-0">
+    <f:render partial="Basics/ReplyRTE" arguments="{forbidden:1}" />
+    <div class="position-absolute top-0 ms-3">
+        <h3>Du brauchst ein Benutzerprofil</h3>
+        <p class="mb-5 mb-sm-2">Bitte melde dich an oder erstelle ein kostenloses neues Profil</p>
+        <div class="d-flex gap-3">
+            <f:link.page pageUid="110" class="btn btn-primary">
+                Anmelden
+            </f:link.page>
+            <f:link.page pageUid="111" class="btn btn-quaternary">
+                Neues Profil erstellen
+            </f:link.page>
+        </div>
+    </div>
+</div>
+
 </html>

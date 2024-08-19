@@ -12,7 +12,7 @@
 </f:comment>
 
 <div class="control">
-    <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}" rows="5" property="postContent.0.description" class="form-control forums-rte"></f:form.textarea>
+    <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" placeholder="{f:if(condition:'!{forbidden}',then:'{f:translate(key:\'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message\')}')}" rows="5" property="postContent.0.description" class="form-control forums-rte"></f:form.textarea>
     <div class="forums-rte-wordcount"></div>
 </div>
 
