@@ -60,6 +60,16 @@ plugin.tx_forums {
     #callDefaultActionIfActionCantBeResolved = 1
   }
 }
+module.tx_forums {
+  settings {
+    modulePrefabs {
+      Backend {
+        9 = Backend->status
+        20 = Backend->news
+      }
+    }
+  }
+}
 @import 'EXT:forums/Configuration/TypoScript/Blocks/blocks.setup.typoscript'
 @import 'EXT:forums/Configuration/TypoScript/Page/page.setup.typoscript'
 @import 'EXT:forums/Configuration/TypoScript/DoktypeInit.setup.typoscript'
