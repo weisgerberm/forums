@@ -6,7 +6,7 @@ use Weisgerber\Forums\Domain\Model\Thread;
 
 return [
     'ctrl' => TcaUtility::getController(Thread::TABLE_NAME,'forums', [
-        'sortby' => 'sorting',
+        'sortby' => 'last_posted_on',
     ], false),
     'palettes' => TcaUtility::getPalettes([
         'p_cache' => [
@@ -15,7 +15,7 @@ return [
         ],
     ]),
     'types' => [
-        '1' => ['showitem' => TcaUtility::tab(null, ['p_name','p_slug','p_cache','posts','tags','subscribers']).
+        '1' => ['showitem' => TcaUtility::tab(null, ['p_name','p_slug','p_cache','posts','tags','subscribers','last_posted_on']).
             TcaUtility::languageTab().
             TcaUtility::accessTab().'closed,sticky,'.
             TcaUtility::notesTab()],
@@ -51,6 +51,18 @@ return [
                 'label' => TcaUtility::title('sticky'),
                 'config' => TcaUtility::getCheckboxToggle(),
             ],
+            'last_posted_on' => [
+                'exclude' => true,
+                'label' => TcaUtility::title('last_posted_on'),
+                'config' => [
+                    'type' => 'input',
+                    'renderType' => 'inputDateTime',
+                    'default' => 0,
+                    'range' => [
+                        'upper' => mktime(0, 0, 0, 1, 1, 2038)
+                    ],
+                ],
+            ],
             'posts' => [
                 'exclude' => true,
                 'label' => TcaUtility::title('posts'),
@@ -58,7 +70,7 @@ return [
                     'type' => 'inline',
                     'foreign_table' => Post::TABLE_NAME,
                     'foreign_field' => 'thread',
-                    'maxitems' => 9999,
+                    'maxitems' => 99999,
                     'appearance' => [
                         'collapseAll' => 1,
                         'levelLinksPosition' => 'top',

@@ -7,6 +7,7 @@ CREATE TABLE tx_forums_domain_model_thread
 	sticky               smallint(1) unsigned NOT NULL DEFAULT '0',
 	posts                int(11) unsigned     NOT NULL DEFAULT '0',
 	tags                 int(11) unsigned     NOT NULL DEFAULT '0',
+	last_posted_on       int(11)              NOT NULL DEFAULT '0',
 	subscribers          int(11) unsigned              DEFAULT '0'
 );
 

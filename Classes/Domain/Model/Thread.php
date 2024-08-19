@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Domain\Model;
 
 
+use DateTime;
 use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
@@ -74,6 +75,8 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     #[Lazy()]
     protected $subscribers = null;
 
+    protected ?DateTime $lastPostedOn;
+
     /**
      * __construct
      */
@@ -106,6 +109,7 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function addPost(Post $post)
     {
+        $this->setLastPostedOn(new DateTime());
         $this->setCachedCounterPosts(count($this->posts));
         $this->posts->attach($post);
     }
@@ -159,6 +163,16 @@ class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getLastPost()
     {
         return $this->getPosts()->offsetGet($this->getPosts()->count() - 1);
+    }
+
+    public function getLastPostedOn(): ?DateTime
+    {
+        return $this->lastPostedOn;
+    }
+
+    public function setLastPostedOn(?DateTime $lastPostedOn): void
+    {
+        $this->lastPostedOn = $lastPostedOn;
     }
 
     /**
