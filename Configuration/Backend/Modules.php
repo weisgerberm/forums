@@ -21,6 +21,7 @@ return [
             BackendController::class => [
                 'status',
                 'news',
+                'createNewsThread'
             ],
         ],
     ],

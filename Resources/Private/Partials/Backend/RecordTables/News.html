@@ -5,60 +5,25 @@
             Name
         </th>
         <th>
-            In
-        </th>
-        <th>
-            Dsc
-        </th>
-        <th>
-            Sum
-        </th>
-        <th>
-            Ti
-        </th>
-        <th>
-            Img
-        </th>
-        <th>
-            Wiki
-        </th>
-        <th>
-            SB
-        </th>
-        <th>
-            Coun
-        </th>
-        <th>
-            Pub
-        </th>
-        <th>
-            Fin
+            Has a thread
         </th>
         <th>
             UID
         </th>
     </tr>
-    <f:for as="record" each="{records}">
+    <f:for as="record" each="{records}" reverse="1">
         <tr class="t3js-entity">
             <td class="col-responsive nowrap">
                 <span class="treeline-icon treeline-icon-join"></span>
                 <span>
                     <span class="t3js-icon icon icon-size-small icon-state-default icon-apps-pagetree-page-default" data-identifier="apps-pagetree-page-default">
                         <span class="icon-markup">
-                            <f:if condition="{record.published}">
-                                <f:then>
-                                    <svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/apps.svg#apps-pagetree-page-domain"></use></svg>
-                                </f:then>
-                                <f:else>
-                                    <svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/apps.svg#apps-pagetree-page-content-from-page-hideinmenu"></use></svg>
-                                </f:else>
-                            </f:if>
+                            <svg class="icon-color"><use xlink:href="/typo3/sysext/core/Resources/Public/Icons/T3Icons/sprites/apps.svg#apps-pagetree-page-content-from-page-hideinmenu"></use></svg>
                         </span>
                     </span>
                 </span>
-                <span
-                class="t3js-icon icon icon-size-small icon-state-default icon-flags-de" data-identifier="flags-de"><span
-                class="icon-markup"><core:icon identifier="flags-de"/></span></span>
+                <span class="t3js-icon icon icon-size-small icon-state-default icon-flags-de" data-identifier="flags-de">
+                    <span class="icon-markup"><core:icon identifier="flags-de"/></span></span>
                 <span>
                     <be:link.editRecord class="{f:if(condition:record.parent, then:'text-info')}" table="{table}" uid="{record.uid}">
                         {record.title}
@@ -73,34 +38,18 @@
                 </f:if>
             </td>
             <td>
-                <f:if condition="!{record.intro}"><span class="badge badge-danger" title="Missing intro">I</span></f:if>
-            </td>
-            <td>
-                <f:if condition="!{record.description}"><span class="badge badge-success" title="Missing description-text">D</span></f:if>
-            </td>
-            <td>
-                <f:if condition="!{record.summary}"><span class="badge badge-dark" title="Missing summary">S</span></f:if>
-            </td>
-            <td>
-                <f:if condition="!{record.title_seo}"><span class="badge badge-warning" title="Missing SEO">Ti</span></f:if>
-            </td>
-            <td>
-                <f:if condition="!{record.image}"><span class="badge badge-danger" title="Missing image">I</span></f:if>
-            </td>
-            <td>
-                <f:if condition="!{record.wikipedia}"><span class="badge badge-info" title="Missing wiki">W</span></f:if>
-            </td>
-            <td>
-                <f:if condition="!{record.similar_breeds}"><span class="badge badge-dark" title="Missing similar breeds">S</span></f:if>
-            </td>
-            <td>
-                <f:if condition="!{record.country_of_origin}"><span class="badge badge-primary" title="Missing country">C</span></f:if>
-            </td>
-            <td>
-                <f:if condition="!{record.published}"><span class="badge badge-success" title="Not Published">!PUB</span></f:if>
-            </td>
-            <td>
-                <f:if condition="!{record.finalized}"><span class="badge badge-warning" title="Not Published">!FIN</span></f:if>
+                <f:if condition="!{record.importSource}">
+                    <f:then>
+                        <f:link.action class="text-danger" action="createNewsThread" arguments="{news:record}">
+                            No, create a thread.
+                        </f:link.action>
+                    </f:then>
+                    <f:else>
+                        <span class="text-success">
+                            Yes
+                        </span>
+                    </f:else>
+                </f:if>
             </td>
             <td>{record.uid}</td>
         </tr>
