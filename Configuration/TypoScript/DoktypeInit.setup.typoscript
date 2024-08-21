@@ -1,14 +1,33 @@
 # Adds automatically the plugin for those two doktypes
-#[traverse(page, "doktype") in [95,96]]
-#  page.11 = USER
-#  page.11 {
-#    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-#    vendorName = Weisgerber
-#    extensionName = Forums
-#    pluginName = Show
-#    settings < plugin.tx_forums.settings
-#    persistence < plugin.tx_forums.persistence
-#
-#  }
-#
-#[global]
+[traverse(page, "doktype") == 95]
+  lib.forums = USER
+  lib.forums {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    vendorName = Weisgerber
+    extensionName = Forums
+    pluginName = Show
+    settings < plugin.tx_forums.settings
+    persistence < plugin.tx_forums.persistence
+    stdWrap{
+      wrap = <div class="frame-container frame-container-default my-3">|</div>
+    }
+
+  }
+
+[global]
+[traverse(page, "doktype") == 96]
+  lib.forums = USER
+  lib.forums {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    vendorName = Weisgerber
+    extensionName = Forums
+    pluginName = Subforum
+    settings < plugin.tx_forums.settings
+    persistence < plugin.tx_forums.persistence
+    stdWrap{
+      wrap = <div class="frame-container frame-container-default my-3">|</div>
+    }
+
+  }
+
+[global]

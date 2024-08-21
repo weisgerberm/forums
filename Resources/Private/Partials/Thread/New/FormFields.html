@@ -2,15 +2,15 @@
 <div class="row">
     <div class="col-12">
         <div class="form-floating mb-3">
-            <f:form.textfield class="form-control" placeholder="Titel" property="title" id="title" />
-            <label for="title">Thema</label>
+            <f:form.textfield class="form-control" property="title" id="title" />
+            <label for="title">{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:thread')}</label>
         </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12">
-        <f:form.textarea id="description" rows="10" property="posts.0.postContent.0.description" placeholder="Deine Nachricht ..." class="form-control"></f:form.textarea>
+        <f:form.textarea id="description" rows="10" property="posts.0.postContent.0.description" placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}" class="form-control"></f:form.textarea>
     </div>
 </div>
 </html>
