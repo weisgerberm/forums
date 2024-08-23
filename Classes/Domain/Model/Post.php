@@ -44,6 +44,13 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected bool $spam = false;
 
     /**
+     * allow html
+     *
+     * @var bool
+     */
+    protected bool $allowHtml = false;
+
+    /**
      * awaitingAdminApproval
      *
      * @var bool
@@ -351,5 +358,15 @@ class Post extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setQuote(?PostContent $quote): void
     {
         $this->quote = $quote;
+    }
+
+    public function isAllowHtml(): bool
+    {
+        return $this->allowHtml;
+    }
+
+    public function setAllowHtml(bool $allowHtml): void
+    {
+        $this->allowHtml = $allowHtml;
     }
 }

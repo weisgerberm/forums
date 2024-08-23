@@ -16,7 +16,7 @@ return [
                 null,
                 ['post_content', 'likes']
             ) .
-            TcaUtility::accessTab().'spam,quote,soft_deleted,awaiting_admin_approval,admin_comment'
+            TcaUtility::accessTab().'spam,allow_html,quote,soft_deleted,awaiting_admin_approval,admin_comment'
         ],
     ],
     'columns' => \nn\t3::TCA()->createConfig(
@@ -33,6 +33,12 @@ return [
                 'exclude' => true,
                 'label' => TcaUtility::title('soft_deleted'),
                 'description' => TcaUtility::desc('soft_deleted'),
+                'config' => TcaUtility::getCheckboxToggle(),
+            ],
+            'allow_html' => [
+                'exclude' => true,
+                'label' => TcaUtility::title('allow_html'),
+                'description' => TcaUtility::desc('allow_html'),
                 'config' => TcaUtility::getCheckboxToggle(),
             ],
             'awaiting_admin_approval' => [
