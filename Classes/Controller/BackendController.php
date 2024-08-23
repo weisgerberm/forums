@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Controller;
 
-use GeorgRinger\News\Domain\Model\News;
-use GeorgRinger\News\Domain\Repository\NewsRepository;
+use Weisgerber\DarfIchMit\Domain\Repository\NewsDefaultRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
-use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Controller\AbstractBackendController;
 use Weisgerber\DarfIchMit\Traits\FrontendUserRepositoryTrait;
@@ -45,21 +43,31 @@ class BackendController extends AbstractBackendController
 
     /**
      * Create a thread for news-records
+     *
+     * @param int $currentPage
+     * @return ResponseInterface
      */
-    public function newsAction(): ResponseInterface
+    public function newsAction(int $currentPage = 1): ResponseInterface
     {
         /** @var NewsRepository $newsRepository */
-        $newsRepository = GeneralUtility::makeInstance(NewsRepository::class);
+        $newsRepository = GeneralUtility::makeInstance(NewsDefaultRepository::class);
         /** @var Typo3QuerySettings $querySettings */
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $querySettings->setRespectSysLanguage(false);
         $querySettings->setRespectStoragePage(false);
         $newsRepository->setDefaultQuerySettings($querySettings);
-        $news = $newsRepository->findAll();
+
+        /** @var \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator $paginator */
+        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $newsRepository->findBy([], ['uid' => QueryInterface::ORDER_DESCENDING]), $currentPage, 25);
+        /** @var \TYPO3\CMS\Core\Pagination\SimplePagination $pagination */
+        $pagination = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Pagination\SlidingWindowPagination::class,$paginator, 10);
 
         $this->view->assignMultiple([
-            'records' => $news,
-            'languages' => \nn\t3::Environment()->getLanguages()
+            'records' => $paginator->getPaginatedItems(),
+            'languages' => \nn\t3::Environment()->getLanguages(),
+            'pagination' => $pagination,
+            'paginator' => $paginator,
+            'currentPage' => $currentPage,
         ]);
 
         return $this->htmlResponse($this->createBackendView());
@@ -71,12 +79,13 @@ class BackendController extends AbstractBackendController
      *
      * @param int $news It's not the record itself so we can control which localized record we create, otherwise it would always be the default one
      * @param int $languageUid
+     * @param int $currentPage
      * @return ResponseInterface
-     * @throws SiteNotFoundException
      * @throws IllegalObjectTypeException
+     * @throws SiteNotFoundException
      * @throws UnknownObjectException
      */
-    public function createNewsThreadAction(int $news, int $languageUid): ResponseInterface
+    public function createNewsThreadAction(int $news, int $languageUid, int $currentPage = 1): ResponseInterface
     {
         $frontendUser = $this->frontendUserRepository->findByUid(2);
 
@@ -88,6 +97,7 @@ class BackendController extends AbstractBackendController
         $querySettings->setRespectStoragePage(false);
         $newsRepository->setDefaultQuerySettings($querySettings);
 
+        /** @var News $news */
         $news = $newsRepository->findByUid($news);
 
         $allLanguages = \nn\t3::Environment()->getLanguages();
@@ -101,12 +111,17 @@ class BackendController extends AbstractBackendController
         $post = GeneralUtility::makeInstance(Post::class);
         $post->setPid($newThread->getPid());
         $post->setFrontenduser($frontendUser);
+        $post->setAllowHtml(true);
 
         /** @var PostContent $postContent */
         $postContent = GeneralUtility::makeInstance(PostContent::class);
         $postContent->setPid($newThread->getPid());
         $postContent->setPost($post);
-        $postContent->setDescription(LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:discuss-our-article-here', 'EXT:forums', ['"'.$news->getTitle().'"'], $allLanguages[$languageUid]['locale']));;
+        $postContent->setDescription(
+            LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:discuss-our-article-here', 'EXT:forums', ['<strong><a href="t3://record?identifier=tx_news&amp;uid='.$news->getUid().'" >'.$news->getTitle().'</a></strong>'], $allLanguages[$languageUid]['locale']) .
+            '<div class="fs-3">'.LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:preview', 'EXT:darf_ich_mit') . '</div>' .
+            '<blockquote class="blockquote">' . $news->getTeaser() . '</blockquote>'
+        );
 
         $post->addPostContent($postContent);
 
@@ -116,9 +131,7 @@ class BackendController extends AbstractBackendController
 
 
         DimUtility::persistAll();
-        $news->setImportId($newThread->getUid());
-        $news->setImportSource('forums');
-
+        $news->setForumsThread($newThread);
 
         $newsRepository->update($news);
 
@@ -127,6 +140,6 @@ class BackendController extends AbstractBackendController
         $this->threadRepository->update($newThread);
 
         DimUtility::persistAll();
-        return $this->redirect('news');
+        return $this->redirect('news', null, null, ['currentPage' => $currentPage]);
     }
 }
