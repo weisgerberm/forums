@@ -1,9 +1,15 @@
+module.tx_forums {
+  view {
+    partialRootPaths.0 = EXT:darf_ich_mit/Resources/Private/Partials/
+    partialRootPaths.1 = EXT:forums/Resources/Private/Partials/
+  }
+}
 plugin.tx_forums {
   view {
     templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
     templateRootPaths.1 = {$plugin.tx_forums.view.templateRootPath}
-    partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
-    partialRootPaths.1 = {$plugin.tx_forums.view.partialRootPath}
+    partialRootPaths.0 = EXT:darf_ich_mit/Resources/Private/Partials/
+    partialRootPaths.1 = EXT:forums/Resources/Private/Partials/
     layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
     layoutRootPaths.1 = {$plugin.tx_forums.view.layoutRootPath}
   }
