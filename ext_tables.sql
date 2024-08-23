@@ -19,10 +19,16 @@ CREATE TABLE tx_forums_domain_model_post
 	spam                    smallint(1) unsigned NOT NULL DEFAULT '0',
 	soft_deleted            smallint(1) unsigned NOT NULL DEFAULT '0',
 	awaiting_admin_approval smallint(1) unsigned NOT NULL DEFAULT '0',
+	allow_html              smallint(1) unsigned NOT NULL DEFAULT '0',
 	admin_comment           text,
 	post_content            int(11) unsigned     NOT NULL DEFAULT '0',
 	likes                   int(11) unsigned     NOT NULL DEFAULT '0',
 	poll                    int(11) unsigned              DEFAULT '0'
+);
+
+CREATE TABLE tx_news_domain_model_news
+(
+	forums_thread int(11) unsigned     NOT NULL DEFAULT '0'
 );
 
 CREATE TABLE fe_users
