@@ -7,10 +7,16 @@ namespace Weisgerber\Forums\Controller;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Context\LanguageAspect;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Controller\AbstractBackendController;
-use Weisgerber\DarfIchMit\Domain\Model\Xp;
 use Weisgerber\DarfIchMit\Traits\FrontendUserRepositoryTrait;
 use Weisgerber\DarfIchMit\Traits\ModuleTemplateServiceTrait;
 use Weisgerber\DarfIchMit\Traits\SlugServiceTrait;
@@ -34,7 +40,6 @@ class BackendController extends AbstractBackendController
      */
     public function statusAction(): ResponseInterface
     {
-
         return $this->htmlResponse($this->createBackendView());
     }
 
@@ -47,11 +52,15 @@ class BackendController extends AbstractBackendController
         $newsRepository = GeneralUtility::makeInstance(NewsRepository::class);
         /** @var Typo3QuerySettings $querySettings */
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
+        $querySettings->setRespectSysLanguage(false);
         $querySettings->setRespectStoragePage(false);
         $newsRepository->setDefaultQuerySettings($querySettings);
         $news = $newsRepository->findAll();
 
-        $this->view->assign('records', $news);
+        $this->view->assignMultiple([
+            'records' => $news,
+            'languages' => \nn\t3::Environment()->getLanguages()
+        ]);
 
         return $this->htmlResponse($this->createBackendView());
     }
@@ -60,15 +69,32 @@ class BackendController extends AbstractBackendController
     /**
      * Creates a thread based on a news record
      *
-     * @param News $news
+     * @param int $news It's not the record itself so we can control which localized record we create, otherwise it would always be the default one
+     * @param int $languageUid
+     * @return ResponseInterface
+     * @throws SiteNotFoundException
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
-    public function createNewsThreadAction(News $news): ResponseInterface
+    public function createNewsThreadAction(int $news, int $languageUid): ResponseInterface
     {
-        $frontendUser = $this->frontendUserRepository->findByUid(1);
+        $frontendUser = $this->frontendUserRepository->findByUid(2);
+
+        /** @var NewsRepository $newsRepository */
+        $newsRepository = GeneralUtility::makeInstance(NewsRepository::class);
+        /** @var Typo3QuerySettings $querySettings */
+        $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
+        $querySettings->setLanguageAspect(new LanguageAspect($languageUid, $languageUid, LanguageAspect::OVERLAYS_MIXED));
+        $querySettings->setRespectStoragePage(false);
+        $newsRepository->setDefaultQuerySettings($querySettings);
+
+        $news = $newsRepository->findByUid($news);
+
+        $allLanguages = \nn\t3::Environment()->getLanguages();
 
         /** @var Thread $newThread */
         $newThread = GeneralUtility::makeInstance(Thread::class);
-        $newThread->setPid(6106); // Im Unterforum "Unsere Artikel"
+        $newThread->setPid($allLanguages[$languageUid]['forumArticles']); // Im Unterforum "Unsere Artikel" der jeweiligen Sprache. Sollte vorher schon geprüft werden, ob die Sprache diesen Ordner hat
         $newThread->setTitle($news->getTitle());
 
         /** @var Post $post */
@@ -80,7 +106,7 @@ class BackendController extends AbstractBackendController
         $postContent = GeneralUtility::makeInstance(PostContent::class);
         $postContent->setPid($newThread->getPid());
         $postContent->setPost($post);
-        $postContent->setDescription('Hier kann zu unserem Artikel '.$news->getTitle().' diskutiert werden');
+        $postContent->setDescription(LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:discuss-our-article-here', 'EXT:forums', ['"'.$news->getTitle().'"'], $allLanguages[$languageUid]['locale']));;
 
         $post->addPostContent($postContent);
 
@@ -93,8 +119,7 @@ class BackendController extends AbstractBackendController
         $news->setImportId($newThread->getUid());
         $news->setImportSource('forums');
 
-        /** @var NewsRepository $newsRepository */
-        $newsRepository = GeneralUtility::makeInstance(NewsRepository::class);
+
         $newsRepository->update($news);
 
 

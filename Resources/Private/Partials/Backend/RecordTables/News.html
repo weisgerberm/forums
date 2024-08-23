@@ -22,8 +22,8 @@
                         </span>
                     </span>
                 </span>
-                <span class="t3js-icon icon icon-size-small icon-state-default icon-flags-de" data-identifier="flags-de">
-                    <span class="icon-markup"><core:icon identifier="flags-de"/></span></span>
+                <span class="t3js-icon icon icon-size-small icon-state-default icon-flags-de">
+                    <span class="icon-markup"><core:icon identifier="flags-{languages.{record.sysLanguageUid}.flag}"/></span></span>
                 <span>
                     <be:link.editRecord class="{f:if(condition:record.parent, then:'text-info')}" table="{table}" uid="{record.uid}">
                         {record.title}
@@ -38,16 +38,23 @@
                 </f:if>
             </td>
             <td>
-                <f:if condition="!{record.importSource}">
+                <f:if condition="{languages.{record.sysLanguageUid}.forumArticles}">
                     <f:then>
-                        <f:link.action class="text-danger" action="createNewsThread" arguments="{news:record}">
-                            No, create a thread.
-                        </f:link.action>
-                    </f:then>
-                    <f:else>
+                        <f:if condition="!{record.importSource}">
+                            <f:then>
+                                <f:link.action class="text-danger" action="createNewsThread" arguments="{news:record.uid, languageUid: record.sysLanguageUid}">
+                                    No, create a thread.
+                                </f:link.action>
+                            </f:then>
+                            <f:else>
                         <span class="text-success">
                             Yes
                         </span>
+                            </f:else>
+                        </f:if>
+                    </f:then>
+                    <f:else>
+                        No forum found
                     </f:else>
                 </f:if>
             </td>
