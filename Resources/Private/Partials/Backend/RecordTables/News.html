@@ -1,3 +1,5 @@
+<f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, additionalClasses:'pt-4', passthrough:'{action:\'news\'}'}"/>
+
 <table class="table table-striped table-hover mb-0">
     <tbody>
     <tr>
@@ -11,7 +13,7 @@
             UID
         </th>
     </tr>
-    <f:for as="record" each="{records}" reverse="1">
+    <f:for each="{records}" as="record">
         <tr class="t3js-entity">
             <td class="col-responsive nowrap">
                 <span class="treeline-icon treeline-icon-join"></span>
@@ -25,24 +27,17 @@
                 <span class="t3js-icon icon icon-size-small icon-state-default icon-flags-de">
                     <span class="icon-markup"><core:icon identifier="flags-{languages.{record.sysLanguageUid}.flag}"/></span></span>
                 <span>
-                    <be:link.editRecord class="{f:if(condition:record.parent, then:'text-info')}" table="{table}" uid="{record.uid}">
+                    <be:link.editRecord class="{f:if(condition:record.parent, then:'text-info')}" table="tx_news_domain_model_news" uid="{record.uid}">
                         {record.title}
                     </be:link.editRecord>
-
-                    <f:if condition="{record.count}"> <span class="text-muted">({record.count}x)</span></f:if>
                 </span>
-                <f:if condition="{record.duplicate}">
-                    <be:link.editRecord class="" table="{table}" uid="{record.duplicate_uid}">
-                        <span class="text-danger"> {record.duplicate}</span>
-                    </be:link.editRecord></span>
-                </f:if>
             </td>
             <td>
                 <f:if condition="{languages.{record.sysLanguageUid}.forumArticles}">
                     <f:then>
-                        <f:if condition="!{record.importSource}">
+                        <f:if condition="!{record.forumsThread}">
                             <f:then>
-                                <f:link.action class="text-danger" action="createNewsThread" arguments="{news:record.uid, languageUid: record.sysLanguageUid}">
+                                <f:link.action class="text-danger" action="createNewsThread" arguments="{news:record.uid, languageUid: record.sysLanguageUid, currentPage:currentPage}">
                                     No, create a thread.
                                 </f:link.action>
                             </f:then>
@@ -63,3 +58,4 @@
     </f:for>
     </tbody>
 </table>
+<f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, additionalClasses:'pt-4', passthrough:'{action:\'news\'}'}"/>
