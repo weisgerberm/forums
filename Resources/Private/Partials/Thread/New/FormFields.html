@@ -3,14 +3,21 @@
     <div class="col-12">
         <div class="form-floating mb-3">
             <f:form.textfield class="form-control" property="title" id="title" />
+
             <label for="title">{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:thread')}</label>
         </div>
     </div>
 </div>
-
+<f:asset.script identifier="wysiwyg" src="EXT:darf_ich_mit/Resources/Public/Scripts/quill.js" />
+<f:asset.css identifier="wysiwyg" href="EXT:darf_ich_mit/Resources/Public/Styles/quill.snow.css" />
 <div class="row">
     <div class="col-12">
-        <f:form.textarea id="description" rows="10" property="posts.0.postContent.0.description" placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}" class="form-control"></f:form.textarea>
+        <div class="bg-white">
+            <f:form.textarea class="form-control wysiwyg-input d-none" id="description" rows="10" property="posts.0.postContent.0.description" ></f:form.textarea>
+            <div class="wysiwyg-editor" data-placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}">
+                <p></p>
+            </div>
+        </div>
     </div>
 </div>
 </html>
