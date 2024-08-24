@@ -5,7 +5,7 @@
 
 <f:render partial="FormErrors" />
 
-<f:form class="wysiwyg-form" action="create" name="newThread" object="{newThread}">
+<f:form class="wysiwyg-form lock-submit" action="create" name="newThread" object="{newThread}">
     <f:if condition="{frontendUser.coverPicture}">
         <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{frontendUser.coverPicture.image.0}', width: '1400')}); background-position-y: 50%;">
             <span class="mask bg-gradient-primary opacity-1"></span>
@@ -22,7 +22,7 @@
                 <p class="subtitle is-5 my-2">
                     <f:render partial="Basics/Username" arguments="{frontenduser:frontendUser}" />
                 </p>
-                <div class="d-flex align-items-center text-xs">
+                <div class="align-items-center d-flex justify-content-center text-xs">
                     <f:if condition="{frontendUser}">
                         <f:render partial="Basics/XP" arguments="{amount:frontendUser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{frontendUser.xp}" />
                     </f:if>

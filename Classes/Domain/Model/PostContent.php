@@ -7,6 +7,7 @@ namespace Weisgerber\Forums\Domain\Model;
 
 use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldCrDate;
 use Weisgerber\DarfIchMit\Domain\Model\Traits\FieldDescription;
+use Weisgerber\DarfIchMit\Utility\ParserUtility;
 
 class PostContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
@@ -37,7 +38,8 @@ class PostContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setDescription(string $description): void
     {
-        $this->description = trim(preg_replace('/(\r\n|\r|\n){4,}/', "\n\n\n", $description));
+        $this->description = ParserUtility::cleanupUserHtml($description);
+//        $this->description = trim(preg_replace('/(\r\n|\r|\n){4,}/', "\n\n\n", $description));
     }
 
 

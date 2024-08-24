@@ -1,7 +1,7 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
     <div class="forums__rte">
         <f:render partial="FormErrors" />
-        <f:form action="update" controller="Post" name="editPostDTO">
+        <f:form action="update" controller="Post" name="editPostDTO" class="lock-submit wysiwyg-form">
             <f:form.hidden property="post" value="{post.uid}" />
             <f:render partial="Basics/EditRTE.Basic" arguments="{_all}" />
             <div class="row">

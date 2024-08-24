@@ -1,6 +1,11 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-    <p class="control">
-        <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}" rows="10" property="description" value="{post.currentPostContent.description}" class="form-control forums-rte"></f:form.textarea>
+    <div class="bg-white mb-3">
+        <f:asset.script identifier="wysiwyg" src="EXT:darf_ich_mit/Resources/Public/Scripts/quill.js" />
+        <f:asset.css identifier="wysiwyg" href="EXT:darf_ich_mit/Resources/Public/Styles/quill.snow.css" />
+        <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}" rows="10" property="description" value="" class="form-control forums-rte wysiwyg-input d-none"></f:form.textarea>
+        <div class="wysiwyg-editor" data-placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}">
+            <f:format.html parseFuncTSPath="lib.parseFunc_Safe">{post.currentPostContent.description}</f:format.html>
+        </div>
         <div class="forums-rte-wordcount"></div>
-    </p>
+    </div>
 </html>

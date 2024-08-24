@@ -67,15 +67,7 @@
                                 <f:if condition="{post.quote}">
                                     <f:render partial="Post/Quote/QuoteMessage" arguments="{postContent:post.quote}"/>
                                 </f:if>
-                                <f:if condition="{post.allowHtml}">
-                                    <f:then>
-                                        {post.currentPostContent.description -> f:format.html()}
-                                    </f:then>
-                                    <f:else>
-                                        {post.currentPostContent.description -> f:format.nl2br()}
-                                    </f:else>
-                                </f:if>
-
+                                <f:format.html parseFuncTSPath="lib.parseFunc_Safe">{post.currentPostContent.description}</f:format.html>
                             </div>
                             <f:render partial="Post/Signature" arguments="{frontendUser:post.frontenduser}" />
                         </f:else>
