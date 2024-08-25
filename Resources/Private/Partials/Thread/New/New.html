@@ -34,7 +34,8 @@
                 <f:comment>
                 <f:render partial="Thread/New/Advanced" arguments="{_all}"/>
                 </f:comment>
-                <f:form.submit class="btn btn-primary mt-3" value="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:create-new-thread')}" />
+                <f:render partial="Basics/Submit" arguments="{lll:'create-new-thread'}" />
+
             </div>
         </div>
 
