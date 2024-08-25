@@ -11,6 +11,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Domain\Model\Activity;
 use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
@@ -56,27 +57,37 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
             \nn\t3::Http()->redirect($this->settings['noPermission']);
         }
 
-        // We set the frontenduser ourselves and do not rely on the fe-user from the form because it could be fake
-        $newPost->setFrontenduser($frontendUser);
-        $thread->addPost($newPost);
+        $jumpTo = 1;
 
-        // Subscribe to thread when not already happened and the user has the option on
-        if($frontendUser->getSubscribeToThreadAfterReply() && !$thread->hasSubscriber($frontendUser)){
-            $thread->addSubscriber($frontendUser);
+        if($thread->getClosed()) {
+            $jumpTo = 0;
+            \nn\t3::Message()->ERROR(
+                LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:that-didnt-work', 'EXT:darf_ich_mit'),
+                LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:thread-is-closed', 'EXT:forums')
+            );
+        }else{
+            // We set the frontenduser ourselves and do not rely on the fe-user from the form because it could be fake
+            $newPost->setFrontenduser($frontendUser);
+            $thread->addPost($newPost);
+
+            // Subscribe to thread when not already happened and the user has the option on
+            if($frontendUser->getSubscribeToThreadAfterReply() && !$thread->hasSubscriber($frontendUser)){
+                $thread->addSubscriber($frontendUser);
+            }
+
+            /** @var ThreadRepository $threadRepository */
+            $threadRepository = GeneralUtility::makeInstance(ThreadRepository::class);
+            $threadRepository->update($thread);
+
+            // Credit XP
+            $this->xpService->gain($frontendUser, 1, Xp::TYPE_FORUM_POST);
+
+            $this->activityService->addActivity(
+                $thread->getTitle(),
+                Activity::TYPE_FORUM_POST,
+                (new LinkBuilderDTO(Activity::TYPE_FORUM_THREAD, $thread->getUid()))->build()
+            );
         }
-
-        /** @var ThreadRepository $threadRepository */
-        $threadRepository = GeneralUtility::makeInstance(ThreadRepository::class);
-        $threadRepository->update($thread);
-
-        // Credit XP
-        $this->xpService->gain($frontendUser, 1, Xp::TYPE_FORUM_POST);
-
-        $this->activityService->addActivity(
-            $thread->getTitle(),
-            Activity::TYPE_FORUM_POST,
-            (new LinkBuilderDTO(Activity::TYPE_FORUM_THREAD, $thread->getUid()))->build()
-        );
 
 
         // Wieder zurück zum Thread springen
@@ -84,7 +95,7 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
             'show',
             'Thread',
             null,
-            ['thread' => $thread, 'jumpTo' => 1]
+            ['thread' => $thread, 'jumpTo' => $jumpTo]
         );
     }
 

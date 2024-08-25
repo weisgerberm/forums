@@ -1,4 +1,4 @@
-<html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 
     <h1>{thread.title}</h1>
     <div class="thread__controls thread__controls--top align-items-center d-flex justify-content-between">
@@ -10,7 +10,22 @@
 
         </div>
         <div class="text-sm">
-            <f:translate key="LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:x-posts" arguments="{0:'{thread.posts -> f:count()}'}" />
+            <f:if condition="{thread.sticky}">
+                <f:render partial="Thread/Pinned" />
+            </f:if>
+            <f:if condition="{thread.closed}">
+                <f:render partial="Thread/Closed" />
+            </f:if>
+            <f:if condition="{thread.posts -> f:count()} == 1">
+                <f:then>
+                    <f:translate key="LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:one-post" />
+
+                </f:then>
+                <f:else>
+                    <f:translate key="LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:x-posts" arguments="{0:'{thread.posts -> f:count()}'}" />
+
+                </f:else>
+            </f:if>
         </div>
     </div>
 
@@ -18,39 +33,5 @@
     <f:render partial="Post/List/List" arguments="{_all}" />
     <f:render partial="Basics/NummericPagination" arguments="{pagination:pagination, paginator:paginator, passthrough:'{thread:thread, action:\'show\'}', additionalClasses:'pt-4'}"/>
 
-    <f:security.ifHasRole role="6">
-        <f:then>
-            <f:if condition="{frontendUser.coverPicture}">
-                <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{frontendUser.coverPicture.image.0}', width: '1400')}); background-position-y: 50%;">
-                    <span class="mask bg-gradient-primary opacity-1"></span>
-                </div>
-            </f:if>
-            <div class="card card-body blur shadow-blur{f:if(condition: '{frontendUser.coverPicture}', then: ' mx-1 mx-sm-4 mt-n12 ')}">
-                <div class="row">
-                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center">
-                        <f:if condition="{frontendUser}">
-                            <f:render partial="Basics/Avatar" arguments="{avatar:frontendUser.avatar, username:frontendUser.username, width:settings.defaults.avatarWidthPost, avatarSize:'lg', fallbackLetterColor:'primary', height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
-                        </f:if>
-
-                        <p class="subtitle is-5 my-2">
-                            <f:render partial="Basics/Username" arguments="{frontenduser:frontendUser, noLink:1}" />
-                        </p>
-                        <div class="align-items-center d-flex justify-content-center text-xs">
-                            <f:if condition="{frontendUser}">
-                                <f:render partial="Basics/XP" arguments="{amount:frontendUser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{frontendUser.xp}" />
-                            </f:if>
-                        </div>
-
-                    </div>
-                    <div class="col-7 col-sm-8 col-md-9 col-lg-10">
-                        <f:render partial="Post/New/New" arguments="{_all}" />
-                    </div>
-                </div>
-            </div>
-
-
-        </f:then><f:else>
-            <f:render partial="Post/New/NewForbidden" arguments="{_all}" />
-        </f:else>
-    </f:security.ifHasRole>
+    <f:render partial="Post/New/New" arguments="{_all}" />
 </html>

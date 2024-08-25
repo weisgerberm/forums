@@ -1,0 +1,50 @@
+<html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:if condition="{frontendUser.coverPicture}">
+    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{frontendUser.coverPicture.image.0}', width: '1400')}); background-position-y: 50%;">
+        <span class="mask bg-gradient-primary opacity-1"></span>
+    </div>
+</f:if>
+<div class="card card-body blur shadow-blur{f:if(condition: '{frontendUser.coverPicture}', then: ' mx-1 mx-sm-4 mt-n12 ')}">
+    <div class="row">
+        <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center">
+            <f:if condition="{frontendUser}">
+                <f:render partial="Basics/Avatar" arguments="{avatar:frontendUser.avatar, username:frontendUser.username, width:settings.defaults.avatarWidthPost, avatarSize:'lg', fallbackLetterColor:'primary', height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+            </f:if>
+
+            <p class="subtitle is-5 my-2">
+                <f:render partial="Basics/Username" arguments="{frontenduser:frontendUser, noLink:1}" />
+            </p>
+            <div class="align-items-center d-flex justify-content-center text-xs">
+                <f:if condition="{frontendUser}">
+                    <f:render partial="Basics/XP" arguments="{amount:frontendUser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{frontendUser.xp}" />
+                </f:if>
+            </div>
+
+        </div>
+        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+            <f:form action="create" controller="Post" name="newPost" object="{newPost}" class="lock-submit wysiwyg-form">
+                <f:if condition="{quotePost}">
+                    <f:then>
+                        <h2 class="mt-4" data-jump-to="true"><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:reply-with-quote" /></h2>
+                        <f:render partial="Post/Quote/QuoteHint" arguments="{_all}" />
+                    </f:then>
+                    <f:else>
+                        <h2 class="mt-3 align-items-center d-flex gap-3">
+                            <f:render arguments="{icon:'compose-2'}" partial="Prefabs/Icon"/> <f:translate key="reply" />
+                        </h2>
+                    </f:else>
+
+                </f:if>
+                <div class="col-5 col-sm-4 col-md-3 col-lg-2">
+
+                </div>
+                <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+
+                </div>
+                <f:render partial="Basics/ReplyRTE" arguments="{_all}" />
+            </f:form>
+        </div>
+    </div>
+</div>
+
+</html>
