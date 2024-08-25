@@ -77,6 +77,12 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         }else{
             $query->getQuerySettings()->setRespectStoragePage(false);
         }
+        $query->matching(
+            $query->logicalNot(
+                // exclude test & admin-subforums
+                $query->in('pid', [6189, 180])
+            )
+        );
         $query->setOrderings(['uid' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
         $query->setLimit($limit);
         return $query->execute();
