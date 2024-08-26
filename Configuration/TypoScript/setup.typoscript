@@ -1,9 +1,3 @@
-module.tx_forums {
-  view {
-    partialRootPaths.0 = EXT:darf_ich_mit/Resources/Private/Partials/
-    partialRootPaths.1 = EXT:forums/Resources/Private/Partials/
-  }
-}
 plugin.tx_forums {
   view {
     templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
@@ -67,6 +61,10 @@ plugin.tx_forums {
   }
 }
 module.tx_forums {
+  view {
+    partialRootPaths.0 = EXT:darf_ich_mit/Resources/Private/Partials/
+    partialRootPaths.1 = EXT:forums/Resources/Private/Partials/
+  }
   settings {
     modulePrefabs {
       Backend {
@@ -76,6 +74,14 @@ module.tx_forums {
     }
   }
 }
+plugin.tx_forums_latestposts {
+  persistence {
+    storagePid = TEXT
+    storagePid.field = uid
+    recursive = 4
+  }
+}
+
 @import 'EXT:forums/Configuration/TypoScript/Blocks/blocks.setup.typoscript'
 @import 'EXT:forums/Configuration/TypoScript/Page/page.setup.typoscript'
 @import 'EXT:forums/Configuration/TypoScript/DoktypeInit.setup.typoscript'

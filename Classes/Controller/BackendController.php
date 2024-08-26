@@ -90,7 +90,7 @@ class BackendController extends AbstractBackendController
         $frontendUser = $this->frontendUserRepository->findByUid(2);
 
         /** @var NewsRepository $newsRepository */
-        $newsRepository = GeneralUtility::makeInstance(NewsRepository::class);
+        $newsRepository = GeneralUtility::makeInstance(NewsDefaultRepository::class);
         /** @var Typo3QuerySettings $querySettings */
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $querySettings->setLanguageAspect(new LanguageAspect($languageUid, $languageUid, LanguageAspect::OVERLAYS_MIXED));
@@ -117,9 +117,10 @@ class BackendController extends AbstractBackendController
         $postContent = GeneralUtility::makeInstance(PostContent::class);
         $postContent->setPid($newThread->getPid());
         $postContent->setPost($post);
+        $postContent->_rootAccess = true;
         $postContent->setDescription(
             LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:discuss-our-article-here', 'EXT:forums', ['<strong><a href="t3://record?identifier=tx_news&amp;uid='.$news->getUid().'" >'.$news->getTitle().'</a></strong>'], $allLanguages[$languageUid]['locale']) .
-            '<strong>'.LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:preview', 'EXT:darf_ich_mit') . '</strong>' .
+            '<p><strong>'.LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:preview', 'EXT:darf_ich_mit', null, $allLanguages[$languageUid]['locale']) . '</strong></p>' .
             '<p class="blockquote">' . $news->getTeaser() . '</p>'
         );
 

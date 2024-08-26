@@ -11,6 +11,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Domain\Model\Activity;
 use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
@@ -36,6 +37,7 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
         $this->view->assignMultiple([
             'posts' => $this->postRepository->findLatestAmount()
         ]);
+//        DebuggerUtility::var_dump($this->settings['startingpoint']);
         return $this->htmlResponse();
     }
 

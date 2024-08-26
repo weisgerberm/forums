@@ -6,6 +6,7 @@ namespace Weisgerber\Forums\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Weisgerber\DarfIchMit\Domain\Model\FrontendUser;
 
 /**
@@ -72,11 +73,11 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         /** @var Typo3QuerySettings $querySettings */
         $query = $this->createQuery();
-        if ($pageUid > 0) {
-            $query->getQuerySettings()->setStoragePageIds([$pageUid]);
-        }else{
-            $query->getQuerySettings()->setRespectStoragePage(false);
-        }
+//        if ($pageUid > 0) {
+//            $query->getQuerySettings()->setStoragePageIds([$pageUid]);
+//        }else{
+//            $query->getQuerySettings()->setRespectStoragePage(false);
+//        }
         $query->matching(
             $query->logicalNot(
                 // exclude test & admin-subforums

@@ -6,7 +6,7 @@ use Weisgerber\Forums\Domain\Model\Thread;
 
 return [
     'ctrl' => TcaUtility::getController(Thread::TABLE_NAME,'forums', [
-        'sortby' => 'last_posted_on',
+        'default_sortby' => 'last_posted_on DESC',
     ], false),
     'palettes' => TcaUtility::getPalettes([
         'p_cache' => [

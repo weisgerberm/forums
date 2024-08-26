@@ -18,6 +18,12 @@ class PostContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         FieldDescription::setDescription as protected setDescriptionTrait;
     }
 
+    /**
+     * Invalidates some checks for normal users
+     * @var bool
+     */
+    public bool $_rootAccess = false;
+
     protected ?Post $post = null;
 
     public function getPost(): ?Post
@@ -38,7 +44,11 @@ class PostContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setDescription(string $description): void
     {
-        $this->description = ParserUtility::cleanupUserHtml($description);
+        if($this->_rootAccess){
+            $this->description = $description;
+        }else{
+            $this->description = ParserUtility::cleanupUserHtml($description);
+        }
 //        $this->description = trim(preg_replace('/(\r\n|\r|\n){4,}/', "\n\n\n", $description));
     }
 
