@@ -119,8 +119,8 @@ class BackendController extends AbstractBackendController
         $postContent->setPost($post);
         $postContent->setDescription(
             LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:discuss-our-article-here', 'EXT:forums', ['<strong><a href="t3://record?identifier=tx_news&amp;uid='.$news->getUid().'" >'.$news->getTitle().'</a></strong>'], $allLanguages[$languageUid]['locale']) .
-            '<div class="fs-3">'.LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:preview', 'EXT:darf_ich_mit') . '</div>' .
-            '<blockquote class="blockquote">' . $news->getTeaser() . '</blockquote>'
+            '<strong>'.LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:preview', 'EXT:darf_ich_mit') . '</strong>' .
+            '<p class="blockquote">' . $news->getTeaser() . '</p>'
         );
 
         $post->addPostContent($postContent);
