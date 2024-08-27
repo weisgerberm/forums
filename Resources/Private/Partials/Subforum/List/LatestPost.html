@@ -1,25 +1,28 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
-<div class="card d-none d-lg-flex">
-    <footer class="card-footer py-3">
-        <div class="card-footer-item mb-n1" title="{post.frontendUser.username}">
-            <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, avatarSize:'sm', username:post.frontendUser.username, fallbackLetterColor:'primary', width:32, height:32, placeholder:settings.defaults.avatar}"/>
-            <div class="d-flex align-items-center text-nowrap my-2 text-xs">
-                <f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> {post.frontendUser.username}
+<div class="latestpost card">
+    <div class="latestpost__content">
+        <div class="" title="{post.frontendUser.username}">
+            <div class="latestpost__user">
+                <div class="latestpost__avatar">
+                    <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, avatarSize:'sm', username:post.frontendUser.username, fallbackLetterColor:'primary', width:32, height:32, placeholder:settings.defaults.avatar}"/>
+                </div>
+                <div class="latestpost__username">
+                    {post.frontendUser.username}
+                </div>
             </div>
-        </div>
-        <div class="card-footer-item">
-            <div class="content">
-                <f:link.action class="d-inline-block lh-sm" action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread, jumpTo:1}" >
+            <div class="latestpost__meta">
+                <f:link.action class="latestpost__thread" action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread, jumpTo:1}" >
                     {post.thread.title}
                 </f:link.action>
                 <br>
 
-                <div class="text-xs">
+                <div class="latestpost__date">
                     <f:format.date pattern="MEDIUM">{post.currentPostContent.crdate}</f:format.date>
                 </div>
+
             </div>
         </div>
-    </footer>
+    </div>
 </div>
 
 </html>

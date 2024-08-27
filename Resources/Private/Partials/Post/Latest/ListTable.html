@@ -1,17 +1,17 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <div class="card-body">
-    <ul class="list-group">
+    <div class="lastactivity">
         <f:for each="{posts}" as="post">
-            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+            <div class="lastactivity__activity">
                 <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark font-weight-bold text-sm">Thema: <f:link.action class="" action="show" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread, jumpTo:1}" >
+                    <f:link.action class="lastactivity__link" action="show" title="{post.thread.title}" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread, jumpTo:1}" >
                         {post.thread.title}
-                    </f:link.action></h6>
+                    </f:link.action>
                     <span class="d-inline-flex align-items-center text-xs"><f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> {post.frontendUser.username}</span>
                 </div>
-            </li>
+            </div>
             <f:render partial="Prefabs/HorizontalRule" arguments="{additionalClasses:'my-1'}" />
         </f:for>
-    </ul>
+    </div>
 </div>
 </html>

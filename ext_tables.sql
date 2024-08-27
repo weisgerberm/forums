@@ -36,7 +36,9 @@ CREATE TABLE fe_users
 	subscribe_to_thread_after_reply smallint(1) unsigned NOT NULL DEFAULT '1',
 	thread_subscriptions            int(11) unsigned     NOT NULL DEFAULT '0',
 	post_likes                      int(11) unsigned     NOT NULL DEFAULT '0',
-	poll_votes                      int(11) unsigned     NOT NULL DEFAULT '0'
+	poll_votes                      int(11) unsigned     NOT NULL DEFAULT '0',
+	threads_per_page                int(11) unsigned     NOT NULL DEFAULT '10',
+	posts_per_page                int(11) unsigned     NOT NULL DEFAULT '20'
 );
 
 CREATE TABLE tx_forums_domain_model_threadsubscription
