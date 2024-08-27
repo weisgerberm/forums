@@ -78,7 +78,7 @@
         </div>
         <f:if condition="{post.edited}">
             <div class="card-footer text-end text-xs text-lighter">
-                <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary'}" partial="Prefabs/Icon"/> Dieser Beitrag wurde zuletzt am <f:format.date pattern="MEDIUM">{post.currentPostContent.crdate}</f:format.date> bearbeitet
+                <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary'}" partial="Prefabs/Icon"/> <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:last-edited-on-x" arguments="{0:'{f:format.date(pattern: \'MEDIUM\', date:post.currentPostContent.crdate)}'}" />
             </div>
         </f:if>
 

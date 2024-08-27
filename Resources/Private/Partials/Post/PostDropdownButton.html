@@ -1,17 +1,17 @@
-<html data-namespace-typo3-fluid="true"
-      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
 <div class="dropdown">
-    <button aria-controls="dropdown-menu" aria-expanded="false" aria-haspopup="true" data-tippy-content="Aktionen für diesen Post anzeigen" class="btn btn-link mb-0 pb-0" data-bs-toggle="dropdown">
+    <button aria-controls="dropdown-menu" aria-expanded="false" aria-haspopup="true" data-tippy-content="{f:translate(key:'LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:show-more-actions')}" class="btn btn-link mb-0 pb-0" data-bs-toggle="dropdown">
         <f:render arguments="{icon:'menu-dots', additionalClasses:'font-weight-bolder'}" partial="Prefabs/Icon"/>
     </button>
     <ul class="dropdown-menu" id="dropdown-menu" role="menu">
-        <li class="dropdown-item ">
-            <f:link.action class="align-items-center d-flex gap-2 link-dark" addQueryString="1" arguments="{quotePost:post}">
-                <f:render arguments="{icon:'message-quote'}" partial="Prefabs/Icon"/>
-                <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:quote"/>
-            </f:link.action>
-        </li>
+        <f:if condition="!{post.thread.closed}">
+            <li class="dropdown-item ">
+                <f:link.action class="align-items-center d-flex gap-2 link-dark" addQueryString="1" arguments="{quotePost:post}">
+                    <f:render arguments="{icon:'message-quote'}" partial="Prefabs/Icon"/>
+                    <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:quote"/>
+                </f:link.action>
+            </li>
+        </f:if>
         <f:if condition="{post.frontenduser} == {frontendUser}">
             <f:then>
                 <li class="dropdown-item ">
@@ -47,9 +47,6 @@
                 </li>
             </f:else>
         </f:if>
-
-
-
     </ul>
 </div>
 </html>
