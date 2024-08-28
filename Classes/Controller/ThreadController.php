@@ -16,7 +16,11 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Domain\Model\Activity;
 use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
 use Weisgerber\DarfIchMit\Domain\Model\Xp;
-use Weisgerber\DarfIchMit\Traits\{ActivityServiceTrait, FrontendUserServiceTrait, SlugServiceTrait, XpServiceTrait};
+use Weisgerber\DarfIchMit\Traits\{ActivityServiceTrait,
+    FrontendUserServiceTrait,
+    SchemaServiceTrait,
+    SlugServiceTrait,
+    XpServiceTrait};
 use Weisgerber\DarfIchMit\Utility\DimUtility;
 use Weisgerber\Forums\Domain\Model\{Post, Thread};
 use Weisgerber\Forums\Traits\{ThreadRepositoryTrait, ThreadServiceTrait, UriServiceTrait};
@@ -32,6 +36,7 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     use UriServiceTrait;
     use XpServiceTrait;
     use ActivityServiceTrait;
+    use SchemaServiceTrait;
 
     /**
      * action list
@@ -43,8 +48,12 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     {
         $threads = $this->threadRepository->findAll();
 
+        $frontendUser = $this->fetchFeUser();
+
+        $threadsPerPage = ($frontendUser) ? $frontendUser->getThreadsPerPage() : 10;
+
         /** @var \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator $paginator */
-        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$currentPage, 10);
+        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$currentPage, $threadsPerPage);
         /** @var \TYPO3\CMS\Core\Pagination\SimplePagination $pagination */
         $pagination = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Pagination\SimplePagination::class,$paginator);
         $this->view->assignMultiple(
@@ -57,7 +66,8 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
     }
 
     /**
-     * action show
+     * Shows a thread and its related posts
+     * Achtung: Schema JSON+LD ist hier nicht gewünscht, das empfiehlt selbst google selber https://developers.google.com/search/docs/appearance/structured-data/discussion-forum?hl=de#mikrodaten
      *
      * @param Thread    $thread
      * @param int       $currentPage
@@ -93,20 +103,21 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
 
         $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
         $this->threadRepository->update($thread);
-        $this->fetchFeUser();
+
+        $frontendUser = $this->fetchFeUser();
+        $postsPerPage = ($frontendUser) ? $frontendUser->getPostsPerPage() : (int) $this->settings['defaults']['threadItemsPerPage'];
 
         // Normal numeric pagination
         $paginator = new ArrayPaginator(
             $thread->getPosts()->toArray(),
             $currentPage,
-            (int) $this->settings['defaults']['threadItemsPerPage']
+            $postsPerPage
         );
 
         $pagination = new SlidingWindowPagination(
             $paginator,
             15
         );
-
 
 
         $this->view->assignMultiple([

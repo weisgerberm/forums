@@ -20,12 +20,12 @@
             <header class="card-title">
                 <div class="row">
                     <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center">
-                        <a href="#post-{counter}" title="Post number {counter} in this thread" class="link-dark text-monospace">#<span class="text-bold">{counter}</span></a>
+                        <a href="#post-{counter}" title="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:post-x-in-this-thread', arguments: '{0:counter}')}" class="link-dark text-monospace">#<span class="text-bold">{counter}</span></a>
                     </div>
                     <f:if condition="!{post.softDeleted}">
                         <div class="col-7 col-sm-8 col-md-9 col-lg-10">
                             <div class="d-flex justify-content-between">
-                                <div class="text-muted text-xs" data-tippy-content="Datum des Posts">
+                                <div class="text-muted text-xs" data-tippy-content="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:date-of-the-post')}">
                                     <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date>
                                 </div>
                                 <f:security.ifAuthenticated>

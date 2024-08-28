@@ -2,6 +2,8 @@
 <f:layout name="Default" />
 
 <f:section name="content">
-    <f:render partial="Thread/Single/Thread" arguments="{_all}" />
+    <div class="thread" itemtype="https://schema.org/DiscussionForumPosting" itemscope>
+        <f:render partial="Thread/Single/Thread" arguments="{_all}" />
+    </div>
 </f:section>
 </html>

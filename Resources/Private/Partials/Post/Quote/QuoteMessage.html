@@ -1,6 +1,6 @@
 <html  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <div class="text-xs">
-    <f:render partial="Basics/Username" arguments="{frontenduser:postContent.post.frontendUser}" /> schrieb:
+    <f:format.raw><f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:x-wrote" arguments="{0:'{f:render(partial: \'Basics/Username\', arguments: \'{frontenduser:postContent.post.frontendUser}\')}'}" />:</f:format.raw>
 
 </div>
 <blockquote class="bg-light blockquote mt-2 ps-3 py-2 text-sm">

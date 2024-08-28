@@ -11,9 +11,10 @@ use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use Weisgerber\DarfIchMit\Domain\Model\Traits\{FieldCrDate, FieldPathSegment, FieldTitle, FieldTstamp};
+use Weisgerber\DarfIchMit\Domain\Model\Abstract\AbstractModel;
 use Weisgerber\DarfIchMit\Domain\Model\FrontendUser;
 
-class Thread extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Thread extends AbstractModel
 {
     use FieldPathSegment;
     use FieldTitle;

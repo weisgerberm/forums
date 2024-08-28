@@ -13,9 +13,14 @@ $tmp_forums_columns = [
             'type' => 'select',
             'renderType' => 'selectSingle',
             'items' => [
-                ['-- Label --', 0],
+                ['10', 10],
+                ['15', 15],
+                ['20', 20],
+                ['25', 25],
+                ['30', 30],
             ],
             'size' => 1,
+            'default' => 10,
             'maxitems' => 1,
             'eval' => ''
         ],
@@ -27,9 +32,14 @@ $tmp_forums_columns = [
             'type' => 'select',
             'renderType' => 'selectSingle',
             'items' => [
-                ['-- Label --', 0],
+                ['15', 15],
+                ['20', 20],
+                ['25', 25],
+                ['30', 30],
+                ['35', 35],
             ],
             'size' => 1,
+            'default' => 20,
             'maxitems' => 1,
             'eval' => ''
         ],
