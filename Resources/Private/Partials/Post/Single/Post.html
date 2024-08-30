@@ -1,5 +1,5 @@
 <html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:variable name="counter">{keyOfFirstPaginatedItem+iterator.index+1}</f:variable>
+
 
 <f:if condition="!{post.softDeleted}">
     <f:if condition="{post.frontendUser.coverPicture}">
@@ -26,7 +26,7 @@
                         <div class="col-7 col-sm-8 col-md-9 col-lg-10">
                             <div class="d-flex justify-content-between">
                                 <div class="text-muted text-xs" data-tippy-content="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:date-of-the-post')}">
-                                    <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date>
+                                    <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <span {f:if(condition:'{counter} > 1', then:'itemprop="datePublished" content="{post.postContent.0.crdate -> f:format.date(format:\'c\')}"')}><f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date></span>
                                 </div>
                                 <f:security.ifAuthenticated>
                                     <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
@@ -38,13 +38,22 @@
 
             </header>
             <div class="row">
-                <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center">
+                <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center" {f:if(condition:'{counter} > 1', then:'itemprop="author" itemtype="https://schema.org/Person" itemscope')}>
                     <f:if condition="{post.frontenduser}">
                         <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, additionalClasses:'fs-2',avatarSize:'xxl', username:post.frontendUser.username, fallbackLetterColor:'primary', width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
                     </f:if>
 
                     <p class="subtitle is-5 my-2">
-                        <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser, additionalClasses:'font-weight-bold link-secondary'}" />
+                        <f:if condition="{counter} > 1">
+                            <f:then>
+                                <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser, additionalClasses:'font-weight-bold link-secondary', additionalNameAttributes:'itemprop=name', additionalLinkAttributes:'{itemprop:\'url\'}'}" />
+
+                            </f:then>
+                            <f:else>
+                                <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser, additionalClasses:'font-weight-bold link-secondary'}" />
+
+                            </f:else>
+                        </f:if>
                     </p>
                     <div class="align-items-center d-flex justify-content-center text-xs">
                         <f:if condition="{post.frontenduser}">
@@ -63,7 +72,7 @@
                             </div>
                         </f:then>
                         <f:else>
-                            <div class="content">
+                            <div class="content" {f:if(condition:'{counter} > 1', then:'itemprop="text"')} >
                                 <f:if condition="{post.quote}">
                                     <f:render partial="Post/Quote/QuoteMessage" arguments="{postContent:post.quote}"/>
                                 </f:if>

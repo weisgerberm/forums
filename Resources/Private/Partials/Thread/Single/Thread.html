@@ -1,7 +1,14 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"  data-namespace-typo3-fluid="true">
     <meta itemprop="mainEntityOfPage" content="{f:uri.page(absolute: '1')}" />
     <meta itemprop="url" content="{f:uri.page(absolute: '1')}" />
-    <h1>{thread.title}</h1>
+    <meta itemprop="datePublished" content="{thread.firstPost.crdate -> f:format.date(format:'c')}" />
+    <meta itemprop="text" content="{thread.firstPost.currentPostContent.description -> f:format.stripTags()}" />
+    <span class="d-none" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+        <f:render partial="Basics/Username" arguments="{frontenduser:thread.firstPost.frontenduser, additionalClasses:'font-weight-bold link-secondary', additionalNameAttributes:'itemprop=name', additionalLinkAttributes:'{itemprop:\'url\'}'}" />
+    </span>
+
+
+    <h1 itemprop="headline">{thread.title}</h1>
     <div class="thread__controls thread__controls--top align-items-center d-flex justify-content-between">
         <div class="d-flex gap-3">
             <f:if condition="!{thread.closed}">
