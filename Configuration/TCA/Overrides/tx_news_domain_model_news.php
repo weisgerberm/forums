@@ -20,3 +20,4 @@ $tmp_news_columns = [
     ],
 ];
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_news_domain_model_news', $tmp_news_columns);
+$GLOBALS['TCA']['tx_news_domain_model_news']['types'][0]['showitem'] .= ',--div--;Forum, forums_thread';
