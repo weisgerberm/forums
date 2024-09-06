@@ -2,26 +2,37 @@
 
 namespace Weisgerber\Forums\Service;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Weisgerber\Forums\Domain\Model\Post;
-use Weisgerber\Forums\Domain\Model\Thread;
+use Weisgerber\DarfIchMit\Domain\Model\FrontendUser;
+use Weisgerber\Forums\Traits\PostRepositoryTrait;
 
-class PostService
+class PostService extends AbstractService
 {
+    use PostRepositoryTrait;
+
     /**
-     * @param array $form
-     * @return \Weisgerber\Forums\Domain\Model\Post
+     * Checks whether the frontend user is allowed to post anything at all and queries all his posts within the last minute and the last hour
+     *
+     * @param FrontendUser $frontendUser
+     * @return bool
      */
-    public function createPost(array $form):Post
+    public function rateLimiter(FrontendUser $frontendUser): bool
     {
-        if(isset($form['form-content'])){
-            $thread = GeneralUtility::makeInstance(Thread::class);
-            $thread->setHeadline($form['headline']);
-            $post = GeneralUtility::makeInstance(Post::class);
-            $post->addPostContent();
-            $thread->addPost($post);
-        }else{
-            die("MIS");
+        $postsLastMinute = $this->postRepository->count(['crdate' => time() - 60]);
+        $postsLastHour = $this->postRepository->count(['crdate' => time() - 3600]);
+
+        if ($frontendUser->getEmailConfirmed()) {
+            if ($postsLastHour >= $this->getSettings()['defaults']['unconfirmedEmailPostsPerHour']) {
+                return false;
+            }
+        } else {
+            if ($postsLastHour >= $this->getSettings()['defaults']['postsPerHour']) {
+                return false;
+            }
         }
+
+        if ($postsLastMinute >= $this->getSettings()['defaults']['postsPerMinute']) {
+            return false;
+        }
+        return true;
     }
 }

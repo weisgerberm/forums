@@ -34,6 +34,12 @@ plugin.tx_forums {
       avatarHeightPost = {$plugin.tx_forums.settings.defaults.avatarHeightPost}
       # Default thread items displayed per page
       threadItemsPerPage = {$plugin.tx_forums.settings.defaults.threadItemsPerPage}
+      # max posts per minute
+      postsPerMinute = 3
+      # max posts per hour
+      postsPerHour = 15
+      # max posts per hour for unconfirmed users
+      unconfirmedEmailPostsPerHour = 5
     }
 
     css {

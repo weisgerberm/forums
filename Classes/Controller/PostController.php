@@ -9,25 +9,21 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
-use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
-use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Persistence\Exception\{IllegalObjectTypeException, UnknownObjectException};
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use Weisgerber\DarfIchMit\Domain\Model\Activity;
-use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
-use Weisgerber\DarfIchMit\Domain\Model\Xp;
-use Weisgerber\DarfIchMit\Traits\ActivityServiceTrait;
-use Weisgerber\DarfIchMit\Traits\XpServiceTrait;
+use Weisgerber\DarfIchMit\Domain\Model\{Activity, DTO\LinkBuilderDTO, Xp};
+use Weisgerber\DarfIchMit\Traits\{ActivityServiceTrait, XpServiceTrait};
 use Weisgerber\DarfIchMit\Utility\DimUtility;
 use Weisgerber\Forums\Domain\Model\{DTO\EditPostDTO, Post, PostContent, Thread};
 use Weisgerber\Forums\Domain\Repository\ThreadRepository;
-use Weisgerber\Forums\Traits\PostRepositoryTrait;
+use Weisgerber\Forums\Traits\{PostRepositoryTrait, PostServiceTrait};
 
 class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractController
 {
     use PostRepositoryTrait;
     use XpServiceTrait;
     use ActivityServiceTrait;
+    use PostServiceTrait;
 
     /**
      * @return ResponseInterface
@@ -61,34 +57,50 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
 
         $jumpTo = 1;
 
-        if($thread->getClosed()) {
+        if($thread->getClosed()) { // It shouldn't actually come to this, but it is possible that the user still had the thread open when he was locked and had written his post by then, which was then sent
             $jumpTo = 0;
-            \nn\t3::Message()->ERROR(
+            \nn\t3::Message()->WARNING(
                 LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:that-didnt-work', 'EXT:darf_ich_mit'),
                 LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:thread-is-closed', 'EXT:forums')
             );
         }else{
-            // We set the frontenduser ourselves and do not rely on the fe-user from the form because it could be fake
-            $newPost->setFrontenduser($frontendUser);
-            $thread->addPost($newPost);
+            // we execute a post limiter for our safety of spam users
+            if(!$this->postService->rateLimiter($frontendUser)){
+                // Users without a confirmed e-mail address are shown that they can post more often if they confirm it
+                if($frontendUser->getEmailConfirmed()){
+                    \nn\t3::Message()->ERROR(
+                        LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:that-didnt-work', 'EXT:darf_ich_mit'),
+                        LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:you-may-only-write-x', 'EXT:forums', [$this->settings['defaults']['postsPerMinute'], $this->settings['defaults']['postsPerHour']])
+                    );
+                }else{
+                    \nn\t3::Message()->ERROR(
+                        LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:that-didnt-work', 'EXT:darf_ich_mit'),
+                        LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:you-may-only-write-x-per-hour', 'EXT:forums', [$this->settings['defaults']['unconfirmedEmailPostsPerHour']])
+                    );
+                }
+            }else{
+                // We set the frontenduser ourselves and do not rely on the fe-user from the form because it could be fake
+                $newPost->setFrontenduser($frontendUser);
+                $thread->addPost($newPost);
 
-            // Subscribe to thread when not already happened and the user has the option on
-            if($frontendUser->getSubscribeToThreadAfterReply() && !$thread->hasSubscriber($frontendUser)){
-                $thread->addSubscriber($frontendUser);
+                // Subscribe to thread when not already happened and the user has the option on
+                if($frontendUser->getSubscribeToThreadAfterReply() && !$thread->hasSubscriber($frontendUser)){
+                    $thread->addSubscriber($frontendUser);
+                }
+
+                /** @var ThreadRepository $threadRepository */
+                $threadRepository = GeneralUtility::makeInstance(ThreadRepository::class);
+                $threadRepository->update($thread);
+
+                // Credit XP
+                $this->xpService->gain($frontendUser, 1, Xp::TYPE_FORUM_POST);
+
+                $this->activityService->addActivity(
+                    $thread->getTitle(),
+                    Activity::TYPE_FORUM_POST,
+                    (new LinkBuilderDTO(Activity::TYPE_FORUM_THREAD, $thread->getUid()))->build()
+                );
             }
-
-            /** @var ThreadRepository $threadRepository */
-            $threadRepository = GeneralUtility::makeInstance(ThreadRepository::class);
-            $threadRepository->update($thread);
-
-            // Credit XP
-            $this->xpService->gain($frontendUser, 1, Xp::TYPE_FORUM_POST);
-
-            $this->activityService->addActivity(
-                $thread->getTitle(),
-                Activity::TYPE_FORUM_POST,
-                (new LinkBuilderDTO(Activity::TYPE_FORUM_THREAD, $thread->getUid()))->build()
-            );
         }
 
 
