@@ -38,6 +38,39 @@ class BackendController extends AbstractBackendController
      */
     public function statusAction(): ResponseInterface
     {
+        $mostActiveUsers = \nn\t3::Db()->statement( "SELECT fe_users.username,
+    COUNT(tx_forums_domain_model_post.uid) AS post_count
+FROM
+    tx_forums_domain_model_post
+        JOIN
+    fe_users
+    ON fe_users.uid = tx_forums_domain_model_post.frontenduser
+WHERE
+    tx_forums_domain_model_post.crdate > UNIX_TIMESTAMP() - 86400
+GROUP BY
+    tx_forums_domain_model_post.frontenduser, fe_users.username
+ORDER BY
+    post_count DESC;
+        ");
+        $hottestThreads = \nn\t3::Db()->statement( "SELECT tx_forums_domain_model_post.thread,
+    tx_forums_domain_model_thread.title,
+    COUNT(tx_forums_domain_model_post.uid) AS post_count
+FROM
+    tx_forums_domain_model_post
+        JOIN
+    tx_forums_domain_model_thread
+    ON tx_forums_domain_model_thread.uid = tx_forums_domain_model_post.thread
+WHERE
+    tx_forums_domain_model_post.crdate > UNIX_TIMESTAMP() - 86400
+GROUP BY
+    tx_forums_domain_model_thread.title
+ORDER BY
+    post_count DESC;");
+        $this->view->assignMultiple([
+            'mostActiveUsers' => $mostActiveUsers,
+            'hottestThreads' => $hottestThreads,
+        ]);
+
         return $this->htmlResponse($this->createBackendView());
     }
 
@@ -87,7 +120,7 @@ class BackendController extends AbstractBackendController
      */
     public function createNewsThreadAction(int $news, int $languageUid, int $currentPage = 1): ResponseInterface
     {
-        $frontendUser = $this->frontendUserRepository->findByUid(2);
+        $frontendUser = $this->frontendUserRepository->findByUid(217);
 
         /** @var NewsRepository $newsRepository */
         $newsRepository = GeneralUtility::makeInstance(NewsDefaultRepository::class);
