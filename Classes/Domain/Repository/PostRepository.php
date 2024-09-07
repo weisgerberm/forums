@@ -103,4 +103,23 @@ class PostRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->matching($query->equals('frontenduser', $frontendUser));
         return $query->execute();
     }
+
+    /**
+     * @param FrontendUser $frontendUser
+     * @param int          $timestamp
+     * @return int
+     */
+    public function countCreatedAfter(FrontendUser $frontendUser, int $timestamp): int
+    {
+        $query = $this->createQuery();
+
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals('frontenduser', $frontendUser),
+                $query->greaterThan('crdate', $timestamp)
+            )
+        );
+        return $query->execute()->count();
+    }
 }

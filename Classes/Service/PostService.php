@@ -2,6 +2,7 @@
 
 namespace Weisgerber\Forums\Service;
 
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use Weisgerber\DarfIchMit\Domain\Model\FrontendUser;
 use Weisgerber\Forums\Traits\PostRepositoryTrait;
 
@@ -17,10 +18,12 @@ class PostService extends AbstractService
      */
     public function rateLimiter(FrontendUser $frontendUser): bool
     {
-        $postsLastMinute = $this->postRepository->count(['crdate' => time() - 60]);
-        $postsLastHour = $this->postRepository->count(['crdate' => time() - 3600]);
+        $this->configurationService->init('forums');
 
-        if ($frontendUser->getEmailConfirmed()) {
+        $postsLastMinute    = $this->postRepository->countCreatedAfter($frontendUser, time() - 60);
+        $postsLastHour      = $this->postRepository->countCreatedAfter($frontendUser, time() - 3600);
+
+        if (!$frontendUser->getTxFemanagerConfirmedbyuser()) {
             if ($postsLastHour >= $this->getSettings()['defaults']['unconfirmedEmailPostsPerHour']) {
                 return false;
             }

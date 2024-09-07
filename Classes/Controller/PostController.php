@@ -66,8 +66,9 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
         }else{
             // we execute a post limiter for our safety of spam users
             if(!$this->postService->rateLimiter($frontendUser)){
+                $jumpTo = 0;
                 // Users without a confirmed e-mail address are shown that they can post more often if they confirm it
-                if($frontendUser->getEmailConfirmed()){
+                if($frontendUser->getTxFemanagerConfirmedbyuser()){
                     \nn\t3::Message()->ERROR(
                         LocalizationUtility::translate('LLL:EXT:darf_ich_mit/Resources/Private/Language/locallang.xlf:that-didnt-work', 'EXT:darf_ich_mit'),
                         LocalizationUtility::translate('LLL:EXT:forums/Resources/Private/Language/locallang.xlf:you-may-only-write-x', 'EXT:forums', [$this->settings['defaults']['postsPerMinute'], $this->settings['defaults']['postsPerHour']])
