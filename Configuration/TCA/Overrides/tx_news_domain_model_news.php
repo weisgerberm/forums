@@ -14,7 +14,7 @@ $tmp_news_columns = [
             'maxitems' => 1,
             'appearance' => [
                 'collapseAll' => 1,
-                'levelLinksPosition' => 'none',
+                'showNewRecordLink' => 0,
             ],
         ],
     ],

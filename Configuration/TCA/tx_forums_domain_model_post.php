@@ -61,7 +61,7 @@ return [
                     'maxitems' => 9999,
                     'appearance' => [
                         'collapseAll' => 1,
-                        'levelLinksPosition' => 'none',
+                        'showNewRecordLink' => 0,
                     ],
                 ],
 
