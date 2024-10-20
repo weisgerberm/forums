@@ -1,158 +1,65 @@
 <?php
+
+use Weisgerber\DarfIchMit\Utility\TcaUtility;
+use Weisgerber\Forums\Domain\Model\PrivateMessage;
+
 return [
-    'ctrl' => [
-        'title' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_privatemessage',
+    'ctrl' => TcaUtility::getController(PrivateMessage::TABLE_NAME, 'forums', [
         'label' => 'subject',
-        'tstamp' => 'tstamp',
-        'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
-        'versioningWS' => true,
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
-        'transOrigDiffSourceField' => 'l10n_diffsource',
-        'delete' => 'deleted',
-        'enablecolumns' => [
-            'disabled' => 'hidden',
-            'starttime' => 'starttime',
-            'endtime' => 'endtime',
-        ],
-        'searchFields' => 'subject,content',
-        'iconfile' => 'EXT:forums/Resources/Public/Icons/tx_forums_domain_model_privatemessage.gif'
-    ],
+        'searchFields' => '',
+    ], false, false),
     'types' => [
-        '1' => ['showitem' => 'subject, content, sender, receiver, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
+        '1' => ['showitem' => TcaUtility::tab(
+            null,
+            ['subject', 'content', 'sender', 'receiver'])
+            ]
     ],
-    'columns' => [
-        'sys_language_uid' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
-            'config' => [
-                'type' => 'language',
+    'columns' => \nn\t3::TCA()->createConfig(
+        PrivateMessage::TABLE_NAME,
+        ['hidden', 'crdate'],
+        [
+            'subject' => [
+                'exclude' => true,
+                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_privatemessage.subject',
+                'config' => TcaUtility::getInput(true),
             ],
-        ],
-        'l10n_parent' => [
-            'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'default' => 0,
-                'items' => [
-                    ['', 0],
+            'content' => [
+                'exclude' => true,
+                'label' => TcaUtility::title('content'),
+                'config' => TcaUtility::getRTE(),
+            ],
+            'sender' => [
+                'exclude' => true,
+                'label' => TcaUtility::title('sender'),
+                'config' => [
+                    'type' => 'select',
+                    'renderType' => 'selectSingle',
+                    'foreign_table' => 'fe_users',
+                    'default' => 0,
+                    'minitems' => 0,
+                    'maxitems' => 1,
                 ],
-                'foreign_table' => 'tx_forums_domain_model_privatemessage',
-                'foreign_table_where' => 'AND {#tx_forums_domain_model_privatemessage}.{#pid}=###CURRENT_PID### AND {#tx_forums_domain_model_privatemessage}.{#sys_language_uid} IN (-1,0)',
-            ],
-        ],
-        'l10n_diffsource' => [
-            'config' => [
-                'type' => 'passthrough',
-            ],
-        ],
-        'hidden' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                        'invertStateDisplay' => true
-                    ]
-                ],
-            ],
-        ],
-        'starttime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
-                'default' => 0,
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
-            ],
-        ],
-        'endtime' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
-            'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
-                'default' => 0,
-                'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
-                ],
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
-            ],
-        ],
 
-        'subject' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_privatemessage.subject',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'trim,required',
-                'default' => ''
             ],
-        ],
-        'content' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_privatemessage.content',
-            'config' => [
-                'type' => 'text',
-                'enableRichtext' => true,
-                'richtextConfiguration' => 'default',
-                'fieldControl' => [
-                    'fullScreenRichtext' => [
-                        'disabled' => false,
-                    ],
+            'receiver' => [
+                'exclude' => true,
+                'label' => TcaUtility::title('receiver'),
+                'config' => [
+                    'type' => 'select',
+                    'renderType' => 'selectSingle',
+                    'foreign_table' => 'fe_users',
+                    'default' => 0,
+                    'minitems' => 0,
+                    'maxitems' => 1,
                 ],
-                'cols' => 40,
-                'rows' => 15,
-                'eval' => 'trim',
-            ],
-            
-        ],
-        'sender' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_privatemessage.sender',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'foreign_table' => 'fe_users',
-                'default' => 0,
-                'minitems' => 0,
-                'maxitems' => 1,
+
             ],
 
-        ],
-        'receiver' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_privatemessage.receiver',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'foreign_table' => 'fe_users',
-                'default' => 0,
-                'minitems' => 0,
-                'maxitems' => 1,
+            'frontenduser' => [
+                'config' => [
+                    'type' => 'passthrough',
+                ],
             ],
-
-        ],
-    
-        'frontenduser' => [
-            'config' => [
-                'type' => 'passthrough',
-            ],
-        ],
-    ],
+        ]
+    ),
 ];

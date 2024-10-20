@@ -5,20 +5,11 @@ declare(strict_types=1);
 namespace Weisgerber\Forums\Domain\Model;
 
 
-/**
- * This file is part of the "Forums" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * (c) 2022 Mark Weisgerber <mark.weisgerber@outlook.de>
- */
+use Weisgerber\DarfIchMit\Domain\Model\FrontendUser;
 
-/**
- * PrivateMessage
- */
 class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
+    public const string TABLE_NAME = 'tx_forums_domain_model_privatemessage';
 
     /**
      * subject
@@ -26,35 +17,35 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
-    protected $subject = '';
+    protected string $subject = '';
 
     /**
      * content
      *
      * @var string
      */
-    protected $content = '';
+    protected string $content = '';
 
     /**
      * sender
      *
-     * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
+     * @var FrontendUser
      */
-    protected $sender = null;
+    protected ?FrontendUser $sender = null;
 
     /**
      * receiver
      *
-     * @var \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
+     * @var FrontendUser
      */
-    protected $receiver = null;
+    protected ?FrontendUser $receiver = null;
 
     /**
      * Returns the subject
      *
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
@@ -65,7 +56,7 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $subject
      * @return void
      */
-    public function setSubject(string $subject)
+    public function setSubject(string $subject): void
     {
         $this->subject = $subject;
     }
@@ -75,7 +66,7 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -86,7 +77,7 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $content
      * @return void
      */
-    public function setContent(string $content)
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
@@ -94,9 +85,9 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the sender
      *
-     * @return \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
+     * @return FrontendUser
      */
-    public function getSender()
+    public function getSender(): ?FrontendUser
     {
         return $this->sender;
     }
@@ -104,10 +95,10 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the sender
      *
-     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $sender
+     * @param FrontendUser $sender
      * @return void
      */
-    public function setSender(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $sender)
+    public function setSender(FrontendUser $sender): void
     {
         $this->sender = $sender;
     }
@@ -115,9 +106,9 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the receiver
      *
-     * @return \Weisgerber\DarfIchMit\Domain\Model\FrontendUser
+     * @return FrontendUser
      */
-    public function getReceiver()
+    public function getReceiver(): ?FrontendUser
     {
         return $this->receiver;
     }
@@ -125,10 +116,10 @@ class PrivateMessage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the receiver
      *
-     * @param \Weisgerber\DarfIchMit\Domain\Model\FrontendUser $receiver
+     * @param FrontendUser $receiver
      * @return void
      */
-    public function setReceiver(\Weisgerber\DarfIchMit\Domain\Model\FrontendUser $receiver)
+    public function setReceiver(FrontendUser $receiver): void
     {
         $this->receiver = $receiver;
     }
