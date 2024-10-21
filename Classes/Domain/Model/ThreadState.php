@@ -19,7 +19,7 @@ namespace Weisgerber\Forums\Domain\Model;
  */
 class ThreadState extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 {
-
+    public const string TABLE_NAME = 'tx_forums_domain_model_threadstate';
     /**
      * the last time, the frontenduser visited this thread. Important to display,
      * whether there are now posts or not

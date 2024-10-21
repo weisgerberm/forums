@@ -19,7 +19,7 @@ namespace Weisgerber\Forums\Domain\Model;
  */
 class PostReport extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
+    public const string TABLE_NAME = 'tx_forums_domain_model_postreport';
     /**
      * description
      *

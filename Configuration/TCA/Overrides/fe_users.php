@@ -1,7 +1,9 @@
 <?php
 
 use Weisgerber\DarfIchMit\Utility\TcaUtility;
+use Weisgerber\Forums\Domain\Model\PollVote;
 use Weisgerber\Forums\Domain\Model\Post;
+use Weisgerber\Forums\Domain\Model\PostLike;
 
 defined('TYPO3') || die();
 
@@ -13,11 +15,11 @@ $tmp_forums_columns = [
             'type' => 'select',
             'renderType' => 'selectSingle',
             'items' => [
-                ['10', 10],
-                ['15', 15],
-                ['20', 20],
-                ['25', 25],
-                ['30', 30],
+                ['label' => '10', 'value' => 10],
+                ['label' => '15', 'value' => 15],
+                ['label' => '20', 'value' => 20],
+                ['label' => '25', 'value' => 25],
+                ['label' => '30', 'value' => 30],
             ],
             'size' => 1,
             'default' => 10,
@@ -32,11 +34,11 @@ $tmp_forums_columns = [
             'type' => 'select',
             'renderType' => 'selectSingle',
             'items' => [
-                ['15', 15],
-                ['20', 20],
-                ['25', 25],
-                ['30', 30],
-                ['35', 35],
+                ['label' => '15', 'value' => 15],
+                ['label' => '20', 'value' => 20],
+                ['label' => '25', 'value' => 25],
+                ['label' => '30', 'value' => 30],
+                ['label' => '35', 'value' => 35],
             ],
             'size' => 1,
             'default' => 20,
@@ -82,10 +84,10 @@ $tmp_forums_columns = [
 //    ],
     'post_likes' => [
         'exclude' => true,
-        'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser.post_likes',
+        'label' => TcaUtility::title('post_likes'),
         'config' => [
             'type' => 'inline',
-            'foreign_table' => 'tx_forums_domain_model_postlike',
+            'foreign_table' => PostLike::TABLE_NAME,
             'foreign_field' => 'frontenduser',
             'maxitems' => 9999,
             'appearance' => [
@@ -99,10 +101,10 @@ $tmp_forums_columns = [
     ],
     'poll_votes' => [
         'exclude' => true,
-        'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_frontenduser.poll_votes',
+        'label' => TcaUtility::title('poll_votes'),
         'config' => [
             'type' => 'inline',
-            'foreign_table' => 'tx_forums_domain_model_pollvote',
+            'foreign_table' => PollVote::TABLE_NAME,
             'foreign_field' => 'frontenduser',
             'maxitems' => 9999,
             'appearance' => [
