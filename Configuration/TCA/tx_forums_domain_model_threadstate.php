@@ -7,6 +7,7 @@ return [
     'ctrl' => TcaUtility::getController(ThreadState::TABLE_NAME,'forums', [
         'label' => 'last_visit',
         'searchFields' => '',
+        'default_sortby' => '',
     ], false, false),
     'types' => [
         '1' => ['showitem' => TcaUtility::tab(null, ['last_visit','frontend_user','thread'])

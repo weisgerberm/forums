@@ -7,6 +7,7 @@ return [
     'ctrl' => TcaUtility::getController(PrivateMessage::TABLE_NAME, 'forums', [
         'label' => 'subject',
         'searchFields' => '',
+        'default_sortby' => '',
     ], false, false),
     'types' => [
         '1' => ['showitem' => TcaUtility::tab(

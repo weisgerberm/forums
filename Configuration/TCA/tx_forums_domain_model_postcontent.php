@@ -26,11 +26,7 @@ return [
                 'config' => TcaUtility::getText(),
 
             ],
-            'post' => [
-                'config' => [
-                    'type' => 'passthrough',
-                ],
-            ],
+            'post' => TcaUtility::getPassthrough(),
         ]
     )
 ];
