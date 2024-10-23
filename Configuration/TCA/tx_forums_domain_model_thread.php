@@ -2,6 +2,7 @@
 
 use Weisgerber\DarfIchMit\Utility\TcaUtility;
 use Weisgerber\Forums\Domain\Model\Post;
+use Weisgerber\Forums\Domain\Model\Tag;
 use Weisgerber\Forums\Domain\Model\Thread;
 
 return [
@@ -54,14 +55,11 @@ return [
             'last_posted_on' => [
                 'exclude' => true,
                 'label' => TcaUtility::title('last_posted_on'),
-                'config' => [
-                    'type' => 'input',
-                    'renderType' => 'inputDateTime',
-                    'default' => 0,
+                'config' => TcaUtility::getDate(true, [
                     'range' => [
                         'upper' => mktime(0, 0, 0, 1, 1, 2038)
                     ],
-                ],
+                ]),
             ],
             'posts' => [
                 'exclude' => true,
@@ -88,7 +86,7 @@ return [
                 'config' => [
                     'type' => 'select',
                     'renderType' => 'selectMultipleSideBySide',
-                    'foreign_table' => 'tx_forums_domain_model_tag',
+                    'foreign_table' => Tag::TABLE_NAME,
                     'MM' => 'tx_forums_thread_tag_mm',
                     'size' => 10,
                     'autoSizeMax' => 30,

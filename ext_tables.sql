@@ -63,8 +63,7 @@ CREATE TABLE tx_forums_domain_model_postreport
 CREATE TABLE tx_forums_domain_model_postlike
 (
 	post          int(11) unsigned DEFAULT '0' NOT NULL,
-	frontenduser  int(11) unsigned DEFAULT '0' NOT NULL,
-	frontend_user int(11) unsigned DEFAULT '0'
+	frontenduser int(11) unsigned DEFAULT '0'
 );
 
 CREATE TABLE tx_forums_domain_model_tag

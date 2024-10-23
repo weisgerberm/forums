@@ -19,9 +19,10 @@ return [
         PrivateMessage::TABLE_NAME,
         ['hidden', 'crdate'],
         [
+            'frontenduser' => TcaUtility::getPassthrough(),
             'subject' => [
                 'exclude' => true,
-                'label' => 'LLL:EXT:forums/Resources/Private/Language/locallang_db.xlf:tx_forums_domain_model_privatemessage.subject',
+                'label' => TcaUtility::title('subject'),
                 'config' => TcaUtility::getInput(true),
             ],
             'content' => [
@@ -40,7 +41,6 @@ return [
                     'minitems' => 0,
                     'maxitems' => 1,
                 ],
-
             ],
             'receiver' => [
                 'exclude' => true,
@@ -52,13 +52,6 @@ return [
                     'default' => 0,
                     'minitems' => 0,
                     'maxitems' => 1,
-                ],
-
-            ],
-
-            'frontenduser' => [
-                'config' => [
-                    'type' => 'passthrough',
                 ],
             ],
         ]

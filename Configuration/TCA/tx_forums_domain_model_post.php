@@ -12,10 +12,7 @@ return [
     ], false, false),
     'types' => [
         '1' => [
-            'showitem' => TcaUtility::tab(
-                null,
-                ['post_content', 'likes']
-            ) .
+            'showitem' => TcaUtility::tab(null,['post_content', 'likes']) .
             TcaUtility::accessTab().'spam,allow_html,quote,soft_deleted,awaiting_admin_approval,admin_comment'
         ],
     ],

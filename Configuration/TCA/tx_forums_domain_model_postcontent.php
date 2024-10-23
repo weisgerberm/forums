@@ -24,7 +24,6 @@ return [
                 'exclude' => true,
                 'label' => TcaUtility::title('description'),
                 'config' => TcaUtility::getText(),
-
             ],
             'post' => TcaUtility::getPassthrough(),
         ]
