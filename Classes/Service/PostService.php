@@ -18,7 +18,7 @@ class PostService extends AbstractService
      */
     public function rateLimiter(FrontendUser $frontendUser): bool
     {
-        $this->configurationService->init('forums');
+        $this->configurationService->initSettings('forums');
 
         $postsLastMinute    = $this->postRepository->countCreatedAfter($frontendUser, time() - 60);
         $postsLastHour      = $this->postRepository->countCreatedAfter($frontendUser, time() - 3600);
