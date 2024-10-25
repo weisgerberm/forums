@@ -66,12 +66,11 @@ GROUP BY
     tx_forums_domain_model_thread.title
 ORDER BY
     post_count DESC;");
-        $this->view->assignMultiple([
+
+        return $this->createBackendView(null, [
             'mostActiveUsers' => $mostActiveUsers,
             'hottestThreads' => $hottestThreads,
         ]);
-
-        return $this->htmlResponse($this->createBackendView());
     }
 
     /**
@@ -95,15 +94,13 @@ ORDER BY
         /** @var \TYPO3\CMS\Core\Pagination\SimplePagination $pagination */
         $pagination = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Pagination\SlidingWindowPagination::class,$paginator, 10);
 
-        $this->view->assignMultiple([
+        return $this->createBackendView(null, [
             'records' => $paginator->getPaginatedItems(),
             'languages' => \nn\t3::Environment()->getLanguages(),
             'pagination' => $pagination,
             'paginator' => $paginator,
             'currentPage' => $currentPage,
         ]);
-
-        return $this->htmlResponse($this->createBackendView());
     }
 
 
