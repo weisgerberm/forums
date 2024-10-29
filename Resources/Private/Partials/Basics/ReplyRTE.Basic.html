@@ -13,7 +13,7 @@
 <f:asset.script identifier="wysiwyg" src="EXT:darf_ich_mit/Resources/Public/Scripts/quill.js" />
 <f:asset.css identifier="wysiwyg" href="EXT:darf_ich_mit/Resources/Public/Styles/quill.snow.css" />
 <div class="control bg-white">
-    <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" property="postContent.0.description" class="form-control forums-rte wysiwyg-input d-none"></f:form.textarea>
+    <f:form.textarea disabled="{f:if(condition:'{forbidden}',then:'disabled')}" id="thread-content" property="postContent.0.description" class="form-control forums-rte wysiwyg-input"></f:form.textarea>
     <div class="wysiwyg-editor" data-placeholder="{f:translate(key:'LLL:EXT:darf_ich_mit_social/Resources/Private/Language/locallang.xlf:your-message')}">
         <p></p>
     </div>
