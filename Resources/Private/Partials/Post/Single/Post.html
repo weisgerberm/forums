@@ -1,49 +1,19 @@
 <html xmlns:social="http://typo3.org/ns/Weisgerber/DarfIchMitSocial/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 
-
-<f:if condition="!{post.softDeleted}">
-    <f:if condition="{post.frontendUser.coverPicture}">
-        <f:then>
-            <div id="post-{counter}" class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{post.frontendUser.coverPicture.image.0}', width: '1400')}); background-position-y: 50%;">
-                <span class="mask bg-gradient-primary opacity-1"></span>
-            </div>
-        </f:then>
-        <f:else>
-            <div id="post-{counter}" class="page-header min-height-300 border-radius-xl mt-4 bg-gradient-primary text-center">
-
-            </div>
-        </f:else>
-    </f:if>
-</f:if>
+<f:section name="Post">
+    <f:render section="Banner" arguments="{post:post, counter:counter}" />
     <div class="card card-body blur shadow-blur mx-1 mx-sm-4 {f:if(condition: '!{post.softDeleted}', then: 'mt-n12 ')}mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" {f:if(condition: '({jumpTo} == 1 && {iterator.isLast}) || {jumpTo} == {post.uid}', then: 'data-jump-to="true"')}>
-        <div class="card-body px-0">
-            <header class="card-title">
-                <div class="row">
-                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center">
-                        <a href="#post-{counter}" title="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:post-x-in-this-thread', arguments: '{0:counter}')}" class="link-dark text-monospace">#<span class="text-bold">{counter}</span></a>
-                    </div>
-                    <f:if condition="!{post.softDeleted}">
-                        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
-                            <div class="d-flex justify-content-between">
-                                <div class="text-muted text-xs" data-tippy-content="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:date-of-the-post')}">
-                                    <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <span {f:if(condition:'{counter} > 1', then:'itemprop="datePublished" content="{post.postContent.0.crdate -> f:format.date(format:\'c\')}"')}><f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date></span>
-                                </div>
-                                <f:security.ifAuthenticated>
-                                    <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
-                                </f:security.ifAuthenticated>
-                            </div>
-                        </div>
-                    </f:if>
-                </div>
-
-            </header>
+        <div class="post">
             <div class="row">
                 <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center" {f:if(condition:'{counter} > 1', then:'itemprop="author" itemtype="https://schema.org/Person" itemscope')}>
-                    <f:if condition="{post.frontenduser}">
+                <div class="post__title">
+                    <a href="#post-{counter}" title="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:post-x-in-this-thread', arguments: '{0:counter}')}" class="link-dark text-monospace">#<span class="text-bold">{counter}</span></a>
+                </div>
+                <f:if condition="{post.frontenduser}">
                         <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, additionalClasses:'fs-2',avatarSize:'xxl', username:post.frontendUser.username, fallbackLetterColor:'primary', width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
                     </f:if>
 
-                    <p class="subtitle is-5 my-2">
+                    <p class="my-2">
                         <f:if condition="{counter} > 1">
                             <f:then>
                                 <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser, additionalClasses:'font-weight-bold link-secondary', additionalNameAttributes:'itemprop=name', additionalLinkAttributes:'{itemprop:\'url\'}'}" />
@@ -63,6 +33,18 @@
 
                 </div>
                 <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+                    <f:if condition="!{post.softDeleted}">
+                        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
+                            <div class="d-flex justify-content-between">
+                                <div class="text-muted text-xs" data-tippy-content="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:date-of-the-post')}">
+                                    <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <span {f:if(condition:'{counter} > 1', then:'itemprop="datePublished" content="{post.postContent.0.crdate -> f:format.date(format:\'c\')}"')}><f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date></span>
+                                </div>
+                                <f:security.ifAuthenticated>
+                                    <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
+                                </f:security.ifAuthenticated>
+                            </div>
+                        </div>
+                    </f:if>
                     <f:if condition="{post.softDeleted}">
                         <f:then>
                             <div class="teaser-stripe teaser-stripe-product text-sm">
@@ -86,11 +68,33 @@
             </div>
         </div>
         <f:if condition="{post.edited}">
-            <div class="card-footer text-end text-xs text-lighter">
-                <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary'}" partial="Prefabs/Icon"/> <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:last-edited-on-x" arguments="{0:'{f:format.date(pattern: \'MEDIUM\', date:post.currentPostContent.crdate)}'}" />
-            </div>
+            <f:render section="EditedPost" arguments="{post:post}" />
         </f:if>
 
     </div>
-<f:render partial="Prefabs/HorizontalRule" arguments="{additionalClasses:'mb-3 d-sm-none'}" />
+    <f:render partial="Prefabs/HorizontalRule" arguments="{additionalClasses:'mb-3 d-sm-none'}" />
+</f:section>
+
+<f:section name="Banner">
+    <f:if condition="!{post.softDeleted}">
+        <f:if condition="{post.frontendUser.coverPicture}">
+            <f:then>
+                <div id="post-{counter}" class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url({f:uri.image(image: '{post.frontendUser.coverPicture.image.0}', width: '1400')}); background-position-y: 50%;">
+                    <span class="mask bg-gradient-primary opacity-1"></span>
+                </div>
+            </f:then>
+            <f:else>
+                <div id="post-{counter}" class="page-header min-height-300 border-radius-xl mt-4 bg-gradient-primary text-center">
+
+                </div>
+            </f:else>
+        </f:if>
+    </f:if>
+</f:section>
+
+<f:section name="EditedPost">
+    <div class="card-footer text-end text-xs text-lighter">
+        <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary'}" partial="Prefabs/Icon"/> <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:last-edited-on-x" arguments="{0:'{f:format.date(pattern: \'MEDIUM\', date:post.currentPostContent.crdate)}'}" />
+    </div>
+</f:section>
 </html>
