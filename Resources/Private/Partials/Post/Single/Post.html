@@ -4,16 +4,31 @@
     <f:render section="Banner" arguments="{post:post, counter:counter}" />
     <div class="card card-body blur shadow-blur mx-1 mx-sm-4 {f:if(condition: '!{post.softDeleted}', then: 'mt-n12 ')}mb-5 {f:if(condition: '{post.softDeleted}', then: 'card--deleted')}" {f:if(condition: '({jumpTo} == 1 && {iterator.isLast}) || {jumpTo} == {post.uid}', then: 'data-jump-to="true"')}>
         <div class="post">
-            <div class="row">
-                <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center" {f:if(condition:'{counter} > 1', then:'itemprop="author" itemtype="https://schema.org/Person" itemscope')}>
-                <div class="post__title">
+            <div class="post-top">
+                <div class="post-top__nr">
                     <a href="#post-{counter}" title="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:post-x-in-this-thread', arguments: '{0:counter}')}" class="link-dark text-monospace">#<span class="text-bold">{counter}</span></a>
                 </div>
-                <f:if condition="{post.frontenduser}">
-                        <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, additionalClasses:'fs-2',avatarSize:'xxl', username:post.frontendUser.username, fallbackLetterColor:'primary', width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+                <div class="post-top__date">
+                    <div class="text-muted text-xs" data-tippy-content="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:date-of-the-post')}">
+                        <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <span {f:if(condition:'{counter} > 1', then:'itemprop="datePublished" content="{post.postContent.0.crdate -> f:format.date(format:\'c\')}"')}><f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date></span>
+                    </div>
+                </div>
+                <div class="post-top__actions">
+                    <f:if condition="!{post.softDeleted}">
+                        <f:security.ifAuthenticated>
+                            <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
+                        </f:security.ifAuthenticated>
                     </f:if>
-
-                    <p class="my-2">
+                </div>
+            </div>
+            <div class="post-middle">
+                <div class="post-middle-left">
+                    <div class="post-middle-left__avatar">
+                        <f:if condition="{post.frontenduser}">
+                            <f:render partial="Basics/Avatar" arguments="{avatar:post.frontenduser.avatar, additionalClasses:'fs-2',avatarSize:'xxl', username:post.frontendUser.username, fallbackLetterColor:'primary', width:settings.defaults.avatarWidthPost, height:settings.defaults.avatarHeightPost, placeholder:settings.defaults.avatar}"/>
+                        </f:if>
+                    </div>
+                    <div class="post-middle-left__username">
                         <f:if condition="{counter} > 1">
                             <f:then>
                                 <f:render partial="Basics/Username" arguments="{frontenduser:post.frontenduser, additionalClasses:'font-weight-bold link-secondary', additionalNameAttributes:'itemprop=name', additionalLinkAttributes:'{itemprop:\'url\'}'}" />
@@ -24,53 +39,46 @@
 
                             </f:else>
                         </f:if>
-                    </p>
-                    <div class="align-items-center d-flex justify-content-center text-xs">
+                    </div>
+                    <div class="post-middle-left__rank">
                         <f:if condition="{post.frontenduser}">
                             <f:render partial="Basics/XP" arguments="{amount:post.frontenduser.xp}"/> <span class="vr mx-2"></span> <social:rank xp="{post.frontenduser.xp}" />
                         </f:if>
                     </div>
-
                 </div>
-                <div class="col-7 col-sm-8 col-md-9 col-lg-10">
-                    <f:if condition="!{post.softDeleted}">
-                        <div class="col-7 col-sm-8 col-md-9 col-lg-10">
-                            <div class="d-flex justify-content-between">
-                                <div class="text-muted text-xs" data-tippy-content="{f:translate(key:'LLL:EXT:forums/Resources/Private/Language/locallang.xlf:date-of-the-post')}">
-                                    <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary mt-2'}" partial="Prefabs/Icon"/> <span {f:if(condition:'{counter} > 1', then:'itemprop="datePublished" content="{post.postContent.0.crdate -> f:format.date(format:\'c\')}"')}><f:format.date format="%d.%m.%Y - %H:%M:%S" date="{post.postContent.0.crdate}"></f:format.date></span>
+                <div class="post-middle-right">
+                    <div class="post-middle-right__content">
+                        <f:if condition="{post.softDeleted}">
+                            <f:then>
+                                <div class="teaser-stripe teaser-stripe-product text-sm">
+                            <span>
+                                <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/> Dieser Beitrag wurde gelöscht <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/>
+                            </span>
                                 </div>
-                                <f:security.ifAuthenticated>
-                                    <f:render partial="Post/PostDropdownButton" arguments="{_all}" />
-                                </f:security.ifAuthenticated>
-                            </div>
-                        </div>
-                    </f:if>
-                    <f:if condition="{post.softDeleted}">
-                        <f:then>
-                            <div class="teaser-stripe teaser-stripe-product text-sm">
-                                <span>
-                                    <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/> Dieser Beitrag wurde gelöscht <f:render arguments="{icon:'trash', additionalClasses:''}" partial="Prefabs/Icon"/>
-                                </span>
-                            </div>
-                        </f:then>
-                        <f:else>
-                            <div class="content" {f:if(condition:'{counter} > 1', then:'itemprop="text"')} >
-                                <f:if condition="{post.quote}">
-                                    <f:render partial="Post/Quote/QuoteMessage" arguments="{postContent:post.quote}"/>
-                                </f:if>
-                                <f:format.html parseFuncTSPath="lib.parseFunc_Safe">{post.currentPostContent.description}</f:format.html>
-                            </div>
+                            </f:then>
+                            <f:else>
+                                <div class="content" {f:if(condition:'{counter} > 1', then:'itemprop="text"')} >
+                                    <f:if condition="{post.quote}">
+                                        <f:render partial="Post/Quote/QuoteMessage" arguments="{postContent:post.quote}"/>
+                                    </f:if>
+                                    <f:format.html parseFuncTSPath="lib.parseFunc_Safe">{post.currentPostContent.description}</f:format.html>
+                                </div>
+                            </f:else>
+                        </f:if>
+                    </div>
+                    <div class="post-middle-right__signature">
+                        <f:if condition="!{post.softDeleted}">
                             <f:render partial="Post/Signature" arguments="{frontendUser:post.frontenduser}" />
-                        </f:else>
-                    </f:if>
-
+                        </f:if>
+                    </div>
                 </div>
             </div>
+            <div class="post-bottom">
+                <f:if condition="{post.edited}">
+                    <f:render section="EditedPost" arguments="{post:post}" />
+                </f:if>
+            </div>
         </div>
-        <f:if condition="{post.edited}">
-            <f:render section="EditedPost" arguments="{post:post}" />
-        </f:if>
-
     </div>
     <f:render partial="Prefabs/HorizontalRule" arguments="{additionalClasses:'mb-3 d-sm-none'}" />
 </f:section>
@@ -93,7 +101,7 @@
 </f:section>
 
 <f:section name="EditedPost">
-    <div class="card-footer text-end text-xs text-lighter">
+    <div class="post-bottom__edit">
         <f:render arguments="{icon:'calendar-user', additionalClasses:'font-weight-bolder text-quaternary'}" partial="Prefabs/Icon"/> <f:translate key="LLL:EXT:forums/Resources/Private/Language/locallang.xlf:last-edited-on-x" arguments="{0:'{f:format.date(pattern: \'MEDIUM\', date:post.currentPostContent.crdate)}'}" />
     </div>
 </f:section>
