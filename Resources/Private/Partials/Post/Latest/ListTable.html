@@ -1,17 +1,15 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<div class="card-body">
-    <div class="lastactivity">
-        <f:for each="{posts}" as="post">
-            <div class="lastactivity__activity">
-                <div class="d-flex flex-column">
-                    <f:link.action class="lastactivity__link" action="show" title="{post.thread.title}" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread, jumpTo:1}" >
-                        {post.thread.title}
-                    </f:link.action>
-                    <span class="d-inline-flex align-items-center text-xs"><f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> {post.frontendUser.username}</span>
-                </div>
+<div class="lastactivity">
+    <f:for each="{posts}" as="post">
+        <div class="lastactivity__activity">
+            <div class="d-flex flex-column">
+                <f:link.action class="lastactivity__link" action="show" title="{post.thread.title}" controller="Thread" pluginName="Show" pageUid="{post.thread.pid}" arguments="{thread:post.thread, jumpTo:1}" >
+                    {post.thread.title}
+                </f:link.action>
+                <span class="d-inline-flex align-items-center text-xs"><f:render partial="Prefabs/Icon" arguments="{icon:'badge',additionalClasses:'me-1'}"/> {post.frontendUser.username}</span>
             </div>
-            <f:render partial="Prefabs/HorizontalRule" arguments="{additionalClasses:'my-1'}" />
-        </f:for>
-    </div>
+        </div>
+        <f:render partial="Prefabs/HorizontalRule" arguments="{additionalClasses:'my-1'}" />
+    </f:for>
 </div>
 </html>
