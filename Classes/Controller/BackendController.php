@@ -90,7 +90,7 @@ ORDER BY
         $newsRepository->setDefaultQuerySettings($querySettings);
 
         /** @var \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator $paginator */
-        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $newsRepository->findBy([], ['uid' => QueryInterface::ORDER_DESCENDING]), $currentPage, 25);
+        $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $newsRepository->findBy(['forums_thread' => 0], ['uid' => QueryInterface::ORDER_DESCENDING]), $currentPage, 25);
         /** @var \TYPO3\CMS\Core\Pagination\SimplePagination $pagination */
         $pagination = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Pagination\SlidingWindowPagination::class,$paginator, 10);
 
