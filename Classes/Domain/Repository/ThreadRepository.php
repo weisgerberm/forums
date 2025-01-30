@@ -37,7 +37,7 @@ class ThreadRepository extends AbstractRepository
 
         /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
         $querySettings = GeneralUtility::makeInstance( Typo3QuerySettings::class);
-        $contentObj = $this->getConfigurationManager()->getContentObject();
+        $contentObj = $GLOBALS['TYPO3_REQUEST']->getAttribute('currentContentObject');
         if (!is_null($contentObj->data)) {
 
             // when there is a content object, we'll grab the pid from there. Otherwise we try our luck from TSFE
