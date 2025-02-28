@@ -1,0 +1,2 @@
+@import 'EXT:forums/Configuration/TSconfig/Page/ContentElement/*.tsconfig'
+@import 'EXT:forums/Configuration/TSconfig/Page/LinkBrowser/*.typoscript'
