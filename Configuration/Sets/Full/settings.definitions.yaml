@@ -1,0 +1,19 @@
+categories:
+  basic: ~
+
+settings:
+  basic.avatar:
+    label: 'File location for users without avatar'
+    default: '/typo3conf/ext/forums/Resources/Public/Images/96x96.png'
+    type: string
+    category: basic
+  basic.avatarWidthThreadCreator:
+    label: 'Avatar image width in thread list view for the thread creator'
+    default: '80c'
+    type: string
+    category: basic
+  basic.avatarHeightThreadCreator:
+    label: 'Avatar image height in thread list view for the thread creator'
+    default: '80c'
+    type: string
+    category: basic

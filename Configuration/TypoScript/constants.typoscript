@@ -18,12 +18,6 @@ plugin.tx_forums {
 plugin.tx_forums{
   settings{
     defaults{
-      # File location for users without avatar
-      avatar = /typo3conf/ext/forums/Resources/Public/Images/96x96.png
-      # Avatar image width in thread list view for the thread creator
-      avatarWidthThreadCreator = 80c
-      # Avatar image height in thread list view for the thread creator
-      avatarHeightThreadCreator = 80c
       # Avatar image width in thread list view for the latest post
       avatarWidthThreadLatestPost = 50c
       # Avatar image height in thread list view for the latest post

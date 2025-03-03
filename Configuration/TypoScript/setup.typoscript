@@ -19,9 +19,9 @@ plugin.tx_forums {
     noPermission = 123
     defaults {
       # File location for users without avatar
-      avatar = {$plugin.tx_forums.settings.defaults.avatar}
+      avatar = {$basic.avatar}
       # Avatar image width in thread list view
-      avatarWidthThreadCreator = {$plugin.tx_forums.settings.defaults.avatarWidthThreadCreator}
+      avatarWidthThreadCreator = {$basic.avatarWidthThreadCreator}
       # Avatar image height in thread list view
       avatarHeightThreadCreator = {$plugin.tx_forums.settings.defaults.avatarHeightThreadCreator}
       # Avatar image width in thread list view for the latest post
