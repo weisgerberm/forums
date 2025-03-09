@@ -1,19 +1,70 @@
 categories:
   basic: ~
+  view: ~
 
 settings:
-  basic.avatar:
+  plugin.tx_forums.view.layoutRootPath:
+    label: 'Layout root path override'
+    default: ''
+    type: string
+    category: view
+  plugin.tx_forums.view.templateRootPath:
+    label: 'Template root path override'
+    default: ''
+    type: string
+    category: view
+  plugin.tx_forums.view.partialRootPath:
+    label: 'Partial root path override'
+    default: ''
+    type: string
+    category: view
+  plugin.tx_forums.avatar:
     label: 'File location for users without avatar'
     default: '/typo3conf/ext/forums/Resources/Public/Images/96x96.png'
     type: string
     category: basic
-  basic.avatarWidthThreadCreator:
+  plugin.tx_forums.avatarWidthThreadCreator:
     label: 'Avatar image width in thread list view for the thread creator'
     default: '80c'
     type: string
     category: basic
-  basic.avatarHeightThreadCreator:
+  plugin.tx_forums.avatarHeightThreadCreator:
     label: 'Avatar image height in thread list view for the thread creator'
     default: '80c'
     type: string
+    category: basic
+  plugin.tx_forums.avatarWidthThreadLatestPost:
+    label: 'Avatar image width in thread list view for the latest post'
+    default: '50c'
+    type: string
+    category: basic
+  plugin.tx_forums.avatarHeightThreadLatestPost:
+    label: 'Avatar image height in thread list view for the latest post'
+    default: '50c'
+    type: string
+    category: basic
+  plugin.tx_forums.avatarWidthPost:
+    label: 'Avatar image width in post list view / thread show view'
+    default: '130c'
+    type: string
+    category: basic
+  plugin.tx_forums.avatarHeightPost:
+    label: 'Avatar image height in post list view / thread show view'
+    default: '130c'
+    type: string
+    category: basic
+  plugin.tx_forums.threadItemsPerPage:
+    label: 'Default thread items displayed per page'
+    default: 20
+    type: int
+    category: basic
+  plugin.tx_forums.pids.loginPage:
+    label: 'Page UID for Login-Redirects'
+    default: 0
+    type: int
+    category: basic
+  plugin.tx_forums.pids.profilePage:
+    label: 'Page UID for Profile-Redirects'
+    default: 0
+    type: int
     category: basic

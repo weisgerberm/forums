@@ -5,10 +5,10 @@ page {
 #    ckeditor = {$page.resources.ckeditor}
   }
   includeJSFooter{
-#    forumsCkeditor = {$page.resources.forumsCkeditor}
+#    forumsCkeditor = EXT:forums/Resources/Source/Scripts/forums.ckeditor.js
   }
   includeCSS{
-    #compiledStyles = {$page.resources.compiledStyles}
+    #compiledStyles = EXT:forums/Resources/Public/Styles/forums.css
   }
   10.default {
       dataProcessing {

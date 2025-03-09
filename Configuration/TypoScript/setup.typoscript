@@ -2,8 +2,8 @@ plugin.tx_forums {
   view {
     templateRootPaths.0 = EXT:forums/Resources/Private/Templates/
     templateRootPaths.1 = {$plugin.tx_forums.view.templateRootPath}
-    partialRootPaths.0 = EXT:darf_ich_mit/Resources/Private/Partials/
-    partialRootPaths.1 = EXT:forums/Resources/Private/Partials/
+    partialRootPaths.0 = EXT:forums/Resources/Private/Partials/
+    partialRootPaths.1 = {$plugin.tx_forums.view.partialRootPath}
     layoutRootPaths.0 = EXT:forums/Resources/Private/Layouts/
     layoutRootPaths.1 = {$plugin.tx_forums.view.layoutRootPath}
   }
@@ -19,21 +19,21 @@ plugin.tx_forums {
     noPermission = 123
     defaults {
       # File location for users without avatar
-      avatar = {$basic.avatar}
+      avatar = {$plugin.tx_forums.avatar}
       # Avatar image width in thread list view
-      avatarWidthThreadCreator = {$basic.avatarWidthThreadCreator}
+      avatarWidthThreadCreator = {$plugin.tx_forums.avatarWidthThreadCreator}
       # Avatar image height in thread list view
-      avatarHeightThreadCreator = {$plugin.tx_forums.settings.defaults.avatarHeightThreadCreator}
+      avatarHeightThreadCreator = {$plugin.tx_forums.avatarHeightThreadCreator}
       # Avatar image width in thread list view for the latest post
-      avatarWidthThreadLatestPost = {$plugin.tx_forums.settings.defaults.avatarWidthThreadLatestPost}
+      avatarWidthThreadLatestPost = {$plugin.tx_forums.avatarWidthThreadLatestPost}
       # Avatar image height in thread list view for the latest post
-      avatarHeightThreadLatestPost = {$plugin.tx_forums.settings.defaults.avatarHeightThreadLatestPost}
+      avatarHeightThreadLatestPost = {$plugin.tx_forums.avatarHeightThreadLatestPost}
       # Avatar image width in post list view / thread show view
-      avatarWidthPost = {$plugin.tx_forums.settings.defaults.avatarWidthPost}
+      avatarWidthPost = {$plugin.tx_forums.avatarWidthPost}
       # Avatar image height in post list view / thread show view
-      avatarHeightPost = {$plugin.tx_forums.settings.defaults.avatarHeightPost}
+      avatarHeightPost = {$plugin.tx_forums.avatarHeightPost}
       # Default thread items displayed per page
-      threadItemsPerPage = {$plugin.tx_forums.settings.defaults.threadItemsPerPage}
+      threadItemsPerPage = {$plugin.tx_forums.threadItemsPerPage}
       # max posts per minute
       postsPerMinute = 3
       # max posts per hour
@@ -42,17 +42,9 @@ plugin.tx_forums {
       unconfirmedEmailPostsPerHour = 5
     }
 
-    css {
-      # Used css framework [BEM, Bootstrap4, Bootstrap5, Bulma]
-      mode = {$plugin.tx_forums.settings.css.mode}
-    }
-
     pids {
-      # Page UID for Login-Redirects
-      loginPage = {$plugin.tx_forums.settings.pids.loginPage}
-      # Page UID for Profile-Redirects
-
-      profilePage = {$plugin.tx_forums.settings.pids.profilePage}
+      loginPage = {$plugin.tx_forums.pids.loginPage}
+      profilePage = {$plugin.tx_forums.pids.profilePage}
     }
   }
 

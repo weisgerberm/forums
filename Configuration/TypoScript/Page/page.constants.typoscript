@@ -1,7 +1,0 @@
-page {
-  resources{
-    forumsCkeditor = EXT:forums/Resources/Source/Scripts/forums.ckeditor.js
-#    ckeditor = EXT:forums/Resources/Public/Scripts/ckeditor.js
-    compiledStyles = EXT:forums/Resources/Public/Styles/forums.css
-  }
-}
