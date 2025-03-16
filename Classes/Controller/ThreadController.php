@@ -105,7 +105,9 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
         $this->threadRepository->update($thread);
 
         $frontendUser = $this->fetchFeUser();
-        $postsPerPage = ($frontendUser) ? $frontendUser->getPostsPerPage() : (int) $this->settings['defaults']['threadItemsPerPage'];
+//        $postsPerPage = ($frontendUser) ? $frontendUser->getPostsPerPage() : (int) $this->settings['defaults']['threadItemsPerPage'];
+        // Erstmal nur global erlauben
+        $postsPerPage = (int) $this->settings['defaults']['threadItemsPerPage'];
 
         // Normal numeric pagination
         $paginator = new ArrayPaginator(
