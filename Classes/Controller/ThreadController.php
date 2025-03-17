@@ -49,13 +49,16 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
         $threads = $this->threadRepository->findAll();
 
         $frontendUser = $this->fetchFeUser();
-
-        $threadsPerPage = ($frontendUser) ? $frontendUser->getThreadsPerPage() : 10;
+        // Erstmal nur global erlauben
+        $threadsPerPage = 10;
+//        $threadsPerPage = ($frontendUser) ? $frontendUser->getThreadsPerPage() : 10;
 
         /** @var \TYPO3\CMS\Extbase\Pagination\QueryResultPaginator $paginator */
         $paginator = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Pagination\QueryResultPaginator::class, $threads,$currentPage, $threadsPerPage);
-        /** @var \TYPO3\CMS\Core\Pagination\SimplePagination $pagination */
-        $pagination = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Pagination\SimplePagination::class,$paginator);
+        /** @var \TYPO3\CMS\Core\Pagination\SlidingWindowPagination $pagination */
+        $pagination = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Pagination\SlidingWindowPagination::class,$paginator, 10);
+
+
         $this->view->assignMultiple(
             [
                 'threads' => $paginator->getPaginatedItems(),
