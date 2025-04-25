@@ -23,7 +23,7 @@ class PostService extends AbstractService
         $postsLastMinute    = $this->postRepository->countCreatedAfter($frontendUser, time() - 60);
         $postsLastHour      = $this->postRepository->countCreatedAfter($frontendUser, time() - 3600);
 
-        if (!$frontendUser->getTxFemanagerConfirmedbyuser()) {
+        if (is_null($frontendUser->getConfirmedByUser())) {
             if ($postsLastHour >= $this->getSettings()['defaults']['unconfirmedEmailPostsPerHour']) {
                 return false;
             }
