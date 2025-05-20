@@ -89,6 +89,9 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
                     $thread->addSubscriber($frontendUser);
                 }
 
+                // Notify everyone about the new post
+                $this->postService->notifyAboutNewPost($thread, $newPost, $frontendUser);
+
                 /** @var ThreadRepository $threadRepository */
                 $threadRepository = GeneralUtility::makeInstance(ThreadRepository::class);
                 $threadRepository->update($thread);
