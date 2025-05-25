@@ -3,6 +3,9 @@
 	<file source-language="en" datatype="plaintext" original="EXT:forums/Resources/Private/Language/locallang.xlf" date="2022-10-30T15:22:33Z" product-name="forums">
 		<header/>
 		<body>
+			<trans-unit id="email_subject_new_post_notification" resname="email_subject_new_post_notification">
+				<source>%s</source>
+			</trans-unit>
 			<trans-unit id="tx_forums_domain_model_thread" resname="tx_forums_domain_model_thread">
 				<source>Thread</source>
 			</trans-unit>

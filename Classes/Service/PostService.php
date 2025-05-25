@@ -2,8 +2,15 @@
 
 namespace Weisgerber\Forums\Service;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Weisgerber\DarfIchMit\Domain\Model\FrontendUser;
+use Weisgerber\DarfIchMit\Utility\DimUtility;
+use Weisgerber\DarfIchMitMail\Domain\Model\Mail;
+use Weisgerber\DarfIchMitMail\Domain\Repository\MailRepository;
+use Weisgerber\DarfIchMitMail\Service\MailService;
 use Weisgerber\Forums\Domain\Model\Post;
 use Weisgerber\Forums\Domain\Model\Thread;
 use Weisgerber\Forums\Traits\PostRepositoryTrait;
@@ -43,15 +50,42 @@ class PostService extends AbstractService
 
     /**
      * Notifies all subscribers of a thread except those who generally reject mails by their profile settings
-     */
-	public function notifyAboutNewPost(Thread $thread, Post $newPost, ?FrontendUser $frontendUser): void
+     *
+     * @param RequestInterface $request*/
+	public function notifyAboutNewPost(Thread $thread, Post $newPost, ?FrontendUser $frontendUser, RequestInterface $request): void
     {
+        $mailRepository = GeneralUtility::makeInstance(MailRepository::class);
+        /** @var MailService $mailService */
+        $mailService = GeneralUtility::makeInstance(MailService::class);
+
         /** @var FrontendUser $subscriber */
         foreach ($thread->getSubscribers() as $subscriber) {
             // When the current user of the post is a subscriber we'll skip the notification. Also checking whether the user allows to receive emails
-            if(!$frontendUser === $subscriber && $subscriber->getAllowEmails()) {
-
+            if($frontendUser !== $subscriber && $subscriber->getAllowEmails()) {
+                $mail = $this->getNotificationEmail($thread, $newPost, $subscriber);
+                $mailRepository->add($mail);
+                DimUtility::persistAll();
             }
         }
 	}
+
+    private function getNotificationEmail(Thread $thread, Post $newPost, ?FrontendUser $frontendUser): Mail
+    {
+        /** @var Mail $mail */
+        $mail = GeneralUtility::makeInstance(Mail::class);
+        $mail->setPid(637);
+        $mail->setSubject(LocalizationUtility::translate('email_subject_new_post_notification', 'forums', [$thread->getTitle()]));
+        $mail->setAddress($frontendUser->getEmail());
+        $mail->setUidForeign($thread->getUid());
+        $mail->setTablename(Thread::TABLE_NAME);
+        $mail->setSerializedVariables(json_encode([
+            'uid' => $frontendUser->getUid(),
+            'username' => $frontendUser->getUsername(),
+            'absoluteLink' => \nn\t3::Page()->getActionLink( $thread->getPid(), 'forums', 'Show', 'Thread', 'show', ['thread' => $thread->getUid(), 'jumpTo' => 1], true),
+        ]));
+
+        $mail->setTemplate("Forums/NewPostNotification");
+
+        return $mail;
+    }
 }

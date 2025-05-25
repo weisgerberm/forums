@@ -90,7 +90,7 @@ class PostController extends \Weisgerber\DarfIchMit\Controller\AbstractControlle
                 }
 
                 // Notify everyone about the new post
-                $this->postService->notifyAboutNewPost($thread, $newPost, $frontendUser);
+                $this->postService->notifyAboutNewPost($thread, $newPost, $frontendUser, $this->request);
 
                 /** @var ThreadRepository $threadRepository */
                 $threadRepository = GeneralUtility::makeInstance(ThreadRepository::class);
