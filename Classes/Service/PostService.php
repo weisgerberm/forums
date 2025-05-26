@@ -81,7 +81,7 @@ class PostService extends AbstractService
         $mail->setSerializedVariables(json_encode([
             'uid' => $frontendUser->getUid(),
             'username' => $frontendUser->getUsername(),
-            'absoluteLink' => \nn\t3::Page()->getActionLink( $thread->getPid(), 'forums', 'Show', 'Thread', 'show', ['thread' => $thread->getUid(), 'jumpTo' => 1], true),
+            'page' => $thread->getPid(),
         ]));
 
         $mail->setTemplate("Forums/NewPostNotification");
