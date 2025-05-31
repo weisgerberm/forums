@@ -9,7 +9,7 @@
     settings < plugin.tx_forums.settings
     persistence < plugin.tx_forums.persistence
     stdWrap{
-      wrap = <div class="frame-container frame-container-default my-3">|</div>
+      wrap = <div class="frame-container frame-container-default">|</div>
     }
 
   }
@@ -25,7 +25,7 @@
     settings < plugin.tx_forums.settings
     persistence < plugin.tx_forums.persistence
     stdWrap{
-      wrap = <div class="frame-container frame-container-default my-3">|</div>
+      wrap = <div class="frame-container frame-container-default">|</div>
     }
 
   }
