@@ -4,28 +4,24 @@ declare(strict_types=1);
 
 namespace Weisgerber\Forums\Controller;
 
+use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
-use TYPO3\CMS\Core\Pagination\ArrayPaginator;
-use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
+use TYPO3\CMS\Core\Pagination\{ArrayPaginator, SlidingWindowPagination};
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Persistence\Exception\{IllegalObjectTypeException, UnknownObjectException};
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use Weisgerber\DarfIchMit\Domain\Model\Activity;
-use Weisgerber\DarfIchMit\Domain\Model\DTO\LinkBuilderDTO;
-use Weisgerber\DarfIchMit\Domain\Model\Xp;
+use Weisgerber\DarfIchMit\Domain\Model\{Activity, DTO\LinkBuilderDTO, Xp};
 use Weisgerber\DarfIchMit\Traits\{ActivityServiceTrait,
     FrontendUserServiceTrait,
     SchemaServiceTrait,
     SlugServiceTrait,
     XpServiceTrait};
-use Weisgerber\DarfIchMit\Utility\DimUtility;
+use Weisgerber\DarfIchMit\Utility\{DimUtility, MathUtility};
 use Weisgerber\Forums\Domain\Model\{Post, Thread};
-use Weisgerber\Forums\Traits\{ThreadRepositoryTrait, ThreadServiceTrait, UriServiceTrait};
-use Weisgerber\DarfIchMit\Utility\MathUtility;
 use Weisgerber\Forums\Domain\Repository\PostRepository;
+use Weisgerber\Forums\Traits\{ThreadRepositoryTrait, ThreadServiceTrait, UriServiceTrait};
 
 class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractController
 {
@@ -104,10 +100,17 @@ class ThreadController extends \Weisgerber\DarfIchMit\Controller\AbstractControl
             return $this->redirect('show', null, null, ['thread' => $thread, 'currentPage' => $returnPageNo, 'jumpTo' => $jumpTo, 'quotePost' => $quotePost]);
         }
 
-        $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
-        $this->threadRepository->update($thread);
+        // Library CrawlerDetect https://github.com/JayBizzle/Crawler-Detect wird verwendet, dass Bots den Counter
+        // nicht verfälschen.
+        $crawlerDetect = new CrawlerDetect();
 
-        $frontendUser = $this->fetchFeUser();
+        // Check the user agent of the current 'visitor'
+        if(!$crawlerDetect->isCrawler()) {
+            $thread->setCachedCounterViews($thread->getCachedCounterViews() + 1);
+            $this->threadRepository->update($thread);
+        }
+
+
 //        $postsPerPage = ($frontendUser) ? $frontendUser->getPostsPerPage() : (int) $this->settings['defaults']['threadItemsPerPage'];
         // Erstmal nur global erlauben
         $postsPerPage = (int) $this->settings['defaults']['threadItemsPerPage'];
